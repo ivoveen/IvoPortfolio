@@ -336,3 +336,10 @@
             text-decoration: none;
             font-weight: bold;
         }
+
+
+        .section img{
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }

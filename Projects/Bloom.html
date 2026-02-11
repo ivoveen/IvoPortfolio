@@ -12,7 +12,7 @@
 <body>
     <!-- Sticky Navigation -->
     <nav>
-        <h3>Ivo van der Veen</h3>
+        <a href="../index.html"><h3>Ivo van der Veen</h3></a>   
         <div>
             <a href="#intro">About</a>
             <a href="#projects">Projects</a>
@@ -60,26 +60,194 @@
 
     <!-- About Me -->
     <section id="about" class="about">
-        <div class="about-container">
-            <div class="about-picture">
-                <img src="/Assets/Pictures/IvoMountain.jpg" alt="Profile picture" class="profile-img" />
-            </div>
-            <div class="about-text">
-                <p>Hello! I'm <strong>Ivo</strong>, a games programming student at <strong>BUAS</strong> specializing in
-                    <strong>gameplay and AI
-                        programming</strong>. I enjoy exploring new topics and pushing myself one step further.
-                </p>
-                <p><strong>Looking for an internship from September 2026. </p>
-                <div class="skills">
-                    <img src="https://cdn.simpleicons.org/cplusplus/00599C" alt="C++" class="skill-icon" title="C++">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-plain.svg"
-                        alt="C#" class="skill-icon" title="C#">
-                    <img src="https://cdn.simpleicons.org/unrealengine/FFFFFF" alt="Unreal Engine" class="skill-icon"
-                        title="Unreal Engine">
-                    <img src="https://cdn.simpleicons.org/unity/FFFFFF" alt="Unity" class="skill-icon" title="Unity">
-                    <img src="https://cdn.simpleicons.org/opengl/5586A4" alt="OpenGL" class="skill-icon" title="OpenGL">
-                </div>
-            </div>
+        <div class="">
+           <h1>The Work</h1>
+
+<div class="section">
+    <p>The plant blueprints are structured like this after some iterations:</p>
+    <img src="../assets/media/plantstructure.png" alt="Plant structure diagram">
+    
+    <p>There is one base plant blueprint which has the attacking, health and death code. This is the parent blueprint of all outside "wild" plants. From this base blueprint there is another base blueprint for all inside plants, which adds all inside behaviour such as upgrading, growing fruit, water levels, etc. This is then used by all plant stages.</p>
+    <img src="../assets/media/plantstructure2.png" alt="Plant structure hierarchy">
+</div>
+
+<div class="section">
+    <h3>Inside Plants</h3>
+    <p>Each inside plant stage is its own blueprint, which allows the variables to be tweaked for each growth stage.</p>
+    
+    <h4>Pots</h4>
+    <p>Inside plants can be planted into pots. To support this and to support all the various different plant pots the game has, I created a pot slot blueprint which contains all the logic. This pot-slot blueprint is then used as a child component inside all the various pot blueprints. This lets artists and designers put multiple places to plant inside one pot in any location they want.</p>
+    
+    <img src="../assets/media/plantpot.gif" alt="Plant pot demonstration">
+    <img src="../assets/media/potchild.png" alt="Pot child component structure">
+    <img src="../assets/media/potslot.png" alt="Pot slot blueprint">
+    
+    <p>The pot-slot itself is at first an interactable and spawns the plant of the seed you give it. After this it becomes un-interactable to allow the player to interact with the plant. The slot always keeps track of its current plant. When it doesn't exist anymore, the slot opens up again and the player can plant once more.</p>
+</div>
+
+<div class="section">
+    <h3>Watering</h3>
+    <p>The plants and seeds you place can be watered by the player. When watering a seed it causes the seed to upgrade to the first phase. From this phase on the plant needs to be watered once every three days (indicated by the three water droplets).</p>
+    
+    <img src="../assets/media/waterseed.gif" alt="Watering a seed">
+    <p><em>The diegetic UI was made by Flemming and the exclamation mark appearing is a small bug in the current build.</em></p>
+    
+    <p>When water levels drop to 0 one of two things can happen. Either the plant dies, or if the plant was in the final stage it turns aggressive like a wild plant.</p>
+    <img src="../assets/media/angryplant.gif" alt="Aggressive plant behavior">
+</div>
+
+<div class="section">
+    <h3>Upgrading</h3>
+    <p>Each plant has a list of items it needs to be upgraded. When the player has all the needed items and interacts with the plant, VFX is triggered and the plant switches to the next phase of itself, which in turn has another list of required items to reach the final phase.</p>
+    <img src="../assets/media/upgradeplant.gif" alt="Plant upgrade process">
+</div>
+
+<div class="section">
+    <h3>Fruit</h3>
+    <p>When the plant is in the middle phase or the final phase the plant starts producing fruit. Fruit is produced once every 25 seconds and is guaranteed to be there when the player returns from the outside. When the plant has fruit it will play a sparkle VFX until it is harvested by interacting. Each plant has a list of items which are its fruit.</p>
+    
+    <img src="../assets/media/fruit.gif" alt="Fruit harvesting">
+    
+    <p>The final stage of a plant gives multiple types of fruit as can be seen here:</p>
+    <img src="../assets/media/fruit2.png" alt="Multiple fruit types">
+    
+    <p>The fruit and water system went over some iterations based on ideas of Jeroen. We had finally figured out how the day night system should work and this caused the water and fruit system to need to be overhauled. The plant should now only lose water levels when the player goes outside, not over time. And the fruits should instantly grow when you go outside. Later Jeroen added to this that fruits should still also grow over time when the player is inside. This is an example of the many ways I worked together with other disciplines.</p>
+</div>
+
+<div class="section">
+    <h3>Outside Plants</h3>
+    <p>The outside plants are always in an agitated state. While in this state they play an angered idle animation and turn towards the player. When the player enters their attack range they save that location of the player and turn towards it. Once they are facing where the player was at that point they will attack. These attacks deal damage to the player using a hurt box and get triggered by an animation notify on the exact frame the plant should cause damage.</p>
+    
+    <p><strong>Face plant:</strong></p>
+    <img src="../assets/media/chomper.gif" alt="Face plant attack">
+    
+    <p><strong>Tree plant:</strong></p>
+    <img src="../assets/media/tree.gif" alt="Tree plant attack">
+    
+    <p><strong>Eye plant:</strong></p>
+    <img src="../assets/media/eyeplant.gif" alt="Eye plant attack">
+    <p>The eye plant was added pretty last minute being modelled in week 7 but in the end we got him in completely and he fits very well. His attack freezes the player for 2 seconds and does 10% damage. (There is a visual bug in the gif showing the health bar going white at 90% but that will be fixed for industry day)</p>
+    
+    <p>Another example of some of the interdisciplinary work I've done is with the eye plant. The eye plant went over a quick succession of iterations. The first version was too easy to dodge according to Jeroen so I worked with VA to adjust that. The first new animation Rina made wasn't exactly what we needed so I talked with her to make sure we were on the same page. After she had made it I implemented the animation again and showed it to Jeroen who was very happy with it.</p>
+    
+    <p>Another example is also with the face plant. In sprint 3 together with VA we thought it would be nice if the face plant did damage in two locations at different times. Since that seemed to fit the animation, I implemented this based on that idea. Then a week later Jeroen told me that it made the plants too difficult to dodge so I removed that iteration again.</p>
+    
+    <img src="../assets/media/oldchompergid.gif" alt="Old face plant iteration">
+    
+    <p>After all the pots and plants were made they were placed into the level by Marko and Minh and they used my blueprints without much trouble. When they wanted something and didn't know how to do it, I showed it to them or implemented the option if needed. Especially things like damage, health, drops, fruit, grow speed were changed and iterated upon a lot. Showing more interdisciplinary work.</p>
+</div>
+
+<h2>Caretaker</h2>
+
+<div class="section">
+    <h3>Relevance to the Planning</h3>
+    <img src="../assets/media/scopebreakdown2.png" alt="Scope breakdown">
+    <p>I started working on the caretaker in sprint 1 when all other tasks were already being worked on; the caretaker was the only task available at the time. Which is why it was set to be a completed prototype at the end of sprint 1. Then in sprint 2 I made some small improvements to make the caretakers playable and in sprint 3 spent quite some time to finish them off and turn them into a presentable state.</p>
+    
+    <p>Here are some of the tasks I created for the caretaker to show that my work meets the DoDs and was in line with planning:</p>
+    <img src="../assets/media/basiccaretaker.png" alt="Basic caretaker task">
+    <img src="../assets/media/caretakergood.png" alt="Caretaker completion task">
+</div>
+
+<div class="section">
+    <h3>The Work</h3>
+    <p>I contributed all the logic to the caretaker.</p>
+    
+    <p>The design of what the caretaker should do was tweaked quite a few times. And I followed these changes as they were tested by Jeroen. At the start of the project the caretaker didn't have any deactivated state yet and the caretaker itself was not very good at keeping plants alive.</p>
+    
+    <p>The caretaker starts off deactivated and interactable. When you give it the core it becomes un-interactable and starts its behaviour loop. One thing I added to this to help the VAs was that when the caretaker becomes activated it turns on a red spotlight and it turns up the emissive glow of the core in their chest. To do this I created a dynamic material instance and added parameters to it. Something I had no experience with yet. But VAs liked the end result a lot.</p>
+    <img src="../assets/media/caretakeractivation.gif" alt="Caretaker activation">
+    
+    <p>After being activated the caretaker wanders around a bit and then selects the plant that has the lowest water level. Then it walks there and waters the plant. After doing this it recharges its water at the pond and starts wandering again.</p>
+    <img src="../assets/media/caretakerloop2.gif" alt="Caretaker behavior loop">
+    <p><em>The caretaker doesn't have a watering can or animation in this video yet since those were finished near the end of the block.</em></p>
+    
+    <p>Here is the final caretaker:</p>
+    <img src="../assets/media/watercaretaker.gif" alt="Final caretaker watering">
+    
+    <p><strong>Caretaker behaviour loop:</strong></p>
+    <img src="../assets/media/caretakergraph2.png" alt="Caretaker behavior graph">
+    
+    <p>I started work on the caretaker in sprint 1 because all other major parts of the game were already being worked on. Here is a demo from sprint 1 of the caretaker behaviour. The caretaker remained in this state the next sprint until I polished it up in sprint 3. It was a low priority task in sprint 2.</p>
+    
+    <video width="640" height="480" controls>
+        <source src="../assets/media/caretakerBasicAi.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<h2>Interaction System</h2>
+
+<div class="section">
+    <h3>Relevance to the Planning</h3>
+    <img src="../assets/media/interact.png" alt="Interaction planning">
+    <p>During sprint 2 I had added the upgrade functionality to the plants. This needed to be showcased to the player to truly be testable. I started work on this task adjusting Tijn's interaction system since I already had experience with it by helping him. After I added the functionality for the pop up window I asked Flemming to take over the UI part since it was very similar to UI he had already made.</p>
+</div>
+
+<div class="section">
+    <h3>The Work</h3>
+    <p>The interaction system was made for a large part by Tijn. However we had to iterate upon parts of it a lot and when we did, I did that together with him. One part I added was an interface that notified actors if they were the object to be interactive with. Which became the core of all diegetic UI.</p>
+    <img src="../assets/media/diegetic.png" alt="Diegetic UI interface">
+    <img src="../assets/media/diegeticgraph.png" alt="Diegetic UI blueprint">
+    
+    <p>Another feature I added to the interaction system was the ability to make an object no longer interactable at runtime. I did this by adding a function to the interface which by default returns false. Now for example in the caretakers if I need them to stop being an interactable at some point I can override the function and add my logic.</p>
+    <img src="../assets/media/interactable.png" alt="Interactable function">
+    <img src="../assets/media/interactable2.png" alt="Interactable implementation">
+</div>
+
+<h2>Core</h2>
+
+<div class="section">
+    <p>I created a core in the world that you can pick up. It has a flashing light to grab attention and can be interacted with to pick it up. I also created the core item which is given to the inventory.</p>
+    <img src="../assets/media/pickupcore.gif" alt="Core pickup">
+</div>
+
+<h2>Extras</h2>
+
+<div class="section">
+    <h3>Save and Loading</h3>
+    <p>I contributed to Tijn's saving and loading system as well. The majority of the saving was made by Tijn. I added the saving of the selected slot which was causing problems for Tijn.</p>
+    <img src="../assets/media/saveselected.gif" alt="Save slot selection">
+    <p>And I did most of the saving and loading of the caretakers since he wasn't familiar with how they worked. For this I also had to save the caretakers' dynamic materials since there were two variants which were set in the instances in the world, which was an interesting challenge.</p>
+</div>
+
+<div class="section">
+    <h3>Character Health Light</h3>
+    
+    <h4>Relevance to the Planning</h4>
+    <p>This was a feature I added before we released our game. At the time there was no way yet to see your current health so our designer suggested putting at least this feature in so we could see if the player's health was low based on the light value of the player.</p>
+    <img src="../assets/media/light.png" alt="Health light planning">
+    <img src="../assets/media/lightreview.png" alt="Health light review">
+    
+    <h4>The Work</h4>
+    <p>Gave the player a flashlight and an emissive red core glow. These are both based on player health. When the player gets hurt their flashlight gets less strong and their emissive core also gets more dull. This was also done using a dynamic material instance.</p>
+    <img src="../assets/media/lighthealth.gif" alt="Health-based lighting">
+</div>
+
+<div class="section">
+    <h3>Dynamic Lights</h3>
+    <p>This was a very low priority task that I completed at the end of sprint 4, when all major blueprints were already checked out. I decided to help out VA by making all the candle and lantern lighting in the world flicker based on a timeline graph.</p>
+    
+    <video width="640" height="480" controls>
+        <source src="../assets/media/lanternflicker.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <video width="640" height="480" controls>
+        <source src="../assets/media/candleflicker.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="section">
+    <h3>Itch Contribution</h3>
+    <p>I also contributed to our itch page and builds. For example, I worked together with Flemming to upload our first version to itch and set up the main itch page. After this, I also uploaded our second Itch version and wrote a big change list of all the changes made. For this I also had to format the devlog page and make everything look nice.</p>
+    <p><a href="https://buas.itch.io/bloom/devlog/968015/bloom-beta-v02" target="_blank">View the devlog on itch.io</a></p>
+    
+    <img src="../assets/media/devlog.png" alt="Devlog page">
+    <img src="../assets/media/devlog2.png" alt="Devlog formatting">
+    <img src="../assets/media/devlog3.png" alt="Devlog content">
+</div>
     </section>
 
     <!-- Projects -->
