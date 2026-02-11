@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivo van der Veen</title>
+    <link rel="stylesheet" href="Assets/style.css">
+</head>
+
+
+<body>
+    <!-- Sticky Navigation -->
+    <nav>
+        <h3>Ivo van der Veen</h3>
+        <div>
+            <a href="#intro">About</a>
+            <a href="#projects">Projects</a>
+        </div>
+        <div class="nav-contact">
+            <a href="mailto:ivo.thom.vanderveen@gmail.com" aria-label="Email" title="Email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"
+                        fill="none" />
+                    <polyline points="3,6 12,13 21,6" stroke="currentColor" stroke-width="1.6" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </a>
+            <a href="https://github.com/ivoveen" target="_blank" aria-label="GitHub" title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/ivo-van-der-veen-59299a21b/" target="_blank" aria-label="LinkedIn"
+                title="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                    </path>
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://drboem.itch.io" target="_blank" aria-label="Itch" title="Itch">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 245.371 220.736"
+                    fill="currentColor">
+                    <path
+                        d="M31.99 1.365C21.287 7.72.2 31.945 0 38.298v10.516C0 62.144 12.46 73.86 23.773 73.86c13.584 0 24.902-11.258 24.903-24.62 0 13.362 10.93 24.62 24.515 24.62 13.586 0 24.165-11.258 24.165-24.62 0 13.362 11.622 24.62 25.207 24.62h.246c13.586 0 25.208-11.258 25.208-24.62 0 13.362 10.58 24.62 24.164 24.62 13.585 0 24.515-11.258 24.515-24.62 0 13.362 11.32 24.62 24.903 24.62 11.313 0 23.773-11.714 23.773-25.046V38.298c-.2-6.354-21.287-30.58-31.988-36.933C180.118.197 157.056-.005 122.685 0c-34.37.003-81.228.54-90.697 1.365zm65.194 66.217a28.025 28.025 0 0 1-4.78 6.155c-5.128 5.014-12.157 8.122-19.906 8.122a28.482 28.482 0 0 1-19.948-8.126c-1.858-1.82-3.27-3.766-4.563-6.032l-.006.004c-1.292 2.27-3.092 4.215-4.954 6.037a28.5 28.5 0 0 1-19.948 8.12c-.934 0-1.906-.258-2.692-.528-1.092 11.372-1.553 22.24-1.716 30.164l-.002.045c-.02 4.024-.04 7.333-.06 11.93.21 23.86-2.363 77.334 10.52 90.473 19.964 4.655 56.7 6.775 93.555 6.788h.006c36.854-.013 73.59-2.133 93.554-6.788 12.883-13.14 10.31-66.614 10.52-90.474-.022-4.596-.04-7.905-.06-11.93l-.003-.045c-.162-7.926-.623-18.793-1.715-30.165-.786.27-1.757.528-2.692.528a28.5 28.5 0 0 1-19.948-8.12c-1.862-1.822-3.662-3.766-4.955-6.037l-.006-.004c-1.294 2.266-2.705 4.213-4.563 6.032a28.48 28.48 0 0 1-19.947 8.125c-7.748 0-14.778-3.11-19.906-8.123a28.025 28.025 0 0 1-4.78-6.155 27.99 27.99 0 0 1-4.736 6.155 28.49 28.49 0 0 1-19.95 8.124c-.27 0-.54-.012-.81-.02h-.007c-.27.008-.54.02-.813.02a28.49 28.49 0 0 1-19.95-8.123 27.992 27.992 0 0 1-4.736-6.155zm-20.486 26.49l-.002.01h.015c8.113.017 15.32 0 24.25 9.746 7.028-.737 14.372-1.105 21.722-1.094h.006c7.35-.01 14.694.357 21.723 1.094 8.93-9.747 16.137-9.73 24.25-9.746h.014l-.002-.01c3.833 0 19.166 0 29.85 30.007L210 165.244c8.504 30.624-2.723 31.373-16.727 31.4-20.768-.773-32.267-15.855-32.267-30.935-11.496 1.884-24.907 2.826-38.318 2.827h-.006c-13.412 0-26.823-.943-38.318-2.827 0 15.08-11.5 30.162-32.267 30.935-14.004-.027-25.23-.775-16.726-31.4L46.85 124.08C57.534 94.073 72.867 94.073 76.7 94.073z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner">
+        <canvas id="boidsCanvas" aria-label="decorative animation"></canvas>
+        <section id="intro" class="intro intro-overlay">
+            <h2>Ivo van der Veen</h2>
+            <p>Gameplay & AI Programmer</p>
+        </section>
+    </div>
+
+    <!-- About Me -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-picture">
+                <img src="/Assets/Pictures/IvoMountain.jpg" alt="Profile picture" class="profile-img" />
+            </div>
+            <div class="about-text">
+                <p>Hello! I'm <strong>Ivo</strong>, a games programming student at <strong>BUAS</strong> specializing in <strong>gameplay and AI
+                    programming</strong>. I enjoy exploring new topics and pushing myself one step further.</p>
+                <p><strong>Looking for an internship from September 2026.</strong> </p>
+                <div class="skills">
+                    <span class="skill-icon" title="C++">C++</span>
+                    <span class="skill-icon" title="C#">C#</span>
+                    <span class="skill-icon" title="Unreal Engine">UE</span>
+                    <span class="skill-icon" title="Unity">Unity</span>
+                    <span class="skill-icon" title="PlayStation 5">PS5</span>
+                    <span class="skill-icon" title="Nintendo Switch">Switch</span>
+                    <span class="skill-icon" title="OpenGL">OpenGL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Project 1</h3>
+                <p>Description of your first project goes here.</p>
+                <a href="#">View Project →</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 2</h3>
+                <p>Description of your second project goes here.</p>
+                <a href="#">View Project →</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 3</h3>
+                <p>Description of your third project goes here.</p>
+                <a href="#">View Project →</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            const boids = [];
+            const numBoids = 240;
+            const canvas = document.getElementById('boidsCanvas');
+            const ctx = canvas.getContext('2d');
+            // coordinate space: use CSS pixels for positions (backing store scaled by devicePixelRatio)
+            let cssWidth = 0, cssHeight = 0;
+            let prevCssWidth = 0, prevCssHeight = 0;
+            // global slowdown factor (0..1) — multiplies all steering/velocity so ratios stay the same
+            const speedFactor = 0.3;
+            // trail history length (in frames)
+            const tailLength = 15;
+            // how wide the rear/base of the triangle is relative to `size`
+            const tailWidthFactor = 1.5;
+
+            function resizeCanvas() {
+                // compute size from layout to match banner exactly using client size (CSS pixels)
+                const cssW = canvas.clientWidth;
+                const cssH = canvas.clientHeight;
+                const dpr = window.devicePixelRatio || 1;
+                // if not yet laid out, try next frame
+                if (cssW === 0 || cssH === 0) {
+                    requestAnimationFrame(resizeCanvas);
+                    return;
+                }
+                const newW = Math.max(1, Math.floor(cssW * dpr));
+                const newH = Math.max(1, Math.floor(cssH * dpr));
+                // if CSS size changed, scale boid positions to keep layout (positions are in CSS pixels)
+                if (prevCssWidth && (prevCssWidth !== cssW || prevCssHeight !== cssH)) {
+                    const scaleX = cssW / (prevCssWidth || cssW);
+                    const scaleY = cssH / (prevCssHeight || cssH);
+                    for (const b of boids) {
+                        b.position.x *= scaleX;
+                        b.position.y *= scaleY;
+                    }
+                }
+                // update backing store (bitmap) size only — visual size controlled by CSS
+                canvas.width = newW;
+                canvas.height = newH;
+                prevCssWidth = cssW; prevCssHeight = cssH;
+                cssWidth = cssW; cssHeight = cssH;
+                // ensure canvas is positioned at top-left of parent
+                canvas.style.left = '0px';
+                canvas.style.top = '0px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            function vec(x = 0, y = 0) { return { x, y }; }
+            function add(a, b) { a.x += b.x; a.y += b.y; }
+            function sub(a, b) { return { x: a.x - b.x, y: a.y - b.y }; }
+            function mult(a, v) { a.x *= v; a.y *= v; }
+            function div(a, v) { a.x /= v; a.y /= v; }
+            function mag(a) { return Math.sqrt(a.x * a.x + a.y * a.y); }
+            function setMag(a, m) { const r = mag(a) || 1; a.x = (a.x / r) * m; a.y = (a.y / r) * m; }
+            function limit(a, max) { const m = mag(a); if (m > max) setMag(a, max); }
+
+            class Boid {
+                constructor() {
+                    // initialize position in CSS pixels (use current css size if available)
+                    this.position = vec(Math.random() * (cssWidth || 200), Math.random() * (cssHeight || 100));
+                    this.velocity = vec((Math.random() * 2 - 1) * 2 * speedFactor, (Math.random() * 2 - 1) * 2 * speedFactor);
+                    this.acc = vec();
+                    // uniform size for all boids
+                    this.size = 3;
+                    this.history = [];
+                }
+
+                applyForce(f) { add(this.acc, f); }
+
+                separation(boids) {
+                    const desiredSeparation = 20;
+                    const steer = vec();
+                    let count = 0;
+                    for (const other of boids) {
+                        if (other === this) continue;
+                        const d = sub(this.position, other.position);
+                        const dist = mag(d);
+                        if (dist > 0 && dist < desiredSeparation) {
+                            // steer away (inverse of distance)
+                            d.x /= dist;
+                            d.y /= dist;
+                            steer.x += d.x / dist;
+                            steer.y += d.y / dist;
+                            count++;
+                        }
+                    }
+                    if (count > 0) {
+                        steer.x /= count; steer.y /= count;
+                        setMag(steer, 3);
+                        steer.x -= this.velocity.x; steer.y -= this.velocity.y;
+                        limit(steer, 0.15);
+                    }
+                    return steer;
+                }
+
+                alignment(boids) {
+                    const neighbordist = 50;
+                    const sum = vec();
+                    let count = 0;
+                    for (const other of boids) {
+                        if (other === this) continue;
+                        const d = sub(this.position, other.position);
+                        if (mag(d) > 0 && mag(d) < neighbordist) {
+                            sum.x += other.velocity.x; sum.y += other.velocity.y; count++;
+                        }
+                    }
+                    if (count > 0) {
+                        sum.x /= count; sum.y /= count;
+                        setMag(sum, 2.5);
+                        const steer = sub(sum, this.velocity);
+                        limit(steer, 0.05);
+                        return steer;
+                    }
+                    return vec();
+                }
+
+                cohesion(boids) {
+                    const neighbordist = 50;
+                    const sum = vec();
+                    let count = 0;
+                    for (const other of boids) {
+                        if (other === this) continue;
+                        const d = sub(this.position, other.position);
+                        if (mag(d) > 0 && mag(d) < neighbordist) {
+                            sum.x += other.position.x; sum.y += other.position.y; count++;
+                        }
+                    }
+                    if (count > 0) {
+                        sum.x /= count; sum.y /= count;
+                        // desired = steer towards average position
+                        const desired = sub(sum, this.position);
+                        setMag(desired, 2.2);
+                        const steer = sub(desired, this.velocity);
+                        limit(steer, 0.05);
+                        return steer;
+                    }
+                    return vec();
+                }
+
+                update(boids, mouse) {
+                    // behaviors
+                    const sep = this.separation(boids);
+                    const ali = this.alignment(boids);
+                    const coh = this.cohesion(boids);
+
+                    // mouse attraction as additional cohesion target (only when pointer is inside)
+                    let toMouse = vec(0, 0);
+                    if (typeof pointerInside !== 'undefined' && pointerInside) {
+                        toMouse = sub(mouse, this.position);
+                        const md = mag(toMouse) || 1;
+                        if (md < 700) {
+                            setMag(toMouse, 1.4);
+                            toMouse.x -= this.velocity.x; toMouse.y -= this.velocity.y;
+                            limit(toMouse, 0.12);
+                        } else {
+                            toMouse.x = 0; toMouse.y = 0;
+                        }
+                    }
+
+                    // apply with global speed factor (preserves relative weights)
+                    mult(sep, speedFactor);
+                    mult(ali, speedFactor);
+                    mult(coh, speedFactor);
+                    mult(toMouse, speedFactor);
+                    this.applyForce(sep);
+                    this.applyForce(ali);
+                    this.applyForce(coh);
+                    this.applyForce(toMouse);
+
+                    // integrate
+                    add(this.velocity, this.acc);
+                    limit(this.velocity, 4 * speedFactor);
+                    add(this.position, this.velocity);
+                    this.acc.x = 0; this.acc.y = 0;
+
+                    // record CSS-pixel position and heading for trail history
+                    this.history.push({ x: this.position.x, y: this.position.y, a: Math.atan2(this.velocity.y, this.velocity.x) });
+                    if (this.history.length > tailLength) this.history.shift();
+
+                    // wrap edges using modulo so wrapping follows current CSS size
+                    const w = cssWidth || 1;
+                    const h = cssHeight || 1;
+                    if (!isFinite(this.position.x) || !isFinite(this.position.y)) {
+                        this.position.x = Math.random() * w;
+                        this.position.y = Math.random() * h;
+                    }
+                    this.position.x = ((this.position.x % w) + w) % w;
+                    this.position.y = ((this.position.y % h) + h) % h;
+                }
+
+                draw() {
+                    // draw triangle pointing along velocity
+                    const angle = Math.atan2(this.velocity.y, this.velocity.x);
+                    const s = this.size;
+                    // draw history as fading, oriented triangles to match the boid tail
+                    for (let i = 0; i < this.history.length; i++) {
+                        const p = this.history[i];
+                        const t = (i + 1) / this.history.length; // 0..1
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.a);
+                        ctx.globalAlpha = 0.16 * t; // older = lower alpha
+                        ctx.fillStyle = 'rgb(80,170,255)';
+                        ctx.beginPath();
+                        const ss = Math.max(1, s * (0.9 * t));
+                        ctx.moveTo(ss * 2.2, 0);
+                        ctx.lineTo(-ss * tailWidthFactor, ss * tailWidthFactor);
+                        ctx.lineTo(-ss * tailWidthFactor, -ss * tailWidthFactor);
+                        ctx.closePath();
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                    ctx.globalAlpha = 1;
+                    // draw main boid
+                    ctx.save();
+                    ctx.translate(this.position.x, this.position.y);
+                    ctx.rotate(angle);
+                    ctx.fillStyle = 'rgba(80,170,255,0.95)';
+                    ctx.beginPath();
+                    ctx.moveTo(s * 2.2, 0);
+                    ctx.lineTo(-s, s);
+                    ctx.lineTo(-s, -s);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            function initBoids() {
+                boids.length = 0;
+                for (let i = 0; i < numBoids; i++) {
+                    const b = new Boid();
+                    // start across banner
+                    b.position.x = Math.random() * (cssWidth || canvas.clientWidth || 200);
+                    b.position.y = Math.random() * (cssHeight || canvas.clientHeight || 100);
+                    boids.push(b);
+                }
+            }
+
+            // track pointer using offset relative to the canvas (avoids scroll/position math)
+            const mouse = vec(0, 0);
+            let pointerMoved = false;
+            let pointerInside = false;
+            function handlePointerMove(e) {
+                pointerMoved = true;
+                const rect = canvas.getBoundingClientRect();
+                // Use CSS pixels - the ctx.setTransform handles device pixel scaling
+                let offX = (e.offsetX !== undefined) ? e.offsetX : (e.clientX - rect.left);
+                let offY = (e.offsetY !== undefined) ? e.offsetY : (e.clientY - rect.top);
+                mouse.x = offX;  // Remove dpr multiplication
+                mouse.y = offY;
+            }
+
+            canvas.addEventListener('pointermove', handlePointerMove);
+            canvas.addEventListener('pointerenter', () => { pointerInside = true; });
+            canvas.addEventListener('pointerleave', () => { pointerInside = false; });
+            canvas.addEventListener('pointercancel', () => { pointerInside = false; });
+            // touch fallback for older browsers
+            canvas.addEventListener('touchmove', (e) => {
+                if (e.touches && e.touches[0]) {
+                    const t = e.touches[0];
+                    const rect = canvas.getBoundingClientRect();
+                    const offX = t.clientX - rect.left;
+                    const offY = t.clientY - rect.top;
+                    pointerMoved = true;
+                    mouse.x = offX;  // Remove dpr multiplication
+                    mouse.y = offY;
+                }
+            }, { passive: true });
+            canvas.addEventListener('touchstart', () => { pointerInside = true; });
+            canvas.addEventListener('touchend', () => { pointerInside = false; });
+
+            function animate() {
+                // compute current mouse in canvas (device) pixels — handles layout/scroll/resize
+                const rect = canvas.getBoundingClientRect();
+                if (!pointerMoved) {
+                    mouse.x = rect.width / 2;   // Remove dpr multiplication
+                    mouse.y = rect.height / 2;
+                }
+
+                // draw translucent background to keep scene dark and let per-boid trails fade
+                // increase alpha so accumulated color is removed faster
+                ctx.fillStyle = 'rgba(26,26,31,0.8)';
+                ctx.fillRect(0, 0, cssWidth || canvas.clientWidth, cssHeight || canvas.clientHeight);
+                for (const b of boids) b.update(boids, mouse);
+                for (const b of boids) b.draw();
+                requestAnimationFrame(animate);
+            }
+
+            // initialize
+            window.addEventListener('resize', () => resizeCanvas());
+            // observe banner/layout changes to resize canvas reliably
+            try {
+                const parent = canvas.parentElement || canvas;
+                const ro = new ResizeObserver(() => resizeCanvas());
+                ro.observe(parent);
+            } catch (e) {
+                // ResizeObserver not available — fallback handled by window resize
+            }
+            // ensure layout computed before sizing
+            requestAnimationFrame(() => {
+                resizeCanvas();
+                initBoids();
+                const r = canvas.getBoundingClientRect();
+                mouse.x = r.width / 2;   // Remove dpr multiplication
+                mouse.y = r.height / 2;
+                requestAnimationFrame(animate);
+            });
+        })();
+    </script>
+</body>
+
+</html>
