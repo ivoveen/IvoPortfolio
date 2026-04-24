@@ -222,15 +222,15 @@
 
         /* Projects Grid */
         .projects {
-            padding: 4rem 2rem;
+            padding: 1.5rem 2rem;
             max-width: 1200px;
-            margin: 0 auto 4rem;
+            margin: 0 auto 2rem;
             background: #242429;
         }
 
         .projects h2 {
             text-align: left;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             color: #e6eef8;
             font-size: 3rem;
         }
@@ -239,8 +239,14 @@
             display: grid;
             /* three columns on desktop, two on medium screens, single on small screens */
             grid-template-columns: repeat(3, minmax(320px, 1fr));
-            gap: 2.25rem;
+            gap: 1.5rem;
             align-items: stretch;
+            margin-bottom: 1.5rem;
+            transition: margin-bottom 0.3s ease;
+        }
+
+        .project-grid.expanded {
+            margin-bottom: 1.5rem;
         }
 
         .project-card {
@@ -272,6 +278,7 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255,255,255,0.04);
+            padding: 1rem;
         }
 
         .project-image {
@@ -290,6 +297,12 @@
             margin: 0 0 0.5rem 0;
             line-height: 1.3;
             letter-spacing: -0.02em;
+        }
+
+        .project-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .project-desc{
@@ -362,4 +375,35 @@
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .hidden-project {
+            display: none;
+        }
+
+        .hidden-project.visible {
+            display: block;
+        }
+
+        .see-more-btn {
+            display: block;
+            margin: 2rem auto 0;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, rgba(127,193,255,0.15), rgba(127,193,255,0.08));
+            border: 1px solid rgba(127,193,255,0.3);
+            color: #7fc1ff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .see-more-btn:hover {
+            background: linear-gradient(135deg, rgba(127,193,255,0.25), rgba(127,193,255,0.15));
+            border-color: rgba(127,193,255,0.6);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(127,193,255,0.2);
         }

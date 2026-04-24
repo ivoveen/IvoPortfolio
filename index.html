@@ -221,7 +221,7 @@
                     <a href="https://globalgamejam.org/games/2026/slay-and-play-5">View Project →</a>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card hidden-project">
                 <div class="project-image" style="background-image: url('Assets/Pictures/segwaymonkey.gif');" aria-hidden="true"></div>
                 <div class="project-body">
                     <h3>Segway monkey</h3>
@@ -247,7 +247,7 @@
                     <a href="#">View Project →</a>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card hidden-project">
                 <div class="project-image" style="background-image: url('/Assets/Pictures/HoleDown.png');" aria-hidden="true"></div>
                 <div class="project-body">
                     <h3>HoleDown</h3>
@@ -270,7 +270,7 @@
                     <a href="https://drboem.itch.io/holedown">View Project →</a>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card hidden-project">
                 <div class="project-image" style="background-image: url('Assets/Pictures/duckgame.png');" aria-hidden="true"></div>
                 <div class="project-body">
                     <h3>Duckgame</h3>
@@ -294,6 +294,7 @@
                 </div>
             </div>
         </div>
+        <button id="see-more-btn" class="see-more-btn">See More</button>
     </section>
 
      <!-- About Me -->
@@ -315,11 +316,30 @@
                     <img src="https://cdn.simpleicons.org/unrealengine/FFFFFF" alt="Unreal Engine" class="skill-icon"title="Unreal Engine">
                     <img src="https://cdn.simpleicons.org/unity/FFFFFF" alt="Unity" class="skill-icon" title="Unity">
                     <img src="https://cdn.simpleicons.org/opengl/5586A4" alt="OpenGL" class="skill-icon" title="OpenGL">
+                    <img src="https://cdn.simpleicons.org/perforce/0066FF" alt="P4V" class="skill-icon" title="P4V">
+                    <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" class="skill-icon" title="GitHub">
+                    <img src="https://cdn.simpleicons.org/jira/0052CC" alt="Jira" class="skill-icon" title="Jira">
+                    <img src="https://cdn.simpleicons.org/confluence/172B4D" alt="Confluence" class="skill-icon" title="Confluence">
+                    <img src="https://cdn.simpleicons.org/miro/FFD700" alt="Miro" class="skill-icon" title="Miro">
                 </div>
             </div>
     </section>
 
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('see-more-btn');
+            const hiddenProjects = document.querySelectorAll('.hidden-project');
+            const projectGrid = document.querySelector('.project-grid');
+
+            btn.addEventListener('click', function() {
+                hiddenProjects.forEach(project => {
+                    project.classList.toggle('visible');
+                });
+                projectGrid.classList.toggle('expanded');
+                btn.textContent = btn.textContent === 'See More' ? 'See Less' : 'See More';
+            });
+        });
+    </script>
 </body>
 
 </html>
