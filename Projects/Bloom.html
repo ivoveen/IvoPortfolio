@@ -4,284 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivo van der Veen</title>
+    <title>Bloom | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
 </head>
 
-
 <body>
-    <!-- Sticky Navigation -->
     <nav>
-        <a href="../index.html"><h3>Ivo van der Veen</h3></a>   
+        <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#intro">About</a>
-            <a href="#projects">Projects</a>
+            <a href="#summary">Overview</a>
+            <a href="#details">Details</a>
         </div>
         <div class="nav-contact">
             <a href="mailto:ivo.thom.vanderveen@gmail.com" aria-label="Email" title="Email">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true">
-                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"
-                        fill="none" />
-                    <polyline points="3,6 12,13 21,6" stroke="currentColor" stroke-width="1.6" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round" />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6" fill="none" />
+                    <polyline points="3,6 12,13 21,6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
             <a href="https://github.com/ivoveen" target="_blank" aria-label="GitHub" title="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                    </path>
-                </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/ivo-van-der-veen-59299a21b/" target="_blank" aria-label="LinkedIn"
-                title="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
-                    </path>
-                    <path
-                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
-                    </path>
-                </svg>
-            </a>
-            <a href="https://drboem.itch.io" target="_blank" aria-label="Itch.io" title="Itch.io">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 245.371 220.736"
-                    fill="currentColor">
-                    <path
-                        d="M31.99 1.365C21.287 7.72.2 31.945 0 38.298v10.516C0 62.144 12.46 73.86 23.773 73.86c13.584 0 24.902-11.258 24.903-24.62 0 13.362 10.93 24.62 24.515 24.62 13.586 0 24.165-11.258 24.165-24.62 0 13.362 11.622 24.62 25.207 24.62h.246c13.586 0 25.208-11.258 25.208-24.62 0 13.362 10.58 24.62 24.164 24.62 13.585 0 24.515-11.258 24.515-24.62 0 13.362 11.32 24.62 24.903 24.62 11.313 0 23.773-11.714 23.773-25.046V38.298c-.2-6.354-21.287-30.58-31.988-36.933C180.118.197 157.056-.005 122.685 0c-34.37.003-81.228.54-90.697 1.365zm65.194 66.217a28.025 28.025 0 0 1-4.78 6.155c-5.128 5.014-12.157 8.122-19.906 8.122a28.482 28.482 0 0 1-19.948-8.126c-1.858-1.82-3.27-3.766-4.563-6.032l-.006.004c-1.292 2.27-3.092 4.215-4.954 6.037a28.5 28.5 0 0 1-19.948 8.12c-.934 0-1.906-.258-2.692-.528-1.092 11.372-1.553 22.24-1.716 30.164l-.002.045c-.02 4.024-.04 7.333-.06 11.93.21 23.86-2.363 77.334 10.52 90.473 19.964 4.655 56.7 6.775 93.555 6.788h.006c36.854-.013 73.59-2.133 93.554-6.788 12.883-13.14 10.31-66.614 10.52-90.474-.022-4.596-.04-7.905-.06-11.93l-.003-.045c-.162-7.926-.623-18.793-1.715-30.165-.786.27-1.757.528-2.692.528a28.5 28.5 0 0 1-19.948-8.12c-1.862-1.822-3.662-3.766-4.955-6.037l-.006-.004c-1.294 2.266-2.705 4.213-4.563 6.032a28.48 28.48 0 0 1-19.947 8.125c-7.748 0-14.778-3.11-19.906-8.123a28.025 28.025 0 0 1-4.78-6.155 27.99 27.99 0 0 1-4.736 6.155 28.49 28.49 0 0 1-19.95 8.124c-.27 0-.54-.012-.81-.02h-.007c-.27.008-.54.02-.813.02a28.49 28.49 0 0 1-19.95-8.123 27.992 27.992 0 0 1-4.736-6.155zm-20.486 26.49l-.002.01h.015c8.113.017 15.32 0 24.25 9.746 7.028-.737 14.372-1.105 21.722-1.094h.006c7.35-.01 14.694.357 21.723 1.094 8.93-9.747 16.137-9.73 24.25-9.746h.014l-.002-.01c3.833 0 19.166 0 29.85 30.007L210 165.244c8.504 30.624-2.723 31.373-16.727 31.4-20.768-.773-32.267-15.855-32.267-30.935-11.496 1.884-24.907 2.826-38.318 2.827h-.006c-13.412 0-26.823-.943-38.318-2.827 0 15.08-11.5 30.162-32.267 30.935-14.004-.027-25.23-.775-16.726-31.4L46.85 124.08C57.534 94.073 72.867 94.073 76.7 94.073z">
-                    </path>
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
             </a>
         </div>
     </nav>
 
+    <div class="project-back-row">
+        <a class="project-back" href="../index.html">← Back to portfolio</a>
+    </div>
 
-
-    <!-- About Me -->
-    <section id="about" class="about">
-        <div class="">
-           <h1>The Work</h1>
-
-<div class="section">
-    <p>The plant blueprints are structured like this after some iterations:</p>
-    <img src="../Assets/media/plantstructure.png" alt="Plant structure diagram">
-    
-    <p>There is one base plant blueprint which has the attacking, health and death code. This is the parent blueprint of all outside "wild" plants. From this base blueprint there is another base blueprint for all inside plants, which adds all inside behaviour such as upgrading, growing fruit, water levels, etc. This is then used by all plant stages.</p>
-    <img src="../Assets/media/plantstructure2.png" alt="Plant structure hierarchy">
-</div>
-
-<div class="section">
-    <h3>Inside Plants</h3>
-    <p>Each inside plant stage is its own blueprint, which allows the variables to be tweaked for each growth stage.</p>
-    
-    <h4>Pots</h4>
-    <p>Inside plants can be planted into pots. To support this and to support all the various different plant pots the game has, I created a pot slot blueprint which contains all the logic. This pot-slot blueprint is then used as a child component inside all the various pot blueprints. This lets artists and designers put multiple places to plant inside one pot in any location they want.</p>
-    
-    <img src="../Assets/media/plantpot.gif" alt="Plant pot demonstration">
-    <img src="../Assets/media/potchild.png" alt="Pot child component structure">
-    <img src="../Assets/media/potslot.png" alt="Pot slot blueprint">
-    
-    <p>The pot-slot itself is at first an interactable and spawns the plant of the seed you give it. After this it becomes un-interactable to allow the player to interact with the plant. The slot always keeps track of its current plant. When it doesn't exist anymore, the slot opens up again and the player can plant once more.</p>
-</div>
-
-<div class="section">
-    <h3>Watering</h3>
-    <p>The plants and seeds you place can be watered by the player. When watering a seed it causes the seed to upgrade to the first phase. From this phase on the plant needs to be watered once every three days (indicated by the three water droplets).</p>
-    
-    <img src="../Assets/media/waterseed.gif" alt="Watering a seed">
-    <p><em>The diegetic UI was made by Flemming and the exclamation mark appearing is a small bug in the current build.</em></p>
-    
-    <p>When water levels drop to 0 one of two things can happen. Either the plant dies, or if the plant was in the final stage it turns aggressive like a wild plant.</p>
-    <img src="../Assets/media/angryplant.gif" alt="Aggressive plant behavior">
-</div>
-
-<div class="section">
-    <h3>Upgrading</h3>
-    <p>Each plant has a list of items it needs to be upgraded. When the player has all the needed items and interacts with the plant, VFX is triggered and the plant switches to the next phase of itself, which in turn has another list of required items to reach the final phase.</p>
-    <img src="../Assets/media/upgradeplant.gif" alt="Plant upgrade process">
-</div>
-
-<div class="section">
-    <h3>Fruit</h3>
-    <p>When the plant is in the middle phase or the final phase the plant starts producing fruit. Fruit is produced once every 25 seconds and is guaranteed to be there when the player returns from the outside. When the plant has fruit it will play a sparkle VFX until it is harvested by interacting. Each plant has a list of items which are its fruit.</p>
-    
-    <img src="../Assets/media/fruit.gif" alt="Fruit harvesting">
-    
-    <p>The final stage of a plant gives multiple types of fruit as can be seen here:</p>
-    <img src="../Assets/media/fruit2.png" alt="Multiple fruit types">
-    
-    <p>The fruit and water system went over some iterations based on ideas of Jeroen. We had finally figured out how the day night system should work and this caused the water and fruit system to need to be overhauled. The plant should now only lose water levels when the player goes outside, not over time. And the fruits should instantly grow when you go outside. Later Jeroen added to this that fruits should still also grow over time when the player is inside. This is an example of the many ways I worked together with other disciplines.</p>
-</div>
-
-<div class="section">
-    <h3>Outside Plants</h3>
-    <p>The outside plants are always in an agitated state. While in this state they play an angered idle animation and turn towards the player. When the player enters their attack range they save that location of the player and turn towards it. Once they are facing where the player was at that point they will attack. These attacks deal damage to the player using a hurt box and get triggered by an animation notify on the exact frame the plant should cause damage.</p>
-    
-    <p><strong>Face plant:</strong></p>
-    <img src="../Assets/media/chomper.gif" alt="Face plant attack">
-    
-    <p><strong>Tree plant:</strong></p>
-    <img src="../Assets/media/tree.gif" alt="Tree plant attack">
-    
-    <p><strong>Eye plant:</strong></p>
-    <img src="../Assets/media/eyeplant.gif" alt="Eye plant attack">
-    <p>The eye plant was added pretty last minute being modelled in week 7 but in the end we got him in completely and he fits very well. His attack freezes the player for 2 seconds and does 10% damage. (There is a visual bug in the gif showing the health bar going white at 90% but that will be fixed for industry day)</p>
-    
-    <p>Another example of some of the interdisciplinary work I've done is with the eye plant. The eye plant went over a quick succession of iterations. The first version was too easy to dodge according to Jeroen so I worked with VA to adjust that. The first new animation Rina made wasn't exactly what we needed so I talked with her to make sure we were on the same page. After she had made it I implemented the animation again and showed it to Jeroen who was very happy with it.</p>
-    
-    <p>Another example is also with the face plant. In sprint 3 together with VA we thought it would be nice if the face plant did damage in two locations at different times. Since that seemed to fit the animation, I implemented this based on that idea. Then a week later Jeroen told me that it made the plants too difficult to dodge so I removed that iteration again.</p>
-    
-    <img src="../Assets/media/oldchompergid.gif" alt="Old face plant iteration">
-    
-    <p>After all the pots and plants were made they were placed into the level by Marko and Minh and they used my blueprints without much trouble. When they wanted something and didn't know how to do it, I showed it to them or implemented the option if needed. Especially things like damage, health, drops, fruit, grow speed were changed and iterated upon a lot. Showing more interdisciplinary work.</p>
-</div>
-
-<h2>Caretaker</h2>
-
-<div class="section">
-    <h3>Relevance to the Planning</h3>
-    <img src="../Assets/media/scopebreakdown2.png" alt="Scope breakdown">
-    <p>I started working on the caretaker in sprint 1 when all other tasks were already being worked on; the caretaker was the only task available at the time. Which is why it was set to be a completed prototype at the end of sprint 1. Then in sprint 2 I made some small improvements to make the caretakers playable and in sprint 3 spent quite some time to finish them off and turn them into a presentable state.</p>
-    
-    <p>Here are some of the tasks I created for the caretaker to show that my work meets the DoDs and was in line with planning:</p>
-    <img src="../Assets/media/basiccaretaker.png" alt="Basic caretaker task">
-    <img src="../Assets/media/caretakergood.png" alt="Caretaker completion task">
-</div>
-
-<div class="section">
-    <h3>The Work</h3>
-    <p>I contributed all the logic to the caretaker.</p>
-    
-    <p>The design of what the caretaker should do was tweaked quite a few times. And I followed these changes as they were tested by Jeroen. At the start of the project the caretaker didn't have any deactivated state yet and the caretaker itself was not very good at keeping plants alive.</p>
-    
-    <p>The caretaker starts off deactivated and interactable. When you give it the core it becomes un-interactable and starts its behaviour loop. One thing I added to this to help the VAs was that when the caretaker becomes activated it turns on a red spotlight and it turns up the emissive glow of the core in their chest. To do this I created a dynamic material instance and added parameters to it. Something I had no experience with yet. But VAs liked the end result a lot.</p>
-    <img src="../Assets/media/caretakeractivation.gif" alt="Caretaker activation">
-    
-    <p>After being activated the caretaker wanders around a bit and then selects the plant that has the lowest water level. Then it walks there and waters the plant. After doing this it recharges its water at the pond and starts wandering again.</p>
-    <img src="../Assets/media/caretakerloop2.gif" alt="Caretaker behavior loop">
-    <p><em>The caretaker doesn't have a watering can or animation in this video yet since those were finished near the end of the block.</em></p>
-    
-    <p>Here is the final caretaker:</p>
-    <img src="../Assets/media/watercaretaker.gif" alt="Final caretaker watering">
-    
-    <p><strong>Caretaker behaviour loop:</strong></p>
-    <img src="../Assets/media/caretakergraph2.png" alt="Caretaker behavior graph">
-    
-    <p>I started work on the caretaker in sprint 1 because all other major parts of the game were already being worked on. Here is a demo from sprint 1 of the caretaker behaviour. The caretaker remained in this state the next sprint until I polished it up in sprint 3. It was a low priority task in sprint 2.</p>
-    
-    <video width="640" height="480" controls>
-        <source src="../Assets/media/caretakerBasicAi.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
-
-<h2>Interaction System</h2>
-
-<div class="section">
-    <h3>Relevance to the Planning</h3>
-    <img src="../Assets/media/interact.png" alt="Interaction planning">
-    <p>During sprint 2 I had added the upgrade functionality to the plants. This needed to be showcased to the player to truly be testable. I started work on this task adjusting Tijn's interaction system since I already had experience with it by helping him. After I added the functionality for the pop up window I asked Flemming to take over the UI part since it was very similar to UI he had already made.</p>
-</div>
-
-<div class="section">
-    <h3>The Work</h3>
-    <p>The interaction system was made for a large part by Tijn. However we had to iterate upon parts of it a lot and when we did, I did that together with him. One part I added was an interface that notified actors if they were the object to be interactive with. Which became the core of all diegetic UI.</p>
-    <img src="../Assets/media/diegetic.png" alt="Diegetic UI interface">
-    <img src="../Assets/media/diegeticgraph.png" alt="Diegetic UI blueprint">
-    
-    <p>Another feature I added to the interaction system was the ability to make an object no longer interactable at runtime. I did this by adding a function to the interface which by default returns false. Now for example in the caretakers if I need them to stop being an interactable at some point I can override the function and add my logic.</p>
-    <img src="../Assets/media/interactable.png" alt="Interactable function">
-    <img src="../Assets/media/interactable2.png" alt="Interactable implementation">
-</div>
-
-<h2>Core</h2>
-
-<div class="section">
-    <p>I created a core in the world that you can pick up. It has a flashing light to grab attention and can be interacted with to pick it up. I also created the core item which is given to the inventory.</p>
-    <img src="../Assets/media/pickupcore.gif" alt="Core pickup">
-</div>
-
-<h2>Extras</h2>
-
-<div class="section">
-    <h3>Save and Loading</h3>
-    <p>I contributed to Tijn's saving and loading system as well. The majority of the saving was made by Tijn. I added the saving of the selected slot which was causing problems for Tijn.</p>
-    <img src="../Assets/media/saveselected.gif" alt="Save slot selection">
-    <p>And I did most of the saving and loading of the caretakers since he wasn't familiar with how they worked. For this I also had to save the caretakers' dynamic materials since there were two variants which were set in the instances in the world, which was an interesting challenge.</p>
-</div>
-
-<div class="section">
-    <h3>Character Health Light</h3>
-    
-    <h4>Relevance to the Planning</h4>
-    <p>This was a feature I added before we released our game. At the time there was no way yet to see your current health so our designer suggested putting at least this feature in so we could see if the player's health was low based on the light value of the player.</p>
-    <img src="../Assets/media/light.png" alt="Health light planning">
-    <img src="../Assets/media/lightreview.png" alt="Health light review">
-    
-    <h4>The Work</h4>
-    <p>Gave the player a flashlight and an emissive red core glow. These are both based on player health. When the player gets hurt their flashlight gets less strong and their emissive core also gets more dull. This was also done using a dynamic material instance.</p>
-    <img src="../Assets/media/lighthealth.gif" alt="Health-based lighting">
-</div>
-
-<div class="section">
-    <h3>Dynamic Lights</h3>
-    <p>This was a very low priority task that I completed at the end of sprint 4, when all major blueprints were already checked out. I decided to help out VA by making all the candle and lantern lighting in the world flicker based on a timeline graph.</p>
-    
-    <video width="640" height="480" controls>
-        <source src="../Assets/media/lanternflicker.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
-    <video width="640" height="480" controls>
-        <source src="../Assets/media/candleflicker.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
-
-<div class="section">
-    <h3>Itch Contribution</h3>
-    <p>I also contributed to our itch page and builds. For example, I worked together with Flemming to upload our first version to itch and set up the main itch page. After this, I also uploaded our second Itch version and wrote a big change list of all the changes made. For this I also had to format the devlog page and make everything look nice.</p>
-    <p><a href="https://buas.itch.io/bloom/devlog/968015/bloom-beta-v02" target="_blank">View the devlog on itch.io</a></p>
-    
-    <img src="../Assets/media/devlog.png" alt="Devlog page">
-    <img src="../Assets/media/devlog2.png" alt="Devlog formatting">
-    <img src="../Assets/media/devlog3.png" alt="Devlog content">
-</div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="projects">
-        <h2>My Contributions</h2>
-        <div class="project-grid">
-
-            <div class="project-card">
-                <div class="project-body">
-                    <h3>Feature</h3>
-                    <p class="project-desc">Feature talk</p>
-                    <hr />
-
-                </div>
-                <div class="project-image" style="background-image: url('/Assets/Pictures/Bloom.png');"
-                    aria-hidden="true"></div>
+    <section id="intro" class="project-hero about">
+        <div class="about-container">
+            <div class="about-picture">
+                <div class="project-image" style="background-image: url('../Assets/Pictures/bloom.png');"></div>
             </div>
-            <div class="project-card">
-                <div class="project-body">
-                    <h3>Feature</h3>
-                    <p class="project-desc">Feature talk</p>
-                    <hr />
-
-                </div>
-                <div class="project-image" style="background-image: url('/Assets/Pictures/Bloom.png');"
-                    aria-hidden="true">
-                </div>
+            <div class="about-text">
+                <h2>Bloom</h2>
+                <p>Bloom is an Unreal prototype that blends farming, plant evolution and combat into a modular gameplay experience. I led gameplay system design, AI behaviour, and plant lifecycle logic.</p>
             </div>
-        </div>
-
-
         </div>
     </section>
 
+    <section id="summary" class="project-summary">
+        <p>A student-led production with a 14-person team, where I delivered core gameplay systems, AI behaviours, and plant state management for a complete farming/combat cycle.</p>
+        <ul class="summary-highlights">
+            <li>Gameplay systems</li>
+            <li>AI behaviour</li>
+            <li>Plant evolution</li>
+            <li>Team collaboration</li>
+        </ul>
+    </section>
+
+    <section id="details" class="projects">
+        <h2>Project Details</h2>
+        <div class="project-details">
+            <div class="details-left">
+                <div><strong>Language:</strong> C++ / Blueprints</div>
+                <div><strong>Team size:</strong> 14</div>
+                <div><strong>Duration:</strong> 8 Weeks</div>
+            </div>
+            <div class="details-right">
+                <div><strong>Key responsibilities:</strong></div>
+                <ul>
+                    <li>Gameplay systems, AI, plant lifecycle</li>
+                </ul>
+            </div>
+        </div>
+        <span class="project-action">Focused on gameplay polish, AI reliability and system handoff.</span>
+    </section>
+
+    <section class="project-content">
+        <div class="content-block">
+            <h3>Role & Challenge</h3>
+            <p>I built the core player-facing loop and AI interactions, making plant growth feel meaningful while preserving clear combat feedback.</p>
+        </div>
+        <div class="content-block">
+            <h3>Systems & Implementation</h3>
+            <p>The project relies on modular plant blueprints that handle growth phases, water levels, attacks, and upgrades with responsive state transitions.</p>
+        </div>
+        <div class="content-block">
+            <h3>Impact</h3>
+            <p>The final prototype demonstrated a cohesive farming/combat loop and supported rapid iteration for designers and artists across multiple sprints.</p>
+        </div>
+    </section>
 </body>
 
 </html>
