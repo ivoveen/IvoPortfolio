@@ -236,6 +236,64 @@
             align-items: center;
         }
 
+        .about-video {
+            width: 100%;
+        }
+
+        .about-video .video-frame {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 */
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .about-video .video-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+        .project-hero.video-large .about-container {
+            grid-template-columns: 1fr minmax(0,720px); /* text first, video capped on the right */
+            align-items: start;
+        }
+
+        /* place the video at the left edge of the right column so its left edge meets the center */
+        .project-hero.video-large .about-picture {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .project-hero.video-large .about-video .video-frame {
+            max-width: 720px;
+            width: 100%;
+        }
+
+        .intro-highlights {
+            list-style: none;
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            padding: 0;
+        }
+
+        .intro-highlights li {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+            color: #a8c4ff;
+            font-size: 0.95rem;
+        }
+
         .about-picture {
             display: flex;
             justify-content: center;
@@ -274,24 +332,27 @@
 
         .skills {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            gap: 0.6rem;
+            flex-wrap: nowrap; /* keep icons on a single line */
+            overflow-x: auto; /* allow horizontal scroll on very small screens */
+            align-items: center;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.25rem;
         }
 
         .skill-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            /* darker than .about (#1f1f25) */
             background: rgba(8,8,10,0.6);
             border: 1px solid rgba(255,255,255,0.03);
             border-radius: 6px;
-            padding: 0.3rem;
+            padding: 0.25rem;
             color: #9fc9ff;
             transition: all 0.22s ease;
             cursor: default;
-            width: 8vh;
-            height: 8vh;
+            width: 44px;
+            height: 44px;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
         }
 
@@ -315,7 +376,33 @@
 
             .skills {
                 justify-content: center;
+                flex-wrap: nowrap;
+                overflow-x: auto;
             }
+
+            .skill-icon {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Resume button under skills */
+        .resume-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            background: linear-gradient(90deg, #7fc1ff, #4aa1ff);
+            color: #071028;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 14px rgba(76,148,255,0.12);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(76,148,255,0.18);
         }
 
         /* Projects Grid */
@@ -523,7 +610,7 @@
             }
 
             .banner canvas {
-                display: none;
+                display: block;
             }
 
             .intro h2 {

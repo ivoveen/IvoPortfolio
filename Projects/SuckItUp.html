@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suck it Up | Ivo van der Veen</title>
+    <link rel="stylesheet" href="../Assets/style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="../index.html"><h3>Ivo van der Veen</h3></a>
+        <div>
+            <a href="#summary">Overview</a>
+            <a href="#details">Details</a>
+        </div>
+        <div class="nav-contact">
+            <a href="mailto:ivo.thom.vanderveen@gmail.com" aria-label="Email" title="Email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6" fill="none" />
+                    <polyline points="3,6 12,13 21,6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </a>
+            <a href="https://github.com/ivoveen" target="_blank" aria-label="GitHub" title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="project-back-row">
+        <a class="project-back" href="../index.html">← Back to portfolio</a>
+    </div>
+
+    <section id="summary" class="project-hero about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Suck it Up</h2>
+                <p>Suck it Up is a large team project (25 people) exploring cooperative mechanics and emergent enemy behaviours. I implemented the crawler enemy, including procedural animation blending and a custom navigation system tuned for irregular geometry.</p>
+                <ul class="intro-highlights">
+                    <li>Procedural animation</li>
+                    <li>Custom navigation</li>
+                    <li>Enemy design</li>
+                    <li>Team collaboration (25 people)</li>
+                </ul>
+            </div>
+            <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <!-- placeholder video; replace with demo link if available -->
+                        <iframe src="https://www.youtube.com/embed/" title="Suck it Up preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="details" class="projects">
+        <h2>Project Details</h2>
+        <div class="project-details">
+            <div class="details-left">
+                <div><strong>Engine:</strong> Unity</div>
+                <div><strong>Language:</strong> C#</div>
+                <div><strong>Team size:</strong> 25</div>
+                <div><strong>Duration:</strong> Semester</div>
+            </div>
+            <div class="details-right">
+                <div><strong>Key responsibilities:</strong></div>
+                <ul>
+                    <li>Implemented the crawler enemy</li>
+                    <li>Procedural animation blending system</li>
+                    <li>Custom navigation and obstacle negotiation</li>
+                    <li>Integration with gameplay systems</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-content">
+        <div class="content-block">
+            <h3>Crawler Enemy</h3>
+            <p>The crawler uses layered procedural animation to combine locomotion, climbing and attack states. I designed a state machine with blending driven by environment probes and root motion correction for reliable foot placement on uneven surfaces.</p>
+        </div>
+        <div class="content-block">
+            <h3>Navigation</h3>
+            <p>Default navmesh solutions were insufficient for the segmented, deformable geometry in the level. I built a custom local navigation layer that performs clearance sampling and dynamic obstacle avoidance, improving traversal success on complex geometry.</p>
+        </div>
+        <div class="content-block">
+            <h3>Collaboration</h3>
+            <p>I coordinated with animators and level designers to ensure the procedural behaviors matched intended pacing and challenge, and helped onboard multiple teammates to the navigation tooling I developed.</p>
+        </div>
+    </section>
+</body>
+
+</html>
