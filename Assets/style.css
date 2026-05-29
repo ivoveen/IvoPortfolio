@@ -7,11 +7,18 @@
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            min-height: 100%;
+            width: 100%;
+        }
+
         body {
             font-family: 'Space Grotesk', sans-serif;
             line-height: 1.6;
             background: #1a1a1f;
             color: #dbeafe;
+            min-width: 0;
         }
 
         /* Sticky Navigation */
@@ -338,6 +345,7 @@
             align-items: center;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 0.25rem;
+            min-width: 0;
         }
 
         .skill-icon {
@@ -353,6 +361,7 @@
             cursor: default;
             width: 44px;
             height: 44px;
+            flex: 0 0 auto;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
         }
 
@@ -403,6 +412,28 @@
         .resume-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 24px rgba(76,148,255,0.18);
+        }
+
+        /* Center resume button when placed in the header nav */
+        .nav-contact .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            padding: 0.45rem 0.9rem;
+            margin-right: 6px;
+            background: linear-gradient(90deg, #7fc1ff, #4aa1ff);
+            color: #071028;
+            border-radius: 6px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            transform: none;
+        }
+
+        .nav-contact .resume-btn:hover {
+            transform: none;
+            box-shadow: 0 10px 24px rgba(76,148,255,0.18);
+            background: linear-gradient(90deg, #7fc1ff, #4aa1ff);
+            color: #071028;
         }
 
         /* Projects Grid */
@@ -567,6 +598,62 @@
             border-radius: 4px;
         }
 
+        @media (max-width: 900px) {
+            nav {
+                padding: 1rem 1rem;
+            }
+
+            nav a {
+                margin: 0 0.4rem;
+            }
+
+            nav > div:first-of-type,
+            .nav-contact {
+                justify-content: center;
+            }
+
+            .banner {
+                min-height: 55vh;
+                height: auto;
+                padding: 2rem 1rem;
+            }
+
+            .banner canvas {
+                display: block;
+            }
+
+            .intro h2,
+            .intro p {
+                white-space: normal;
+            }
+
+            .intro h2 {
+                font-size: 3.2rem;
+            }
+
+            .intro p {
+                font-size: 1.2rem;
+            }
+
+            .projects,
+            .project-summary,
+            .project-content,
+            .about,
+            .project-back-row,
+            .section img {
+                padding: 0 1rem;
+                max-width: 100%;
+            }
+
+            .about {
+                margin: 2rem 0 3rem;
+            }
+
+            .project-grid {
+                gap: 1rem;
+            }
+        }
+
         @media (max-width: 700px) {
             nav {
                 padding: 1rem 1rem;
@@ -682,6 +769,96 @@
             .project-grid {
                 gap: 1rem;
             }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            nav {
+                padding: 0.85rem 0.85rem;
+            }
+
+            nav a {
+                margin: 0 0.35rem;
+                font-size: 0.95rem;
+            }
+
+            .nav-contact {
+                gap: 0.6rem;
+            }
+
+            .banner {
+                min-height: 48vh;
+                padding: 1.5rem 0.75rem;
+            }
+
+            .intro h2 {
+                font-size: 2.4rem;
+                line-height: 1.05;
+            }
+
+            .intro p {
+                font-size: 1rem;
+            }
+
+            .projects,
+            .project-summary,
+            .project-content,
+            .about,
+            .project-back-row,
+            .section img {
+                padding: 0 0.75rem;
+                max-width: 100%;
+            }
+
+            .projects h2 {
+                font-size: 2rem;
+            }
+
+            .about {
+                margin: 1.5rem 0 2rem;
+            }
+
+            .about-container {
+                gap: 1rem;
+            }
+
+            .about-text {
+                text-align: left;
+            }
+
+            .project-card {
+                padding: 0.9rem;
+            }
+
+            .project-image {
+                height: 180px;
+            }
+
+            .project-details {
+                gap: 0.65rem;
+            }
+
+            .project-card a {
+                margin-top: 1rem;
+                padding: 0.65rem 0.5rem;
+            }
+
+            .skill-icon {
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        img,
+        iframe,
+        canvas,
+        video,
+        svg {
+            max-width: 100%;
+            height: auto;
         }
 
         .project-card a:hover {
