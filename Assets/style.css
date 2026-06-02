@@ -340,8 +340,8 @@
         .skills {
             display: flex;
             gap: 0.6rem;
-            flex-wrap: nowrap; /* keep icons on a single line */
-            overflow-x: auto; /* allow horizontal scroll on very small screens */
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 0.25rem;
@@ -385,8 +385,9 @@
 
             .skills {
                 justify-content: center;
-                flex-wrap: nowrap;
-                overflow-x: auto;
+                flex-wrap: wrap;
+                overflow-x: visible;
+                gap: 0.5rem;
             }
 
             .skill-icon {
