@@ -7,6 +7,35 @@
     <title>Wasteland Walkers | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
+    <style>
+        pre {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 1.2rem 1.4rem;
+            overflow-x: auto;
+            margin: 1rem 0 1.5rem 0;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            text-align: left;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        code {
+            display: block;
+            font-family: 'Consolas', 'Fira Code', 'Courier New', monospace;
+            color: #cdd6f4;
+        }
+        .code-caption {
+            font-size: 0.78rem;
+            color: #888;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -35,7 +64,6 @@
             <a href="https://www.linkedin.com/in/ivo-van-der-veen-59299a21b/" target="_blank" aria-label="LinkedIn" title="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
             </a>
             <a href="https://drboem.itch.io" target="_blank" aria-label="Itch.io" title="Itch.io">
@@ -50,11 +78,11 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section  class="project-hero about video-large">
+    <section class="project-hero about video-large">
         <div class="about-container">
             <div class="about-text">
-                <h2 >Wasteland Walkers</h2>
-                <p>Together with your friends you play as adorable cats on a mission through a dangerous desert wasteland in your giant robot walker, shooting down monsters and collecting keys to make your way to the oasis. </p>
+                <h2>Wasteland Walkers</h2>
+                <p>Together with your friends you play as adorable cats on a mission through a dangerous desert wasteland in your giant robot walker, shooting down monsters and collecting keys to make your way to the oasis.</p>
                 <ul class="intro-highlights">
                     <li>Co-op movement</li>
                     <li>Procedural generation</li>
@@ -62,7 +90,6 @@
                     <li>Gameplay polish</li>
                 </ul>
                 <a class="resume-btn" href="https://buas.itch.io/team-mace" target="_blank" rel="noreferrer">Play now on itch</a>
-                
             </div>
             <div class="about-picture">
                 <div class="about-video">
@@ -100,18 +127,18 @@
     </section>
 
     <section class="project-content">
+
+        <!-- PROCEDURAL GENERATION -->
         <div class="content-block">
             <h3 id="procedural-generation">Procedural level generation</h3>
 
-
             <p>
-                My main responsibility was to create a system for generating levels procedurally, ensuring each playthrough 
-                offered unique challenges and experiences. Here is the end result: 
+                My main responsibility was to create a system for generating levels procedurally, ensuring each playthrough
+                offered unique challenges and experiences. Here is the end result:
             </p>
-        
-        
+
             <div class="video-frame">
-                <iframe src="https://www.youtube.com/embed/2hYXgAqRXkU?si=NGASZkrH9URMReTc?modestbranding=0&rel=0&controls=1&autoplay=1&start=21&mute=1"
+                <iframe src="https://www.youtube.com/embed/2hYXgAqRXkU?si=NGASZkrH9URMReTc&modestbranding=0&rel=0&controls=1&autoplay=1&start=21&mute=1"
                     title="Wasteland Walkers map generation preview"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -119,243 +146,289 @@
                     loading="lazy">
                 </iframe>
             </div>
-        
+
             <p>
-                The game is based off of Lovers in A Dangerous Spacetime made by AsteroidBase.
-                My generation was based off of the original levels. However, in the end my designers settled on a smaller map size, other than that the levels look similair. 
-                Left the original, Right my version
+                The game is based off of Lovers in A Dangerous Spacetime made by Asteroid Base.
+                My generation was based off of the original levels. However, in the end my designers settled on a smaller map size — other than that the levels look similar.
+                Left the original, right my version.
             </p>
-        
+
             <img src="../Assets/media/WastelandWalkers/original.png" alt="One of the levels from Lovers in A Dangerous Spacetime" class="project-image lightbox-image">
             <img src="../Assets/media/WastelandWalkers/mine.png" alt="Wasteland Walkers final level generation" class="project-image lightbox-image">
 
-            <p> Below you can see the original design sketch I created together with my level designer based on the original game.
-                The more open dune areas got scrapped early on but the similarities 
-                and differences between the cave sketch and the final product are very interesting to me. 
-                The original sketch had more open areas and less corridors, 
+            <p>Below you can see the original design sketch I created together with my level designer based on the original game.
+                The more open dune areas got scrapped early on but the similarities
+                and differences between the cave sketch and the final product are very interesting to me.
+                The original sketch had more open areas and less corridors,
                 but the final version ended up being more focused on tight, chaotic corridors.
             </p>
 
             <img src="../Assets/media/WastelandWalkers/originaldesign.png" alt="Wasteland Walkers original level design sketch" class="project-image lightbox-image">
 
-
             <h3>How it works</h3>
 
-            <h4>Step 1: Voronoi Diagram Generation</h4>
+            <h4>Step 1: Room point placement</h4>
 
-            <p>The map structure starts with a Voronoi diagram. I generate this using Fortune's algorithm, 
-                which I implemented myself in a standalone C++ project first to ensure I had a solid understanding of the 
-                algorithm.</p>
+            <p>The first step is placing seed points that will become the rooms. Points are placed randomly but validated
+                against all existing points to ensure a minimum distance between them. The centre point, which is always
+                the oasis endpoint, has a larger exclusion radius to protect it's setdressing. If no valid position is found
+                after 50 tries, the closest valid position is used anyway.</p>
 
-            <img src="../Assets/media/WastelandWalkers/Fortunes-algorithm-slowed.gif" alt="Wasteland Walkers Voronoi diagram example, not mine" class="project-image lightbox-image">
-            
+<pre><code class="language-cpp">do {
+    count++;
+    distance = std::numeric_limits&lt;float&gt;::max();
+    worldPosition = FVector2D(RandomRange(mMapWidthX), RandomRange(mMapWidthY));
+
+    for (int j = 0; j &lt; mRoomPositions.Num(); j++) {
+        float newDistance = worldPosition.Distance(mRoomPositions[j], worldPosition);
+        if (j == 0) distanceToMiddle = newDistance; // centre has a bigger exclusion radius
+        else if (newDistance &lt; distance) distance = newDistance;
+    }
+
+    viablePosition = true;
+    if (distance &lt; mRoomMargin) viablePosition = false;
+    if (distanceToMiddle &lt; mMiddleRoomMargin) viablePosition = false;
+} while (!viablePosition &amp;&amp; count &lt; 50);</code></pre>
+            <p class="code-caption">GenerateRoomPoints() — ProceduralWorldGenerator.cpp</p>
+
+            <h4>Step 2: Voronoi diagram generation</h4>
+
+            <p>The map structure starts with a Voronoi diagram. I generate this using Fortune's algorithm,
+                which I implemented myself in a standalone C++ project first to ensure I had a solid understanding of the
+                algorithm.  
+                <a href="https://en.wikipedia.org/wiki/File:Fortunes-algorithm-slowed.gif" target="_blank">
+                    Fortune's algorithm visualisation (left): Wikimedia</a>
+            </p>
+
+            <img src="../Assets/media/WastelandWalkers/Fortunes-algorithm-slowed.gif" alt="Fortune's algorithm visualised, not made by me" class="project-image lightbox-image">
+
             <img src="../Assets/media/WastelandWalkers/fortuneDemo.png" alt="Wasteland Walkers Voronoi diagram C++ demo" class="project-image lightbox-image">
-            
-            <p>After I had a working prototype in C++, I ported it to Unreal Engine. The green lines below represent the Voronoi edges. The grey boxes are the seed points used to generate the diagram.</p>
+
+            <p>After I had a working prototype in C++, I ported it to Unreal Engine. The green lines below represent the Voronoi edges. The grey boxes are the seed points.</p>
 
             <img src="../Assets/media/WastelandWalkers/uefortune0.png" alt="Wasteland Walkers Voronoi diagram inside UE" class="project-image lightbox-image">
 
-                        <h4>Step 2: Delaunay Triangulation</h4>
+            <h4>Step 3: Delaunay triangulation and corridors</h4>
 
-<p>The Voronoi diagram is then converted to a Delaunay triangulation by connecting each pair of seed points whose Voronoi regions share an edge. 
-    These connections become the corridors of the level. 
-    Initially the triangulation produced stretched triangles at the edges of the diagram because some Voronoi edges 
-    extend to infinity. Adding a bounding box fixed this.
+            <p>The Voronoi diagram is converted to a Delaunay triangulation by connecting each pair of seed points whose
+                Voronoi regions share an edge. These connections become the corridors of the level.
+                Initially the triangulation produced stretched triangles at the edges because some Voronoi edges extend to
+                infinity — adding a bounding box fixed this. The red lines represent the Delaunay triangulation edges.</p>
 
-    The red lines represent the Delaunay triangulation edges.
-</p>
-            
-            <img src="../Assets/media/WastelandWalkers/uefortune.png" alt="Wasteland Walkers Voronoi diagram inside UE" class="project-image lightbox-image">
-            
-            <p> I then use the Delaunay triangulation to cut out the levels corridors using splines and Unreal Engine's PCG system. </p>
-            <img src="../Assets/media/WastelandWalkers/cutoutvoronoi.png" alt="Wasteland Walkers Voronoi diagram inside UE" class="project-image lightbox-image">
-            
-            <p> To make the corridors more interesting, I add points in the middle of the splines with random offsets. 
-                The amount of points, random offset and random spline width can all be adjusted by designers to generate wildly different 
-                level layouts. </p>
-            
-            <img src="../Assets/media/WastelandWalkers/delauney1.png" alt="Wasteland Walkers Voronoi diagram inside UE" class="project-image lightbox-image">
-            <img src="../Assets/media/WastelandWalkers/delauney2.png" alt="Wasteland Walkers Voronoi diagram inside UE" class="project-image lightbox-image">
-            <img src="../Assets/media/WastelandWalkers/delauney3.png" alt="Wasteland Walkers Voronoi diagram inside UE" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/uefortune.png" alt="Wasteland Walkers Voronoi and Delaunay in UE" class="project-image lightbox-image">
 
-                        <h4>Step 3: Adding rooms</h4>
+            <p>I then use the Delaunay triangulation to cut out corridors using splines and Unreal Engine's PCG system. </p>
+                
 
-    <p>IOpen rooms are carved out at a random selection of Voronoi sites. 
-        The room boundaries are derived from the Voronoi edges surrounding each site, 
-        guaranteeing rooms can never overlap each other. 
-        Getting those edges to sort into a valid closed polygon was the hardest part of the whole system. 
-        Since the fortune's algorithm finds the corner points in an order from left to right,
-         instead of in relation to it's seed location. 
-        I had to handle over ten edge cases involving edges that extend to infinity, 
-        disconnected boundary patches, 
-        and keeping the winding order consistent. 
-        Not every site becomes a room. skipping some keeps the level less predictable.
+            <img src="../Assets/media/WastelandWalkers/cutoutvoronoi.png" alt="Corridors cut out of mountains" class="project-image lightbox-image">
 
-    </p>
+            <p>To make the corridors more interesting, I add points in the middle of the splines with random offsets.
+                The amount of points, random offset and random spline width can all be adjusted by designers.</p>
+
+            <img src="../Assets/media/WastelandWalkers/delauney1.png" alt="Corridor generation iteration 1" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/delauney2.png" alt="Corridor generation iteration 2" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/delauney3.png" alt="Corridor generation final" class="project-image lightbox-image">
+
+            <h4>Step 4: Adding rooms</h4>
+
+            <p>Open rooms are carved out at a random selection of Voronoi sites.
+                The room boundaries are derived from the Voronoi edges surrounding each site,
+                guaranteeing rooms can never overlap each other.
+                Getting those edges to sort into a valid closed polygon was the hardest part of the whole system.
+                Since Fortune's algorithm finds corner points ordered left to right rather than relative to their seed location,
+                I had to handle over ten edge cases involving edges that extend to infinity,
+                disconnected boundary patches, and keeping the winding order consistent.
+                Not every site becomes a room — skipping some keeps the level less predictable.
+            </p>
+
             <img src="../Assets/media/WastelandWalkers/room1.png" alt="Wasteland Walkers rooms added to generation" class="project-image lightbox-image">
-                        <img src="../Assets/media/WastelandWalkers/voronoirooms.png" alt="Wasteland Walkers rooms added to generation" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/voronoirooms.png" alt="Wasteland Walkers rooms Voronoi based" class="project-image lightbox-image">
 
-            <p> The image above was actually closer to what we originally aimed for. However, 
-                while playing around with the values we discovered that shorter crazier corridors were a lot more fun and interesting.
-                The open and chaotic nature matched the gameplay perfectly. 
-                The adjustable nature of my algorithm ended up steering the direction of the entire game.  
-            
-                </p>
-                <p>
-                Just like the hallways I ended up adding offsets to make the shapes more organic and interesting. 
-</p>
-            
-            <img src="../Assets/media/WastelandWalkers/room2.png" alt="Wasteland Walkers rooms added to generation" class="project-image lightbox-image">
+            <p>The image above was actually closer to what we originally aimed for. However,
+                while playing around with the values we discovered that shorter, crazier corridors were a lot more fun and interesting.
+                The open and chaotic nature matched the gameplay perfectly.
+                The adjustable nature of my algorithm ended up steering the direction of the entire game.
+            </p>
+            <p>
+                Just like the hallways I ended up adding offsets to make the room shapes more organic and interesting.
+            </p>
 
-            
+            <img src="../Assets/media/WastelandWalkers/room2.png" alt="Wasteland Walkers rooms final" class="project-image lightbox-image">
+        </div>
 
-            </div>
+        <!-- OBSTACLES -->
         <div class="content-block">
             <h3 id="obstacles">Obstacles</h3>
-            <p>Besides the level generation, I also implemented a system for placing obstacles within the generated environment.
+            <p>Besides the level generation, 
+                I also implemented systems to place different obstacles within the generated environment.</p>
 
-                some parts of this system are quite interesting so I will go into a bit more detail about them.
+<br>
+            <p>
+                Before I could place any obstacles however, I needed to wait for the canyon geometry to be in place. 
+                The canyon rock placement runs asynchronously on a separate thread via the PCG plugin. I bound a callback to
+                the PCG component's completion event so obstacle/object spawning only starts once the geometry is in place.
+                Without this, collision checks for cactus placement would find nothing to collide against.</p>
 
-                                        <h4>Singular Cactus</h4>
+<pre><code class="language-cpp">// wait for the PCG plugin to finish placing canyon rocks before spawning hazards
+PCGComponent->OnPCGGraphGeneratedExternal.AddDynamic(
+    this, &amp;UProceduralWorldGenerator::GenerateWorldAfterPCG);
+PCGComponent->Generate_Implementation(true);
 
-                We'll start with the simplest one, the singular cactus. 
-                This simple obstacle can be destroyed by shooting it and will explode when destroyed, damaging the player, enemies and even other cacti.
-                It's meant to be a base level hazard keeping people active shooting around the walker.
+void UProceduralWorldGenerator::GenerateWorldAfterPCG(UPCGComponent* PCGComponent) {
+    SpawnCactiWalls();
+    SpawnCacti();
+    SpawnSandStorm();
+    CleanUp();
+}</code></pre>
+            <p class="code-caption">CreateWallZones() / GenerateWorldAfterPCG() — ProceduralWorldGenerator.cpp</p>
 
-                and so the cactus can be placed pretty much anywhere on the map, as long as it doesn't intersect with the player spawn or walls.
-                For ease of iteration there is a simple slider that decides how many cacti should be placed. Here it is with max cacti. 
-            </p>
+
+            <h4>Singular Cactus</h4>
+            <p>The simplest hazard. Cacti can be destroyed by shooting them and explode on death,
+                damaging players, enemies and other nearby cacti.
+                They can spawn anywhere on the map as long as they don't overlap with the player spawn or canyon walls.
+                A single slider in the editor controls how many spawn.</p>
 
             <img src="../Assets/media/WastelandWalkers/cactus.png" alt="Wasteland Walkers cactus obstacle" class="project-image lightbox-image">
 
-                                                    <h4>Cactus Wall</h4>
+            <h4>Cactus Wall</h4>
+            <p>The cactus wall blocks an entire hallway. To size it correctly I needed the actual width of the corridor at
+                the spawn point, but spline scale alone underestimates this because curves remove extra canyon on the
+                inside of bends. Instead I start with the expected width and ray-march outward from the spline centre in
+                both directions using Unreal's box trace until hitting canyon geometry. If either side exceeds the maximum
+                wall length the position is rejected and a new one is tried.</p>
 
-            <p>Next up is the cactus wall, the big brother of the singular cactus.
-                This barrier will generate in hallways and block the entire hallway. 
-                To do this I could use the data I have of my spline and delaunay triangulation.
-            However some hallways intersect with eachother or with rooms, meaning I can't know for sure how wide the hallway is.
-        That's why I do a simple collision trace every step along the spline. 
-        Starting with the width I expect the hallway to have and continuing until I hit something.  
-    This proved to be a simple but effective solution and resulted in some memorable walls.</p>
-            
+<pre><code class="language-cpp">// march outward from corridor centre in both directions until hitting a wall
+while (!IsSpaceOccupied(
+        middlePoint.OutVal + basePerpendicularVec
+        + (perpendicularVec * middlePointScale.OutVal * stepSize * marchDistance1)
+        + FVector(0, 0, 100), extent)
+    &amp;&amp; marchDistance1 &lt; maxMarchStep) {
+    marchDistance1++;
+}
+while (!IsSpaceOccupied(
+        middlePoint.OutVal - basePerpendicularVec
+        - (perpendicularVec * middlePointScale.OutVal * stepSize * marchDistance2)
+        + FVector(0, 0, 100), extent)
+    &amp;&amp; marchDistance2 &lt; maxMarchStep) {a
+    marchDistance2++;
+}
 
-            <img src="../Assets/media/WastelandWalkers/cacti2.png" alt="Wasteland Walkers cactus obstacle" class="project-image lightbox-image">
-            <img src="../Assets/media/WastelandWalkers/cacti1.png" alt="Wasteland Walkers cactus obstacle" class="project-image lightbox-image">
+if (marchDistance1 &lt; maxMarchStep &amp;&amp; marchDistance2 &lt; maxMarchStep) {
+    // valid width found, spawn the wall between the two hit points
+} else {
+    // wall would be too long, reject and retry
+    currentCactiWallNumber--;
+}</code></pre>
+            <p class="code-caption">SpawnCactiWalls() — ProceduralWorldGenerator.cpp</p>
 
-            <img src="../Assets/media/WastelandWalkers/cacti3.png" alt="Wasteland Walkers cactus obstacle" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/cacti2.png" alt="Wasteland Walkers cactus wall" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/cacti1.png" alt="Wasteland Walkers cactus wall in level" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/cacti3.png" alt="Wasteland Walkers cactus wall debug" class="project-image lightbox-image">
 
-                                                                <h4>Enemy spawners</h4>
+            <h4>Enemy spawners</h4>
+            <p>I worked together with fellow developer Timethy to implement enemy spawning into the level.
+                After some discussion we decided they should spawn once the player enters a room but also be able to spawn
+                behind the player to force them to switch guns and cause more panic.
+                To do this I created trigger boxes slightly smaller than the rooms themselves, which hook up to the spawner system.</p>
 
-<p> I also worked together with my fellow developers to implement the enemy spawning into the level. 
-    After some discussion we decided they should spawn once the player enters a 'room' but they should also be able to spawn behind the player to force them to switch guns and cause more panic. 
-To do this I created trigger boxes smaller than the rooms themselves. Which hooked up the spawner system.</p>
+            <img src="../Assets/media/WastelandWalkers/spawners.png" alt="Wasteland Walkers enemy spawner placement" class="project-image lightbox-image">
 
-            <img src="../Assets/media/WastelandWalkers/spawners.png" alt="Wasteland Walkers cactus obstacle" class="project-image lightbox-image">
+            <h4>Sand storms</h4>
+            <p>Sand storms push players in one direction, creating one-way corridors in the map. These are placed at the
+                midpoint of a random corridor using the angle between the two connected room positions, which turned out
+                to be robust enough for the narrow corridors we ended up shipping.</p>
 
-                                                    <h4>Sand storms</h4>
+            <img src="../Assets/media/WastelandWalkers/obstacle.png" alt="Wasteland Walkers sand storm obstacle" class="project-image lightbox-image">
 
-            <p> Besides these there was the sand storm that pushed players in one direction, 
-                creating one way corridors in the map. These were placed in the angle of one room to another which
-            ended up being robust enough for the small corridors we ended up having.  </p>
-                                <img src="../Assets/media/WastelandWalkers/obstacle.png" alt="Wasteland Walkers rooms added to generation" class="project-image lightbox-image">
-
-                                                                                    <h4>Keys and health pickups</h4>
-
-                                <p>
-            Each room had a chance of spawning an item in the centre. This could be a health pickup or a key. 
-        The keys showed up on the minimap and were limited to 4 spawns.  
-    After collecting all the keys the players can open the gate of the oasis in the middle of the map and beat the game. </p>
-
-
+            <h4>Keys and health pickups</h4>
+            <p>Each room had a chance of spawning an item in the centre. This could be a health pickup or a key.
+                The keys showed up on the minimap and were limited to 4 spawns.
+                After collecting all the keys the players can open the gate of the oasis in the middle of the map and beat the game.</p>
         </div>
+
+        <!-- COLLABORATION -->
         <div class="content-block">
             <h3 id="collaboration">Collaboration</h3>
-            <p>The level generation relied heavily on close collaboration with Nataliia, our technical artist. 
-                Her PCG tool placed varying sizes of rocks depending on the sample location values. 
-                This meant that around the edges of an area, or where a corridor was cut out, 
-                there would be smaller rocks that got increasingly bigger as they got further away. 
-                
+            <p>The level generation relied heavily on close collaboration with Nataliia, our technical artist.
+                Her PCG tool placed varying sizes of rocks depending on the sample location values.
+                This meant that around the edges of an area, or where a corridor was cut out,
+                there would be smaller rocks that got increasingly bigger as they got further away.
+
                 We had both not used the PCG system before, so it took some experimentation before landing on this solution.
-                Our first idea was to use Houdini but sadly we couldn't manage to run the Houdini Engine plugin at runtime.
-                Which would be necessary to make each level be unique.  
-
-                </p>
-                <img src="../Assets/media/WastelandWalkers/prco.png" alt="Wasteland Walkers procedural rocks" class="project-image lightbox-image">
-                <p>
-                Besides the technical artist, I also worked closely with the our level designer Abel. 
-                I had meetings with him regurarly to discuss the direction of the level generation and to see if my final product aligned with the projects needs.
-                Through a lot of valuable iteration we ended up with a system that produces levels that are chaotic and fun to play in, 
+                Our first idea was to use Houdini but sadly we couldn't manage to run the Houdini Engine plugin at runtime,
+                which would be necessary to make each level unique.
+            </p>
+            <img src="../Assets/media/WastelandWalkers/prco.png" alt="Wasteland Walkers procedural rocks" class="project-image lightbox-image">
+            <p>
+                Besides the technical artist, I also worked closely with level designer Abel.
+                I had regular meetings with him to discuss the direction of the level generation and to see if my final product aligned with the project's needs.
+                Through a lot of valuable iteration we ended up with a system that produces levels that are chaotic and fun to play in,
                 while still being adjustable enough to steer the direction of the game.
-                </p>
-
-
-                <p>Next to this I worked together with fellow developers whenever someone was stuck, 
-                    and gave feedback to our artists whenever they shared their progress. 
-                Overall, the collaboration within the team made sure everyone was aligned and resulted in a great team atmosphere. 
             </p>
+            <p>Next to this I worked together with fellow developers whenever someone was stuck,
+                and gave feedback to our artists whenever they shared their progress.
+                Overall, the collaboration within the team made sure everyone was aligned and resulted in a great team atmosphere.
+            </p>
+        </div>
 
-       
-</div>
- <div class="content-block">
+        <!-- LESSONS LEARNED -->
+        <div class="content-block">
             <h3 id="lessons-learned">Lessons learned</h3>
-           
-            <h4>Procedural generation tools are only as powerful as the control designers have over them. </h4>
-             <p>This was by far the biggest procedural generation project I had worked on up until now. 
-            And it throughout the process I noticed that the more controls I added to the system, 
-            the more fun and interesting results appeared. And when these results started coming in,
-            designers got more invested in the system and feedback and iteration started snowballing into a much better product.
-            </p>
-                       <hr>
 
-             <h4>Cross-disciplinary collaboration is key to a successful project.</h4>
-             <p>At the start of our project we had created teams based on our disciplines. 
-            This worked alright but it didn't feel like we were really one team, and efficiency suffered because of it.
-<br><br>
-            For the second sprint and onwards we switched to cross-disciplinary teams, 
-            where each team had a mix of programmers, artists and designers. 
-            We based the teams on the general features we would be working on. 
-            Meaning I was suddenly surrounded by artists and designers also working on the level. 
-            This made communication and iteration much easier and faster, and it also made the project a lot more fun to work on.
+            <h4>Procedural generation tools are only as powerful as the control designers have over them.</h4>
+            <p>This was by far the biggest procedural generation project I had worked on up until now.
+                Throughout the process I noticed that the more controls I added to the system,
+                the more fun and interesting results appeared. And when these results started coming in,
+                designers got more invested in the system and feedback and iteration started snowballing into a much better product.
+            </p>
+            <hr>
+
+            <h4>Cross-disciplinary collaboration is key to a successful project.</h4>
+            <p>At the start of our project we had created teams based on our disciplines.
+                This worked alright but it didn't feel like we were really one team, and efficiency suffered because of it.
+                <br><br>
+                For the second sprint and onwards we switched to cross-disciplinary teams,
+                where each team had a mix of programmers, artists and designers.
+                We based the teams on the general features we would be working on.
+                Meaning I was suddenly surrounded by artists and designers also working on the level.
+                This made communication and iteration much easier and faster, and it also made the project a lot more fun to work on.
             </p>
             <hr>
 
             <h4>Ask directly instead of hearing through others.</h4>
-             <p>
-            A few times I would hear requests or feedback through other people.
-            But when I asked the person directly about it, I heard completely different requirements or feedback. 
-            Instead of playing a game of telephone within the team, 
-            I learned that it's much better to just ask the person directly.   
+            <p>
+                A few times I would hear requests or feedback through other people.
+                But when I asked the person directly about it, I heard completely different requirements or feedback.
+                Instead of playing a game of telephone within the team,
+                I learned that it's much better to just ask the person directly.
             </p>
-
             <hr>
-             <h4 >Ambitious goals require realistic planning.</h4>
-             <p>
-            From the start of the project it was clear that my plan for the procedural generation was quite ambitious for an 8 week project.
-            To combat this I made sure to have a working prototype of the core algorithm within the first 2 weeks. 
-            If I could not get that working, I would have had to switch to a much simpler algorithm.
-            <br><br>
-            Besides this we also never planned to have the procedural levels be the core of the game. 
-            Our level designer worked on one hand-crafted level in parallel, 
-            so if the procedural generation ended up being too much for the time we had, we could just use that.
-<br><br>
-            And crucially during the whole process I made sure to communicate with the team about the progress and any potential issues.
-            This made sure the team was always aligned and we could make informed decisions together whenever we needed to.
+
+            <h4>Ambitious goals require realistic planning.</h4>
+            <p>
+                From the start of the project it was clear that my plan for the procedural generation was quite ambitious for an 8 week project.
+                To combat this I made sure to have a working prototype of the core algorithm within the first 2 weeks.
+                If I could not get that working, I would have had to switch to a much simpler algorithm.
                 <br><br>
-            Luckily, it all worked out on time in the end. 
-            And from playtesting we even found that the procedural generation ended up being more fun than the hand-crafted level, 
-            which was a great bonus. In the end we turned the hand-crafted level into the onboarding level and ended up with a great finished game. 
-
-
+                Besides this we also never planned to have the procedural levels be the core of the game.
+                Our level designer worked on one hand-crafted level in parallel,
+                so if the procedural generation ended up being too much for the time we had, we could just use that.
+                <br><br>
+                And crucially during the whole process I made sure to communicate with the team about the progress and any potential issues.
+                This made sure the team was always aligned and we could make informed decisions together whenever we needed to.
+                <br><br>
+                Luckily, it all worked out on time in the end.
+                And from playtesting we even found that the procedural generation ended up being more fun than the hand-crafted level,
+                which was a great bonus. In the end we turned the hand-crafted level into the onboarding level and ended up with a great finished game.
             </p>
             <img src="../Assets/media/WastelandWalkers/wasteland.png" alt="Wasteland Walkers" class="project-image lightbox-image">
-
-       
-</div>
-
-
+        </div>
 
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>hljs.highlightAll();</script>
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
 </body>

@@ -468,8 +468,15 @@
             transition: color 0.2s ease;
         }
 
+        .project-content a {
+            color: #7fc1ff;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .project-content a:hover,
         .project-toc a:hover {
-            color: #c8e1ff;
+            color: #5fa0ff;
             text-decoration: underline;
         }
 
