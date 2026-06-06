@@ -48,7 +48,19 @@
         }
 
         nav a:hover {
+            color: #4d86e6;
+        }
+
+        nav a.active {
             color: #7fc1ff;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+        }
+
+        nav a.active:hover {
+            color: #5fa0ff;
         }
 
         nav a svg {
@@ -210,6 +222,12 @@
             font-size: 1.5rem;
         }
 
+        .project-content h3[id],
+        .project-content h4[id],
+        #intro {
+            scroll-margin-top: 96px;
+        }
+
         .project-content p,
         .project-content ul {
             color: #c1cee5;
@@ -247,16 +265,17 @@
             width: 100%;
         }
 
-        .about-video .video-frame {
+        .video-frame {
             position: relative;
             padding-top: 56.25%; /* 16:9 */
             background: #000;
             border-radius: 12px;
             overflow: hidden;
             width: 100%;
+            margin: 1.5rem 0;
         }
 
-        .about-video .video-frame iframe {
+        .video-frame iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -341,8 +360,8 @@
             display: flex;
             gap: 0.6rem;
             flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+            justify-content: left;
+            align-items: left;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 0.25rem;
             min-width: 0;
@@ -399,7 +418,7 @@
         /* Resume button under skills */
         .resume-btn {
             display: inline-block;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             padding: 0.6rem 1rem;
             background: linear-gradient(90deg, #7fc1ff, #4aa1ff);
             color: #071028;
@@ -413,6 +432,51 @@
         .resume-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 24px rgba(76,148,255,0.18);
+        }
+
+        .project-toc {
+            margin-top: 1.5rem;
+            padding: 1rem 1rem 0.75rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+        }
+
+        .project-toc p {
+            margin: 0 0 0.75rem;
+            color: #c8d5ec;
+            font-size: 0.95rem;
+        }
+
+        .project-toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, auto));
+            gap: 0.5rem 1rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        .project-toc li {
+            margin: 0;
+        }
+
+        .project-toc a {
+            color: #7fc1ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .project-toc a:hover {
+            color: #c8e1ff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .project-toc ul {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Center resume button when placed in the header nav */
@@ -516,13 +580,124 @@
             color: #ffffff;
         }
 
-        .project-image {
+        .project-card .project-image {
             width: 100%;
             height: 280px;
             background-size: cover;
             background-position: center;
             background-color: rgba(255,255,255,0.02);
             flex-shrink: 0;
+            border-radius: 12px;
+        }
+
+        img.project-image {
+            display: inline-block;
+            width: min(48%, 480px);
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+            border-radius: 12px;
+            margin: 1.5rem 1%;
+            object-fit: contain;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+        }
+
+        img.lightbox-image {
+            cursor: zoom-in;
+        }
+
+        .project-content {
+            text-align: center;
+        }
+
+        .project-content p {
+            text-align: left;
+        }
+
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 2500;
+            padding: 2rem;
+            pointer-events: none;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .lightbox-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .lightbox-overlay > div {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 95%;
+            width: auto;
+            padding: 0 1rem;
+        }
+
+        .lightbox-overlay img {
+            width: min(85vw, 1000px);
+            min-width: 55vw;
+            max-width: 90vw;
+            height: auto;
+            max-height: 85vh;
+            border-radius: 14px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+            cursor: zoom-out;
+            transform: scale(0.92);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.25s ease, opacity 0.25s ease, visibility 0s linear 0.25s;
+        }
+
+        .lightbox-overlay.active img {
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+        .lightbox-caption {
+            position: relative;
+            z-index: 1;
+            color: #f8fbff;
+            margin-top: 0;
+            max-width: 90%;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.5;
+            padding: 0 1rem;
+        }
+
+        .lightbox-overlay.active img {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        @media (max-width: 1100px) {
+            img.project-image {
+                width: 100%;
+                margin: 1.5rem auto;
+            }
         }
 
         .project-body h3 {
@@ -548,11 +723,13 @@
             font-weight: 400;
         }
 
+        .project-content hr,
         .project-body hr {
             border: none;
-            height: 1px;
-            background: rgba(255,255,255,0.04);
-            margin: 0.6rem 0;
+            width: min(40%, 260px);
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 2rem auto;
         }
 
         .project-details {
@@ -725,7 +902,7 @@
                 padding: 1rem;
             }
 
-            .project-image {
+            .project-card .project-image {
                 height: 220px;
             }
 
@@ -834,7 +1011,7 @@
                 padding: 0.9rem;
             }
 
-            .project-image {
+            .project-card .project-image {
                 height: 180px;
             }
 

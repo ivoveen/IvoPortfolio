@@ -364,9 +364,11 @@
                 });
                 projectGrid.classList.toggle('expanded');
                 btn.textContent = btn.textContent === 'See More' ? 'See Less' : 'See More';
+                window.dispatchEvent(new Event('scroll'));
             });
         });
     </script>
+    <script src="Assets/scrollspy.js"></script>
 </body>
 
 </html>
