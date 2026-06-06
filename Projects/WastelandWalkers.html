@@ -204,6 +204,11 @@
 
             <img src="../Assets/media/WastelandWalkers/fortuneDemo.png" alt="Wasteland Walkers Voronoi diagram C++ demo" class="project-image lightbox-image">
 
+            <p>Fortune's algorithm works by sweeping a vertical line across all the seed points from left to right.
+    As the sweep line passes each point, a parabola expands outward from it. Where two parabolas meet,
+    they trace a Voronoi edge. When three parabolas converge at a single point, that is a Voronoi vertex.</p>
+
+    <br>
             <p>After I had a working prototype in C++, I ported it to Unreal Engine. The green lines below represent the Voronoi edges. The grey boxes are the seed points.</p>
 
             <img src="../Assets/media/WastelandWalkers/uefortune0.png" alt="Wasteland Walkers Voronoi diagram inside UE" class="project-image lightbox-image">
@@ -222,8 +227,37 @@
 
             <img src="../Assets/media/WastelandWalkers/cutoutvoronoi.png" alt="Corridors cut out of mountains" class="project-image lightbox-image">
 
-            <p>To make the corridors more interesting, I add points in the middle of the splines with random offsets.
-                The amount of points, random offset and random spline width can all be adjusted by designers.</p>
+            <p>To make the corridors more interesting, I add intermediate spline points with random perpendicular offsets
+                and random widths. The sign flip ensures offsets go left or right randomly rather than always the same direction.</p>
+ </p>
+<pre><code class="language-cpp">// get the perpendicular direction for offsetting corridor points
+FVector2D site1 = delaunayTriang[i]->site1;
+FVector2D site2 = delaunayTriang[i]->site2;
+
+FVector splineDirection = FVector(site1, 0) - FVector(site2, 0);
+splineDirection.Normalize();
+FVector splineRightAngle = FVector(splineDirection.Y, -splineDirection.X, 0);
+
+for (int segmentIndex = 0; segmentIndex < mNumberOfCorridorSegmentPoints; segmentIndex++) {
+    FVector position = LerpVector(FVector(site1, 0), FVector(site2, 0),
+                                  mNumberOfCorridorSegmentPoints, segmentIndex);
+
+    if (segmentIndex != 0 && segmentIndex != mNumberOfCorridorSegmentPoints - 1) {
+        // random left/right offset — sign flip ensures both directions are possible
+        float sign = (static_cast<int>(RandomFloat() * 10) % 2) == 0 ? 1.0f : -1.0f;
+        float offset = sign * mMinCorridorSquiggleOffset
+                     + RandomFloat() * (mMaxCorridorSquiggleOffset - mMinCorridorSquiggleOffset);
+        position += (offset * splineRightAngle);
+    }
+
+    newSpline->AddSplinePoint(position, ESplineCoordinateSpace::Local, false);
+
+    // random width per segment
+    newSpline->SetScaleAtSplinePoint(segmentIndex,
+        FVector(mMinCorridorWidth + RandomFloat() * (mMaxCorridorWidth - mMinCorridorWidth)), false);
+}</code></pre>
+            <p class="code-caption">SpawnPathSplines() — ProceduralWorldGenerator.cpp</p>
+
 
             <img src="../Assets/media/WastelandWalkers/delauney1.png" alt="Corridor generation iteration 1" class="project-image lightbox-image">
             <img src="../Assets/media/WastelandWalkers/delauney2.png" alt="Corridor generation iteration 2" class="project-image lightbox-image">
@@ -310,7 +344,7 @@ while (!IsSpaceOccupied(
         middlePoint.OutVal - basePerpendicularVec
         - (perpendicularVec * middlePointScale.OutVal * stepSize * marchDistance2)
         + FVector(0, 0, 100), extent)
-    &amp;&amp; marchDistance2 &lt; maxMarchStep) {a
+    &amp;&amp; marchDistance2 &lt; maxMarchStep) {
     marchDistance2++;
 }
 
@@ -341,11 +375,28 @@ if (marchDistance1 &lt; maxMarchStep &amp;&amp; marchDistance2 &lt; maxMarchStep
 
             <img src="../Assets/media/WastelandWalkers/obstacle.png" alt="Wasteland Walkers sand storm obstacle" class="project-image lightbox-image">
 
-            <h4>Keys and health pickups</h4>
-            <p>Each room had a chance of spawning an item in the centre. This could be a health pickup or a key.
-                The keys showed up on the minimap and were limited to 4 spawns.
-                After collecting all the keys the players can open the gate of the oasis in the middle of the map and beat the game.</p>
-        </div>
+           <h4>Keys and health pickups</h4>
+            <p>Keys and health pickups use the same random-with-validation approach as room placement. Keys are chosen
+                from room midpoints with a minimum distance between them to ensure they spread across the map. Health
+                pickups are placed at corridor midpoints instead, so players encounter them while navigating between rooms.</p>
+ 
+<pre><code class="language-cpp">do {
+    count++;
+    distance = std::numeric_limits<float>::max();
+    // pick a random room midpoint as the candidate spawn location
+    worldPosition = roomMiddlePoints[static_cast<int>(RandomFloat() * roomMiddlePoints.Num())];
+
+    // reject if too close to any already-chosen key location
+    for (int j = 0; j < chosenLocations.Num(); j++) {
+        float newDistance = worldPosition.Distance(chosenLocations[j], worldPosition);
+        if (newDistance < distance) distance = newDistance;
+    }
+} while (distance < mKeyRadius && count < 100);
+
+chosenLocations.Add(worldPosition);
+pWorld->SpawnActor<AActor>(keyClass, worldPosition, FRotator::ZeroRotator);</code></pre>
+            <p class="code-caption">SpawnKeys() — ProceduralWorldGenerator.cpp</p>
+                </div>
 
         <!-- COLLABORATION -->
         <div class="content-block">
