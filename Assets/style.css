@@ -293,8 +293,15 @@
         /* place the video at the left edge of the right column so its left edge meets the center */
         .project-hero.video-large .about-picture {
             display: flex;
-            justify-content: flex-start;
+            justify-content: flex-end;
             align-items: center;
+        }
+
+        .project-hero.video-large .about-picture img {
+            width: 100%;
+            max-width: 720px;
+            border-radius: 18px;
+            object-fit: cover;
         }
 
         .project-hero.video-large .about-video .video-frame {
@@ -594,7 +601,6 @@
             background-position: center;
             background-color: rgba(255,255,255,0.02);
             flex-shrink: 0;
-            border-radius: 12px;
         }
 
         img.project-image {
@@ -603,10 +609,8 @@
             max-width: 100%;
             height: auto;
             vertical-align: middle;
-            border-radius: 12px;
             margin: 1.5rem 1%;
             object-fit: contain;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
         }
 
         img.lightbox-image {
