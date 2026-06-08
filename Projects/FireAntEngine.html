@@ -13,8 +13,11 @@
     <nav>
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#summary">Overview</a>
+            <a href="#intro">Overview</a>
             <a href="#details">Details</a>
+            <a href="#technical">Technical implementation</a>
+            <a href="#collaboration">Collaboration</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -46,26 +49,31 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="intro" class="project-hero about">
+    <section id="intro" class="project-hero about video-large">
         <div class="about-container">
-            <div class="about-picture">
-                <div class="project-image" style="background-image: url('../Assets/Pictures/FireAnt.png');"></div>
-            </div>
             <div class="about-text">
                 <h2>FireAnt Engine</h2>
                 <p>A custom C++ engine for strategy gameplay with Nintendo Switch support and in-house tooling. I contributed UI editor systems and CI/CD support.</p>
+                <ul class="intro-highlights">
+                    <li>Custom engine</li>
+                    <li>UI tools</li>
+                    <li>Switch support</li>
+                    <li>CI/CD workflows</li>
+                </ul>
+            </div>
+            <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/GzBfxlUhx4Q?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            title="FireAnt Engine preview"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section id="summary" class="project-summary">
-        <p>FireAnt Engine demonstrates my ability to build platform-ready game infrastructure and tooling for team workflows.</p>
-        <ul class="summary-highlights">
-            <li>Custom engine</li>
-            <li>UI tools</li>
-            <li>Switch support</li>
-            <li>CI/CD workflows</li>
-        </ul>
     </section>
 
     <section id="details" class="projects">
@@ -90,20 +98,22 @@
         <a class="project-action" href="https://www.linkedin.com/feed/update/urn:li:activity:7320414656467025922/" target="_blank" rel="noreferrer">View the LinkedIn update</a>
     </section>
 
-    <section class="project-content">
+    <section id="technical" class="project-content">
         <div class="content-block">
-            <h3>Engine Focus</h3>
-            <p>The project targeted a stable, data-driven game platform while keeping designer and artist tooling accessible.</p>
+            <h3>Technical implementation</h3>
+            <p>The engine focuses on stable, data-driven platform support with designer-friendly tooling. I built a custom UI editor and Nintendo Switch-specific support systems.</p>
         </div>
-        <div class="content-block">
-            <h3>Key Systems</h3>
-            <p>I implemented a custom UI editor and platform-specific support for Nintendo Switch builds.</p>
+        <div id="collaboration" class="content-block">
+            <h3>Collaboration</h3>
+            <p>I worked with artists and designers to make the engine tools intuitive and ensured the build pipeline matched team workflows.</p>
         </div>
-        <div class="content-block">
-            <h3>Production Results</h3>
-            <p>The engine shipped with strong tooling and a reliable build pipeline that reduced content iteration friction.</p>
+        <div id="lessons-learned" class="content-block">
+            <h3>Lessons learned</h3>
+            <p>I learned how to balance engine flexibility with practical production tooling and how to keep iteration fast across multiple platforms.</p>
         </div>
     </section>
+    <script src="../Assets/lightbox.js"></script>
+    <script src="../Assets/scrollspy.js"></script>
 </body>
 
 </html>

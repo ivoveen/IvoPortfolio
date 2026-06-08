@@ -13,8 +13,11 @@
     <nav>
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#summary">Overview</a>
+            <a href="#intro">Overview</a>
             <a href="#details">Details</a>
+            <a href="#technical">Technical implementation</a>
+            <a href="#collaboration">Collaboration</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -47,26 +50,31 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="intro" class="project-hero about">
+    <section id="intro" class="project-hero about video-large">
         <div class="about-container">
-            <div class="about-picture">
-                <div class="project-image" style="background-image: url('../Assets/Pictures/ErosionSim.png');"></div>
-            </div>
             <div class="about-text">
                 <h2>Hydraulic Erosion Simulation</h2>
                 <p>A terrain editor prototype in C++ that models hydraulic erosion, sediment transport and terrain evolution. I built the simulation core and editor integration.</p>
+                <ul class="intro-highlights">
+                    <li>Hydraulic simulation</li>
+                    <li>Terrain editor</li>
+                    <li>Data-driven controls</li>
+                    <li>Research prototype</li>
+                </ul>
+            </div>
+            <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/GzBfxlUhx4Q?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            title="Hydraulic Erosion Simulation preview"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section id="summary" class="project-summary">
-        <p>This project bridges terrain research with playable tools, providing real-time hydraulic erosion controls and believable terrain evolution.</p>
-        <ul class="summary-highlights">
-            <li>Hydraulic simulation</li>
-            <li>Terrain editor</li>
-            <li>Data-driven controls</li>
-            <li>Research prototype</li>
-        </ul>
     </section>
 
     <section id="details" class="projects">
@@ -90,20 +98,22 @@
         <a class="project-action" href="https://medium.com/@ivo.thom.vanderveen/improved-terrain-generation-using-hydraulic-erosion-2adda8e3d99b" target="_blank" rel="noreferrer">Read the Medium article</a>
     </section>
 
-    <section class="project-content">
+    <section id="technical" class="project-content">
         <div class="content-block">
-            <h3>Simulation Approach</h3>
-            <p>I modelled rainfall, flow and sediment transport to evolve terrain over time, producing natural riverbeds and erosion patterns.</p>
+            <h3>Technical implementation</h3>
+            <p>I modeled rainfall, flow and sediment transport to evolve terrain over time, producing natural riverbeds and erosion patterns inside a live editor.</p>
         </div>
-        <div class="content-block">
-            <h3>Editor Integration</h3>
-            <p>The editor exposes parameters for erosion strength, sediment capacity and world scale for fast designer iteration.</p>
+        <div id="collaboration" class="content-block">
+            <h3>Collaboration</h3>
+            <p>I aligned simulation controls with designer needs so the terrain editor could be tuned quickly while preserving scientific plausibility.</p>
         </div>
-        <div class="content-block">
-            <h3>Learning Outcome</h3>
-            <p>I learned how to structure complex simulation code for interactive tools and reuse in a rendering engine.</p>
+        <div id="lessons-learned" class="content-block">
+            <h3>Lessons learned</h3>
+            <p>I learned how to structure complex simulation code for interactive tools and keep it reusable for rendering and editor workflows.</p>
         </div>
     </section>
+    <script src="../Assets/lightbox.js"></script>
+    <script src="../Assets/scrollspy.js"></script>
 </body>
 
 </html>

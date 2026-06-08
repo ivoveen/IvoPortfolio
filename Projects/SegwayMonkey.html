@@ -13,8 +13,11 @@
     <nav>
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#intro">About</a>
+            <a href="#intro">Overview</a>
             <a href="#details">Details</a>
+            <a href="#technical">Technical implementation</a>
+            <a href="#collaboration">Collaboration</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -47,15 +50,29 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="intro" class="project-hero about">
+    <section id="intro" class="project-hero about video-large">
         <div class="about-container">
-            <div class="about-picture">
-                <div class="project-image" style="background-image: url('../Assets/Pictures/segwaymonkey.gif');"></div>
-            </div>
             <div class="about-text">
                 <h2>Segway Monkey</h2>
-                <p>This was my first 3D game project: an infinite runner built for Raspberry Pi.</p>
-                <p>The focus was on 3D rendering, terrain generation, and Phong shading in C++.</p>
+                <p>This was my first 3D game project: an infinite runner built for Raspberry Pi. The focus was on 3D rendering, terrain generation, and Phong shading in C++.</p>
+                <ul class="intro-highlights">
+                    <li>3D rendering</li>
+                    <li>Terrain generation</li>
+                    <li>Phong shading</li>
+                    <li>Gameplay systems</li>
+                </ul>
+            </div>
+            <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/GzBfxlUhx4Q?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            title="Segway Monkey preview"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -82,6 +99,23 @@
         </div>
         <p><a class="project-action" href="../index.html">Back to portfolio</a></p>
     </section>
+
+    <section id="technical" class="project-content">
+        <div class="content-block">
+            <h3>Technical implementation</h3>
+            <p>I built the rendering pipeline, terrain generation and Phong shading systems in C++ for a Raspberry Pi-targeted runner.</p>
+        </div>
+        <div id="collaboration" class="content-block">
+            <h3>Collaboration</h3>
+            <p>I kept the project manageable by aligning graphics work with gameplay needs and refining the runner flow with early prototypes.</p>
+        </div>
+        <div id="lessons-learned" class="content-block">
+            <h3>Lessons learned</h3>
+            <p>I learned how to optimize for limited hardware while still delivering a clean visual and gameplay experience.</p>
+        </div>
+    </section>
+    <script src="../Assets/lightbox.js"></script>
+    <script src="../Assets/scrollspy.js"></script>
 </body>
 
 </html>

@@ -13,8 +13,9 @@
     <nav>
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#intro">About</a>
-            <a href="#details">Details</a>
+            <a href="#intro">Overview</a>
+            <a href="#technical">My first ever game</a>
+
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -47,15 +48,31 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="intro" class="project-hero about">
+    <section id="intro" class="project-hero about video-large">
         <div class="about-container">
-            <div class="about-picture">
-                <div class="project-image" style="background-image: url('../Assets/Pictures/duckgame.png');"></div>
-            </div>
             <div class="about-text">
                 <h2>Duckgame</h2>
-                <p>Duckgame is my first game project, developed in GameMaker Language.</p>
-                <p>This project taught me the foundations of gameplay programming, game loops, and system design.</p>
+                <p>Duckgame is my first game project, developed in GameMaker Language. This project taught me the foundations of gameplay programming, game loops, and system design.</p>
+                <ul class="intro-highlights">
+                    <li>Gameplay foundations</li>
+                    <li>Game loop design</li>
+                    <li>System structure</li>
+                    <li>Early prototyping</li>
+                </ul>
+                <a class="resume-btn" href="https://drboem.itch.io/duckgame" target="_blank" rel="noreferrer">Play now on itch</a>
+
+            </div>
+            <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/OC5q3ylJXaU?si=5E3cJvBYJxNSO0gs?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            title="Duckgame preview"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -66,7 +83,7 @@
             <div class="details-left">
                 <div><strong>Language:</strong> GameMaker Language</div>
                 <div><strong>Team size:</strong> Solo</div>
-                <div><strong>Duration:</strong> 1 Year</div>
+                <div><strong>Duration:</strong> 2 Year</div>
             </div>
             <div class="details-right">
                 <div><strong>Key responsibilities:</strong></div>
@@ -78,6 +95,31 @@
         </div>
         <p><a class="project-action" href="https://evoproductions.nl/games/duckgame/index.html" target="_blank" rel="noreferrer">View Duckgame</a></p>
     </section>
+
+    <section id="technical" class="project-content">
+        <div class="content-block">
+        <h3>My first ever game</h3>
+        <p>
+            I started making Duck Game when I was 11 and finished it at 13. It was the first game I ever made,
+            built in GameMaker almost entirely through the raw code editor rather than the drag-and-drop tools.
+            For an 11-year-old who had never programmed before, that meant figuring out a lot of things the hard way.
+        </p>
+        <br>
+        <p>
+            The game has two modes. Local multiplayer lets two players share a keyboard and try to beat each other,
+            with chained explosions, power-ups and environmental hazards to keep things chaotic.
+            Singleplayer pits the player against AI across a normal mode and an infinite waves mode with a kill counter.
+        </p>
+        <br>
+        <p>
+            I'm still fond of it. It's not technically impressive by any measure, but it's where I started. 
+            And as a bonus, it's pretty fun to play with a friend locally.
+        </p>
+        </div>
+       
+    </section>
+    <script src="../Assets/lightbox.js"></script>
+    <script src="../Assets/scrollspy.js"></script>
 </body>
 
 </html>

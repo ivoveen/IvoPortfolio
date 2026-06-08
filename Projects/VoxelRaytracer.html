@@ -13,8 +13,11 @@
     <nav>
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#summary">Overview</a>
+            <a href="#intro">Overview</a>
             <a href="#details">Details</a>
+            <a href="#technical">Technical implementation</a>
+            <a href="#collaboration">Collaboration</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -47,26 +50,31 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="intro" class="project-hero about">
+    <section id="intro" class="project-hero about video-large">
         <div class="about-container">
-            <div class="about-picture">
-                <div class="project-image" style="background-image: url('../Assets/Pictures/raytrace.png');"></div>
-            </div>
             <div class="about-text">
                 <h2>3D CPU Voxel Raytracer</h2>
                 <p>A custom CPU raytracer rendering voxel worlds with reflections, refractions, volumetric smoke and a demo interface. The project explores low-level rendering in C++.</p>
+                <ul class="intro-highlights">
+                    <li>CPU raytracer</li>
+                    <li>Voxel rendering</li>
+                    <li>Volumetric effects</li>
+                    <li>Demo gameplay</li>
+                </ul>
+            </div>
+            <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/GzBfxlUhx4Q?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            title="Voxel Raytracer preview"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section id="summary" class="project-summary">
-        <p>This technical prototype showcases a full rendering pipeline with voxel intersection, material response and procedural atmosphere.</p>
-        <ul class="summary-highlights">
-            <li>CPU raytracer</li>
-            <li>Voxel rendering</li>
-            <li>Volumetric effects</li>
-            <li>Demo gameplay</li>
-        </ul>
     </section>
 
     <section id="details" class="projects">
@@ -92,20 +100,22 @@
         <a class="project-action" href="https://x.com/veen_ivo/status/1780934535686807852" target="_blank" rel="noreferrer">View the demo announcement</a>
     </section>
 
-    <section class="project-content">
+    <section id="technical" class="project-content">
         <div class="content-block">
-            <h3>Rendering Pipeline</h3>
-            <p>The core engine casts rays through a voxel scene and computes lighting, shadows and volumetric light on the CPU.</p>
+            <h3>Technical implementation</h3>
+            <p>The core engine casts rays through a voxel scene and computes lighting, shadows and volumetric effects on the CPU.</p>
         </div>
-        <div class="content-block">
-            <h3>Materials & Lighting</h3>
-            <p>I added reflective and refractive surfaces along with volumetric smoke for atmospheric depth.</p>
+        <div id="collaboration" class="content-block">
+            <h3>Collaboration</h3>
+            <p>Even as a solo project, I aligned the demo and announcement design with external audience expectations to showcase the renderer clearly.</p>
         </div>
-        <div class="content-block">
-            <h3>Demo Integration</h3>
-            <p>The final prototype includes a playable demo to show the renderer’s capabilities in a compact experience.</p>
+        <div id="lessons-learned" class="content-block">
+            <h3>Lessons learned</h3>
+            <p>I refined low-level ray generation, voxel surface response, and the presentation of technical prototype features in a demo interface.</p>
         </div>
     </section>
+    <script src="../Assets/lightbox.js"></script>
+    <script src="../Assets/scrollspy.js"></script>
 </body>
 
 </html>

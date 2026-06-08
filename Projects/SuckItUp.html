@@ -13,8 +13,11 @@
     <nav>
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#summary">Overview</a>
+            <a href="#intro">Overview</a>
             <a href="#details">Details</a>
+            <a href="#technical">Technical implementation</a>
+            <a href="#collaboration">Collaboration</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -46,7 +49,7 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="summary" class="project-hero about">
+    <section id="intro" class="project-hero about video-large">
         <div class="about-container">
             <div class="about-text">
                 <h2>Suck it Up</h2>
@@ -61,8 +64,12 @@
             <div class="about-picture">
                 <div class="about-video">
                     <div class="video-frame">
-                        <!-- placeholder video; replace with demo link if available -->
-                        <iframe src="https://www.youtube.com/embed/" title="Suck it Up preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                        <iframe src="https://www.youtube.com/embed/GzBfxlUhx4Q?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            title="Suck it Up preview"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -90,20 +97,22 @@
         </div>
     </section>
 
-    <section class="project-content">
+    <section id="technical" class="project-content">
         <div class="content-block">
-            <h3>Crawler Enemy</h3>
-            <p>The crawler uses layered procedural animation to combine locomotion, climbing and attack states. I designed a state machine with blending driven by environment probes and root motion correction for reliable foot placement on uneven surfaces.</p>
+            <h3>Technical implementation</h3>
+            <p>The crawler enemy uses layered procedural animation to combine locomotion, climbing and attack states. I designed a state machine with blending driven by environment probes and root motion correction for reliable foot placement.</p>
         </div>
-        <div class="content-block">
-            <h3>Navigation</h3>
-            <p>Default navmesh solutions were insufficient for the segmented, deformable geometry in the level. I built a custom local navigation layer that performs clearance sampling and dynamic obstacle avoidance, improving traversal success on complex geometry.</p>
-        </div>
-        <div class="content-block">
+        <div id="collaboration" class="content-block">
             <h3>Collaboration</h3>
-            <p>I coordinated with animators and level designers to ensure the procedural behaviors matched intended pacing and challenge, and helped onboard multiple teammates to the navigation tooling I developed.</p>
+            <p>I coordinated with animators and level designers to ensure the procedural behaviours matched intended pacing, and I helped onboard teammates to the navigation tooling I developed.</p>
+        </div>
+        <div id="lessons-learned" class="content-block">
+            <h3>Lessons learned</h3>
+            <p>I learned how to architect robust gameplay tooling for a large team and how to keep animation-driven systems stable on uneven geometry.</p>
         </div>
     </section>
+    <script src="../Assets/lightbox.js"></script>
+    <script src="../Assets/scrollspy.js"></script>
 </body>
 
 </html>

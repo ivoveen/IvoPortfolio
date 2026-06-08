@@ -13,8 +13,11 @@
     <nav>
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
-            <a href="#summary">Overview</a>
+            <a href="#intro">Overview</a>
             <a href="#details">Details</a>
+            <a href="#technical">Technical implementation</a>
+            <a href="#collaboration">Collaboration</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -47,26 +50,31 @@
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="intro" class="project-hero about">
+    <section id="intro" class="project-hero about video-large">
         <div class="about-container">
-            <div class="about-picture">
-                <div class="project-image" style="background-image: url('../Assets/Pictures/bloom.png');"></div>
-            </div>
             <div class="about-text">
                 <h2>Bloom</h2>
                 <p>Bloom is an Unreal prototype that blends farming, plant evolution and combat into a modular gameplay experience. I led gameplay system design, AI behaviour, and plant lifecycle logic.</p>
+                <ul class="intro-highlights">
+                    <li>Gameplay systems</li>
+                    <li>AI behaviour</li>
+                    <li>Plant evolution</li>
+                    <li>Team collaboration</li>
+                </ul>
+            </div>
+            <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/BV50Ekt1Eg4?si=1vhXt1aQg3UTJBQU?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            title="Bloom preview"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section id="summary" class="project-summary">
-        <p>A student-led production with a 14-person team, where I delivered core gameplay systems, AI behaviours, and plant state management for a complete farming/combat cycle.</p>
-        <ul class="summary-highlights">
-            <li>Gameplay systems</li>
-            <li>AI behaviour</li>
-            <li>Plant evolution</li>
-            <li>Team collaboration</li>
-        </ul>
     </section>
 
     <section id="details" class="projects">
@@ -89,20 +97,22 @@
         <span class="project-action">Focused on gameplay polish, AI reliability and system handoff.</span>
     </section>
 
-    <section class="project-content">
+    <section id="technical" class="project-content">
         <div class="content-block">
-            <h3>Role & Challenge</h3>
-            <p>I built the core player-facing loop and AI interactions, making plant growth feel meaningful while preserving clear combat feedback.</p>
+            <h3>Technical implementation</h3>
+            <p>The project uses modular plant blueprints that manage growth phases, water levels, attacks and state transitions. I built the gameplay systems and AI behaviour that drive the farming/combat loop.</p>
         </div>
-        <div class="content-block">
-            <h3>Systems & Implementation</h3>
-            <p>The project relies on modular plant blueprints that handle growth phases, water levels, attacks, and upgrades with responsive state transitions.</p>
+        <div id="collaboration" class="content-block">
+            <h3>Collaboration</h3>
+            <p>This was a student-led production with a 14-person team. I worked closely with designers and artists to iterate on plant evolution, combat feel, and fast handoff between code and blueprints.</p>
         </div>
-        <div class="content-block">
-            <h3>Impact</h3>
-            <p>The final prototype demonstrated a cohesive farming/combat loop and supported rapid iteration for designers and artists across multiple sprints.</p>
+        <div id="lessons-learned" class="content-block">
+            <h3>Lessons learned</h3>
+            <p>I learned how to maintain clear gameplay feedback while adding complexity, and how to keep AI reliable under rapid feature changes.</p>
         </div>
     </section>
+    <script src="../Assets/lightbox.js"></script>
+    <script src="../Assets/scrollspy.js"></script>
 </body>
 
 </html>

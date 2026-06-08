@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const isHomePage = /(?:\/|\/index\.html)$/.test(window.location.pathname.replace(/\\/g, '/'));
+    const isDuckgamePage = /Duckgame\.html$/.test(window.location.pathname.replace(/\\/g, '/'));
 
     const updateActiveSection = () => {
         const triggerPoint = window.innerHeight * 0.45;
@@ -30,13 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        if (isHomePage) {
+        if (isHomePage || isDuckgamePage) {
             const lastEntry = sections[sections.length - 1];
             const lastRect = lastEntry.section.getBoundingClientRect();
             const isLastVisible = lastRect.top < window.innerHeight && lastRect.bottom > 0;
             const isNearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
 
-            if (isLastVisible && (isNearBottom || lastRect.height < triggerPoint)) {
+            if (activeSection !== sections[0] && isLastVisible && (isNearBottom || lastRect.height < triggerPoint)) {
                 activeSection = lastEntry;
             }
         }
