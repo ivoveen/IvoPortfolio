@@ -7,6 +7,31 @@
     <title>Bloom | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
+    <style>
+        /* Gameplay clips: same layout as img.project-image so videos and screenshots line up */
+        video.project-video {
+            display: inline-block;
+            width: min(48%, 480px);
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+            margin: 1.5rem 1%;
+            background: #000;
+        }
+
+        @media (max-width: 1100px) {
+            video.project-video {
+                width: 100%;
+                margin: 1.5rem auto;
+            }
+        }
+
+        img.bloom-showcase-image {
+            display: block;
+            width: 100%;
+            margin: 1.5rem 0 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,8 +39,9 @@
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
             <a href="#intro">Overview</a>
-            <a href="#details">Details</a>
-            <a href="#technical">Technical implementation</a>
+            <a href="#plants">Plants</a>
+            <a href="#caretaker">Caretaker AI</a>
+            <a href="#interaction">Interaction</a>
             <a href="#collaboration">Collaboration</a>
             <a href="#lessons-learned">Lessons learned</a>
         </div>
@@ -35,7 +61,6 @@
             <a href="https://www.linkedin.com/in/ivo-van-der-veen-59299a21b/" target="_blank" aria-label="LinkedIn" title="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
             </a>
             <a href="https://drboem.itch.io" target="_blank" aria-label="Itch.io" title="Itch.io">
@@ -46,29 +71,30 @@
         </div>
     </nav>
 
-    <div class="project-back-row">
+    <div id="intro" class="project-back-row">
         <a class="project-back" href="../index.html">← Back to portfolio</a>
     </div>
 
-    <section id="intro" class="project-hero about video-large">
+    <section class="project-hero about video-large">
         <div class="about-container">
             <div class="about-text">
                 <h2>Bloom</h2>
-                <p>Bloom is an Unreal prototype that blends farming, plant evolution and combat into a modular gameplay experience. I led gameplay system design, AI behaviour, and plant lifecycle logic.</p>
+                <p>Bloom is an eerie gardening game where you grow strange plants to feed the creature keeping you captive.
+                    Inside your greenhouse you water, upgrade and harvest your plants.
+                    Outside you fight wild plants for the parts you need, and search for the cores that will earn you your freedom.</p>
                 <ul class="intro-highlights">
-                    <li>Gameplay systems</li>
-                    <li>AI behaviour</li>
-                    <li>Plant evolution</li>
-                    <li>Team collaboration</li>
+                    <li>Plant lifecycle</li>
+                    <li>Caretaker AI</li>
+                    <li>Interaction system</li>
+                    <li>Designer-friendly blueprints</li>
                 </ul>
-                                <a class="resume-btn" href="https://buas.itch.io/bloom" target="_blank" rel="noreferrer">Play now on itch</a>
-
+                <a class="resume-btn" href="https://buas.itch.io/bloom" target="_blank" rel="noreferrer">Play now on itch</a>
             </div>
             <div class="about-picture">
                 <div class="about-video">
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/BV50Ekt1Eg4?si=1vhXt1aQg3UTJBQU?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
-                            title="Bloom preview"
+                        <iframe src="https://www.youtube.com/embed/BV50Ekt1Eg4?modestbranding=0&amp;rel=0&amp;controls=1&amp;autoplay=1&amp;mute=1"
+                            title="Bloom trailer"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
@@ -76,7 +102,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -84,27 +109,404 @@
         <h2>Project Details</h2>
         <div class="project-details">
             <div class="details-left">
-                <div><strong>Language:</strong> C++ / Blueprints</div>
                 <div><strong>Engine:</strong> Unreal Engine 5</div>
+                <div><strong>Language:</strong> Blueprints</div>
                 <div><strong>Team size:</strong> 14</div>
                 <div><strong>Duration:</strong> 8 Weeks</div>
             </div>
             <div class="details-right">
                 <div><strong>Key responsibilities:</strong></div>
                 <ul>
-                    <li>Gameplay systems</li>
-                    <li>AI behaviors</li>
+                    <li>Plant growth and combat</li>
+                    <li>Caretaker AI</li>
+                    <li>Interaction system</li>
+                    <li>Gameplay polish and bug fixing</li>
                 </ul>
             </div>
         </div>
     </section>
 
-        <section id="technical" class="project-content">
-            <div class="content-block">
-            <h3>Technical implementation</h3>
-            <p>This section is still under construction. A detailed technical breakdown will be added soon.</p>
+    <section class="project-content">
+
+        <!-- PLANTS -->
+        <div class="content-block">
+            <h3 id="plants">Plants</h3>
+
+            <p>
+                Plants are the core of Bloom, and after the first sprint I took over all plant related work.
+                Sjoerd, our programming lead, had set up the first attacking state and behaviour loop before moving on to UI.
+                By the end of the project almost all of that original blueprinting had been rewritten,
+                but his clean state-based setup set the quality bar for everything I built after it.
+            </p>
+            <br>
+            <p>
+                Every plant is based on a design by Jeroen, our technical designer.
+                It describes four growth stages per plant, what each stage needs to grow, what it drops and how it attacks.
+                Whenever something was unclear or missing, I went to him directly instead of guessing.
+            </p>
+
+            <img src="../Assets/media/Bloom/plantdesign.png" alt="The plant design board made by Jeroen, describing growth stages, interactions and fruit" class="project-image lightbox-image">
+
+            <h3>How it works</h3>
+
+            <h4>Plant hierarchy</h4>
+            <p>
+                All plants share one base blueprint that handles attacking, health and death.
+                The wild plants outside inherit directly from it.
+                The plants inside the greenhouse inherit from a second base blueprint that adds everything a tended plant needs:
+                idle behaviour, water levels, fruit growing and upgrading.
+            </p>
+            <br>
+
+            <p>
+                Each growth stage of an inside plant is its own child blueprint.
+                That sounds like a lot of blueprints, but it meant health, fruit, upgrade costs and grow speed
+                could be tuned per stage just by changing the values on that stage. No logic had to be touched.
+                The structure itself took a few iterations to get right, but this is where it ended up:
+            </p>
+
+            <img src="../Assets/media/Bloom/plantstructure.png" alt="Plant hierarchy: the base plant handles attacking, health and death, inside and wild plants build on top of it" class="project-image lightbox-image">
+            <img src="../Assets/media/Bloom/plantstructure2.png" alt="The plant blueprints in Unreal: BP_PlantBase, the inside plant base with one blueprint per growth stage, and the wild plants" class="project-image lightbox-image">
+
+            <h4>Pots and planting</h4>
+            <p>
+                Bloom has several different pots, and some of them have room for more than one plant.
+                Instead of writing planting logic per pot, I made a single pot-slot blueprint that holds all of it.
+                The pots themselves only contain a mesh, a collider and as many pot-slots as the artists want,
+                placed wherever they want them as child components.
+            </p>
+            <br>
+            <p>
+                A pot-slot starts out as an interactable. When the player gives it a seed, it spawns the matching plant
+                and stops being interactable itself, so the player interacts with the plant instead.
+                The slot keeps track of its plant, and the moment that plant no longer exists the slot opens up again for planting.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/plantpot.mp4" width="800" height="516" muted loop playsinline preload="metadata" aria-label="Planting a seed in a pot"></video>
+            <img src="../Assets/media/Bloom/potchild.png" alt="A curved pot blueprint containing three pot-slots" class="project-image lightbox-image">
+            <img src="../Assets/media/Bloom/potslot.png" alt="The pot-slot blueprint and the four pot types that use it" class="project-image lightbox-image">
+
+            <h4>Watering</h4>
+            <p>
+                Watering a seed makes it sprout into its first growth stage. From then on each plant holds three droplets of water.
+                At first water drained over time, but once the team decided how the switch between day and night would work,
+                water only drains when the player goes outside.
+                The droplet UI above the plants was made by Flemming.
+            </p>
+            <br>
+            <p>
+                When the water runs out, one of two things happens. A young plant simply dies.
+                A plant in its final stage turns aggressive instead, behaving like a wild plant, and the player is forced to kill it.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/waterseed.mp4" width="800" height="516" muted loop playsinline preload="metadata" aria-label="Watering a seed so it grows into its first stage"></video>
+            <video class="project-video" src="../Assets/media/Bloom/angryplant.mp4" width="426" height="240" muted loop playsinline preload="metadata" aria-label="A final stage plant turning aggressive after running out of water"></video>
+
+            <h4>Upgrading</h4>
+            <p>
+                Every stage has a list of items it needs to grow into the next stage, mostly parts dropped by wild plants.
+                When the player has everything and interacts with the plant, VFX plays and the plant is swapped for the blueprint
+                of its next stage, which comes with its own list of requirements.
+                <br><br>
+                Showing those requirements to the player needed a pop-up. I built the pop-up functionality into the interaction system
+                and then handed the visual side over to Flemming, since it was very similar to UI he had already made.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/upgradeplant.mp4" width="800" height="516" muted loop playsinline preload="metadata" aria-label="Upgrading a plant to its next growth stage"></video>
+
+            <h4>Fruit</h4>
+            <p>
+                From the middle stage onward a plant grows fruit. Fruit grows every 25 seconds while the player is inside,
+                and is guaranteed to be ready whenever the player comes back from outside.
+                Ripe plants sparkle until they are harvested, and final stage plants give multiple types of fruit.
+                <br><br>
+                This system went through a few rounds with Jeroen. First fruit only grew over time.
+                Then, together with the water change, it grew instantly when the player went outside.
+                Later Jeroen wanted fruit to keep growing while the player is inside as well, so in the end it does both.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/fruit.mp4" width="800" height="518" muted loop playsinline preload="metadata" aria-label="Harvesting fruit from a plant"></video>
+            <img src="../Assets/media/Bloom/fruit2.png" alt="A final stage plant with multiple types of fruit ready to harvest" class="project-image lightbox-image">
+
+            <h4>Wild plants</h4>
+            <p>
+                Wild plants are always agitated. They play an angry idle animation and keep turning to face the player.
+                When the player enters their attack range, the plant stores the player's position at that moment,
+                turns towards it, and attacks once it is facing that spot. This gives the player a window to dodge.
+            </p>
+            <br>
+            <p>
+                Damage is dealt through a hurt box that only turns on through an animation notify,
+                placed on the exact frame the attack should land. This keeps the damage in sync with what the player actually sees.
+                There are three wild plants: the face plant, the tree plant and the eye plant.
+                The eye plant was only modelled in week 7, but we still got it fully into the game.
+                Its attack freezes the player for two seconds and deals 10% damage.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/chomper.mp4" width="800" height="506" muted loop playsinline preload="metadata" aria-label="The face plant attacking"></video>
+            <video class="project-video" src="../Assets/media/Bloom/tree.mp4" width="800" height="510" muted loop playsinline preload="metadata" aria-label="The tree plant attacking"></video>
+            <video class="project-video" src="../Assets/media/Bloom/eyeplant.mp4" width="800" height="454" muted loop playsinline preload="metadata" aria-label="The eye plant freezing the player"></video>
+
+            <p>
+                The attacks changed a lot based on playtesting. In sprint 3 the visual artists and I thought the face plant's animation
+                suited two hits, so I made it deal damage in two places at different times.
+                A week later Jeroen found this made the plant too hard to dodge, so I removed it again.
+                The debug spheres in the clip below show the attack ranges of that version.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/oldchompergid.mp4" width="800" height="536" muted loop playsinline preload="metadata" aria-label="The old two-hit face plant with debug attack ranges"></video>
+
+            <p>
+                Once the plants and pots were done, our level designer Marko and environment artist Minh placed them throughout the level
+                using my blueprints without much trouble. Damage, health, drops, fruit and grow speed were tweaked constantly,
+                and whenever they wanted something the blueprints couldn't do yet, I either showed them how or added the option.
+            </p>
         </div>
+
+        <!-- CARETAKER -->
+        <div class="content-block">
+            <h3 id="caretaker">Caretaker AI</h3>
+            <p>
+                Caretakers are helpers that water your plants for you once you activate them.
+                I made all of their logic, starting with a quick prototype in the first sprint, when it was the only task left unclaimed.
+                In sprint 3 I came back to it and turned it into the finished version.
+            </p>
+            <br>
+            <p>
+                A caretaker starts out deactivated and interactable. When the player gives it a core,
+                it becomes un-interactable and starts its behaviour loop.
+                As a small extra for the visual artists, activating it turns on a red spotlight and turns up the emissive glow
+                of the core in its chest through a dynamic material instance.
+                I had never worked with dynamic material instances before, but the artists really liked the result.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/caretakeractivation.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Activating a caretaker by giving it a core"></video>
+
+            <h4>Behaviour loop</h4>
+            <p>
+                The behaviour is a small state machine. Every tick, a switch on the current state runs that state's function,
+                with each state in its own coloured comment block so the blueprint stays easy to read.
+                <br><br>
+                After activation the caretaker roams around for a bit. Once its tending cooldown is over,
+                it picks the plant with the lowest water level, walks over and waters it.
+                While it still has water charges left it goes back to roaming and repeats this.
+                Once it runs out, it walks to the pond to recharge.
+            </p>
+
+            <img src="../Assets/media/Bloom/caretakergraph2.png" alt="The caretaker states: deactivated, roaming, tending to plants and recharging" class="project-image lightbox-image">
+            <img src="../Assets/media/Bloom/caretakerstates.png" alt="The caretaker event graph switching on its current state every tick" class="project-image lightbox-image">
+
+            <p>
+                The design of the caretaker changed several times as Jeroen tested it.
+                The first version had no deactivated state and wasn't very good at keeping plants alive.
+                Left the sprint 1 prototype, right the final version.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/caretakerbasicai.mp4" width="960" height="648" muted loop playsinline preload="metadata" aria-label="The sprint 1 caretaker prototype"></video>
+            <video class="project-video" src="../Assets/media/Bloom/watercaretaker.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="The final caretaker watering a plant"></video>
+
+            <h4>Saving caretakers</h4>
+            <p>
+                Tijn built most of our save system, but I handled saving and loading the caretakers since I knew how they worked.
+                The tricky part was that there are two visual variants of the caretaker, set per instance in the level through their
+                dynamic materials, so those had to be saved and restored as well.
+                I also added saving of the player's selected inventory slot, which had been causing Tijn problems.
+            </p>
+        </div>
+
+        <!-- INTERACTION -->
+        <div class="content-block">
+            <h3 id="interaction">Interaction system</h3>
+            <p>
+                Tijn built most of the interaction system, and whenever it needed to change I worked on it together with him.
+                Two of my additions ended up being used throughout the whole game.
+            </p>
+
+            <h4>Knowing when you are the chosen interactable</h4>
+            <p>
+                The player can be in range of several interactables, but only one of them actually responds.
+                I added an interface that tells an actor when it becomes, or stops being, that chosen interactable.
+                Any actor can implement it and react however it wants.
+                This became the hook for all of our diegetic UI: the interact prompt only shows up above the object that will respond.
+            </p>
+
+            <img src="../Assets/media/Bloom/diegeticgraph.png" alt="Flow of the chosen interactable interface: the player trigger finds the interacting object and calls the interface" class="project-image lightbox-image">
+            <img src="../Assets/media/Bloom/diegetic.png" alt="An actor showing and hiding its interact widget through the BecameChosenInteractable and StoppedBeingChosenInteractable events" class="project-image lightbox-image">
+
+            <h4>Turning interaction off at runtime</h4>
+            <p>
+                Some objects should only be interactable some of the time. A caretaker, for example, should stop accepting
+                interaction once it has its core. I added a NotInteractable function to the interface that returns false by default,
+                so nothing changed for any existing interactable. Any actor that needs it can override the function with its own logic.
+                The caretaker simply checks whether it is still deactivated.
+            </p>
+
+            <img src="../Assets/media/Bloom/interactable2.png" alt="The default NotInteractable implementation, which always returns false" class="project-image lightbox-image">
+            <img src="../Assets/media/Bloom/interactable.png" alt="The caretaker's NotInteractable override, which checks whether it is still deactivated" class="project-image lightbox-image">
+
+            <h3>Polish</h3>
+
+            <h4>Core pickup</h4>
+            <p>
+                Cores are what the player is working towards, so the ones in the world needed to stand out.
+                I made the core pickup with a flashing light to grab attention,
+                and the core item it adds to the inventory, which is also what activates a caretaker.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/pickupcore.mp4" width="960" height="504" muted loop playsinline preload="metadata" aria-label="Picking up a core"></video>
+
+            <h4>Health light</h4>
+            <p>
+                Before our first release there was still no way to see your current health.
+                Jeroen suggested at least showing it through the player's light,
+                so I gave the player a flashlight and an emissive red core glow that both dim as their health drops,
+                again using a dynamic material instance.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/lighthealth.mp4" width="800" height="452" muted loop playsinline preload="metadata" aria-label="The player's light dimming as they take damage"></video>
+
+            <h4>Flickering lights</h4>
+            <p>
+                At the end of sprint 4 all the major blueprints were checked out by other programmers.
+                Instead of waiting, I picked up a low priority task to help the visual artists:
+                making every candle and lantern in the level flicker based on a timeline curve.
+            </p>
+
+            <video class="project-video" src="../Assets/media/Bloom/lanternflicker.mp4" width="960" height="558" muted loop playsinline preload="metadata" aria-label="A flickering lantern"></video>
+            <video class="project-video" src="../Assets/media/Bloom/candleflicker.mp4" width="960" height="624" muted loop playsinline preload="metadata" aria-label="Flickering candles"></video>
+        </div>
+
+        <!-- COLLABORATION -->
+        <div class="content-block">
+            <h3 id="collaboration">Collaboration</h3>
+            <p>
+                Bloom had the best communication of any team I had been in so far.
+                On lab days people would just walk over to each other with questions or work to show,
+                and on other days the programmers were nearly always available in a voice call.
+                I worked closest with Jeroen and with Rina, Karin and Lucas from visual art to keep track of the progress on every plant.
+            </p>
+            <br>
+            <p>
+                The eye plant is a good example of why that mattered. Jeroen wanted it to fire sooner and have a longer cooldown,
+                and passed this on to Rina, who made a new attack animation.
+                When I put it in engine, it turned out Rina and I had two different ideas of how the attack worked.
+                We sat down together, agreed it would be one big pulse with a small build-up to signal it was coming,
+                and I explained the timing Jeroen was after. Rina adjusted the animation quickly and it turned out great in game.
+            </p>
+            <br>
+            <p>
+                Working in blueprints with Perforce had its own challenge.
+                Blueprints can't be merged, so big ones like the player character were often checked out while someone else needed them.
+                Whenever that happened I messaged the person to ask how long they needed it,
+                and when several of us were waiting I set up a queue based on how long each change would take.
+                That way nobody sat around waiting, and I always knew when I could pick my main task back up.
+            </p>
+            <br>
+            <p>
+                Halfway through the project a lot of my work depended on a decision that hadn't been made yet:
+                how the switch between day and night would actually work. The idea had been scaled down in sprint 1
+                and then left alone for an entire sprint. So I called a meeting with everyone involved, kept it on track,
+                and pulled in more people as we realised they were affected too.
+                By the end everyone knew what we were building, and that decision is what reshaped the water and fruit systems above.
+            </p>
+            <br>
+            <p>
+                We also held build reviews, where the team played the latest build on the big screen and called out every issue they saw.
+                I ran the one in week 6. Each review produced a long list of small action points, and I claimed every one I knew how to fix.
+                Besides programming bugs I also flagged missing textures, clipping objects and level design issues.
+            </p>
+
+            <img src="../Assets/media/Bloom/buildreviews.png" alt="The action point list from the week 6 build review" class="project-image lightbox-image">
+
+            <p>
+                Finally, I helped get Bloom out there. Together with Flemming I uploaded our first build to itch and set up the page,
+                and later I pushed the second version and <a href="https://buas.itch.io/bloom/devlog/968015/bloom-beta-v02" target="_blank" rel="noreferrer">wrote its changelog</a>.
+                I also suggested starting an Instagram account for the game, to share the team's work and build a small audience.
+            </p>
+        </div>
+
+        <!-- LESSONS LEARNED -->
+        <div class="content-block">
+            <h3 id="lessons-learned">Lessons learned</h3>
+
+            <h4>Build systems that are cheap to change.</h4>
+            <p>
+                Almost every plant and caretaker feature went through several rounds of design changes.
+                Water drained over time, then only outside. The face plant got a second hit, then lost it again.
+                Because every growth stage was its own blueprint and most behaviour was driven by values on that blueprint,
+                most of those changes were a quick tweak instead of a rewrite, and designers could make a lot of them themselves.
+                Iteration is going to happen either way, so the systems should make it cheap.
+            </p>
+            <hr>
+
+            <h4>Get everyone on the same page before starting.</h4>
+            <p>
+                The eye plant animation worked out in the end, but it would have been faster if Jeroen, Rina and I had sat down together
+                before any work started, instead of passing the request along.
+                The same goes for the day and night decision. A missing decision doesn't just block one person,
+                it quietly blocks everyone whose work depends on it.
+                <br><br>
+                So when my work has to fit together with someone else's, I sit down with them first and make sure we both understand what we are making.
+            </p>
+            <hr>
+
+            <h4>Blueprints in a team need traffic control.</h4>
+            <p>
+                On my previous Unreal project I wrote my systems in C++, so this was the first time I worked in blueprints with a full team.
+                Since blueprints can't be merged, the team only works smoothly with good communication.
+                Let people with small changes go first, submit a blueprint as soon as you no longer need it,
+                and when several people need the same one, agree on an order.
+                <br><br>
+                Helping other programmers fix their bugs also turned out to be very valuable.
+                It meant I understood their blueprints too, which made it a lot easier to change them when I needed to.
+            </p>
+            <hr>
+
+            <h4>Over-scoping costs more than time.</h4>
+            <p>
+                Looking back, Bloom was heavily over-scoped. We cut a few things,
+                but mostly we went for the game we had in mind because we loved it so much, and that caused crunch.
+                I crunched a lot myself, so in the second peer review I asked the team directly whether that bothered anyone.
+                <br><br>
+                The answer was that it motivated some people, but it put pressure on others,
+                who then felt they hadn't done enough compared to the people who did crunch.
+                After that I scaled it back and stopped sharing work I did late at night until the next morning.
+                <br><br>
+                In future projects I want to bring up crunch with the team as soon as it starts happening,
+                and push for scaling down early, so it isn't needed in the first place.
+            </p>
+                <img src="../Assets/media/Bloom/bloomshowcase.png" alt="Bloom showcase" class="project-image lightbox-image bloom-showcase-image">
+
+            </div>
+
+
+
     </section>
+
+    <script>
+        // Play gameplay clips only while they are on screen, and leave them paused for people who prefer reduced motion
+        (function () {
+            const videos = document.querySelectorAll('video.project-video');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                videos.forEach(video => { video.controls = true; });
+                return;
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play().catch(() => { entry.target.controls = true; });
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            videos.forEach(video => observer.observe(video));
+        })();
+    </script>
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
 </body>
