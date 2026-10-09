@@ -607,11 +607,11 @@ img.project-image {
 }
 
 img.lightbox-image {
-    cursor: zoom-in;
+    cursor: pointer;
 }
 
 video.project-video {
-    cursor: zoom-in;
+    cursor: pointer;
 }
 
 .project-content {
@@ -673,7 +673,6 @@ video.project-video {
     flex-shrink: 0;
     border-radius: 14px;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-    cursor: zoom-out;
     transform: scale(0.92);
     opacity: 0;
     visibility: hidden;
