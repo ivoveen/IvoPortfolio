@@ -7,31 +7,6 @@
     <title>Bloom | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
-    <style>
-        /* Gameplay clips: same layout as img.project-image so videos and screenshots line up */
-        video.project-video {
-            display: inline-block;
-            width: min(48%, 480px);
-            max-width: 100%;
-            height: auto;
-            vertical-align: middle;
-            margin: 1.5rem 1%;
-            background: #000;
-        }
-
-        @media (max-width: 1100px) {
-            video.project-video {
-                width: 100%;
-                margin: 1.5rem auto;
-            }
-        }
-
-        img.bloom-showcase-image {
-            display: block;
-            width: 100%;
-            margin: 1.5rem 0 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -130,7 +105,14 @@
 
         <!-- PLANTS -->
         <div class="content-block">
+            <p class="section-kicker">Gameplay systems · Plants</p>
             <h3 id="plants">Plants</h3>
+            <ul class="system-tags">
+                <li>Blueprints</li>
+                <li>Class hierarchy</li>
+                <li>Child components</li>
+                <li>Animation notifies</li>
+            </ul>
 
             <p>
                 Plants are the core of Bloom, and after the first sprint I took over all plant related work.
@@ -265,7 +247,13 @@
 
         <!-- CARETAKER -->
         <div class="content-block">
+            <p class="section-kicker">Gameplay systems · Caretaker AI</p>
             <h3 id="caretaker">Caretaker AI</h3>
+            <ul class="system-tags">
+                <li>State machine</li>
+                <li>Dynamic material instances</li>
+                <li>Saving and loading</li>
+            </ul>
             <p>
                 Caretakers are helpers that water your plants for you once you activate them.
                 I made all of their logic, starting with a quick prototype in the first sprint, when it was the only task left unclaimed.
@@ -316,7 +304,13 @@
 
         <!-- INTERACTION -->
         <div class="content-block">
+            <p class="section-kicker">Gameplay systems · Interaction</p>
             <h3 id="interaction">Interaction system</h3>
+            <ul class="system-tags">
+                <li>Blueprint interfaces</li>
+                <li>Diegetic UI</li>
+                <li>Timelines</li>
+            </ul>
             <p>
                 Tijn built most of the interaction system, and whenever it needed to change I worked on it together with him.
                 Two of my additions ended up being used throughout the whole game.
@@ -378,6 +372,7 @@
 
         <!-- COLLABORATION -->
         <div class="content-block">
+            <p class="section-kicker">Team</p>
             <h3 id="collaboration">Collaboration</h3>
             <p>
                 Bloom had the best communication of any team I had been in so far.
@@ -427,6 +422,7 @@
 
         <!-- LESSONS LEARNED -->
         <div class="content-block">
+            <p class="section-kicker">Reflection</p>
             <h3 id="lessons-learned">Lessons learned</h3>
 
             <h4>Build systems that are cheap to change.</h4>
@@ -475,7 +471,7 @@
                 In future projects I want to bring up crunch with the team as soon as it starts happening,
                 and push for scaling down early, so it isn't needed in the first place.
             </p>
-                <img src="../Assets/media/Bloom/bloomshowcase.png" alt="Bloom showcase" class="project-image lightbox-image bloom-showcase-image">
+                <img src="../Assets/media/Bloom/bloomshowcase.png" alt="Bloom showcase" class="project-image lightbox-image closing-image">
 
             </div>
 

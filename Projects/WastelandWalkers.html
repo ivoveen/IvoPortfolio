@@ -7,34 +7,6 @@
     <title>Wasteland Walkers | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
-    <style>
-        pre {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 6px;
-            padding: 1.2rem 1.4rem;
-            overflow-x: auto;
-            margin: 1rem 0 1.5rem 0;
-            font-size: 0.82rem;
-            line-height: 1.6;
-            text-align: left;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        code {
-            display: block;
-            font-family: 'Consolas', 'Fira Code', 'Courier New', monospace;
-            color: #cdd6f4;
-        }
-        .code-caption {
-            font-size: 0.78rem;
-            color: #888;
-            margin-top: -1rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -94,7 +66,7 @@
             <div class="about-picture">
                 <div class="about-video">
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/GzBfxlUhx4Q?modestbranding=0&rel=0&controls=1&autoplay=1&start=21&mute=1"
+                        <iframe src="https://www.youtube.com/embed/GzBfxlUhx4Q?modestbranding=0&amp;rel=0&amp;controls=1&amp;autoplay=1&amp;start=21&amp;mute=1"
                             title="Wasteland Walkers video preview"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -130,7 +102,14 @@
 
         <!-- PROCEDURAL GENERATION -->
         <div class="content-block">
+            <p class="section-kicker">Level generation · Layout</p>
             <h3 id="procedural-generation">Procedural level generation</h3>
+            <ul class="system-tags">
+                <li>Unreal C++</li>
+                <li>Fortune's algorithm</li>
+                <li>Voronoi and Delaunay</li>
+                <li>Splines and PCG</li>
+            </ul>
 
             <p>
                 My main responsibility was to create a system for generating levels procedurally, ensuring each playthrough
@@ -138,7 +117,7 @@
             </p>
 
             <div class="video-frame">
-                <iframe src="https://www.youtube.com/embed/2hYXgAqRXkU?si=NGASZkrH9URMReTc&modestbranding=0&rel=0&controls=1&autoplay=1&start=21&mute=1"
+                <iframe src="https://www.youtube.com/embed/2hYXgAqRXkU?si=NGASZkrH9URMReTc&amp;modestbranding=0&amp;rel=0&amp;controls=1&amp;autoplay=1&amp;start=21&amp;mute=1"
                     title="Wasteland Walkers map generation preview"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -229,7 +208,6 @@
 
             <p>To make the corridors more interesting, I add intermediate spline points with random perpendicular offsets
                 and random widths. The sign flip ensures offsets go left or right randomly rather than always the same direction.</p>
- </p>
 <pre><code class="language-cpp">// get the perpendicular direction for offsetting corridor points
 FVector2D site1 = delaunayTriang[i]->site1;
 FVector2D site2 = delaunayTriang[i]->site2;
@@ -238,13 +216,13 @@ FVector splineDirection = FVector(site1, 0) - FVector(site2, 0);
 splineDirection.Normalize();
 FVector splineRightAngle = FVector(splineDirection.Y, -splineDirection.X, 0);
 
-for (int segmentIndex = 0; segmentIndex < mNumberOfCorridorSegmentPoints; segmentIndex++) {
+for (int segmentIndex = 0; segmentIndex &lt; mNumberOfCorridorSegmentPoints; segmentIndex++) {
     FVector position = LerpVector(FVector(site1, 0), FVector(site2, 0),
                                   mNumberOfCorridorSegmentPoints, segmentIndex);
 
     if (segmentIndex != 0 && segmentIndex != mNumberOfCorridorSegmentPoints - 1) {
         // random left/right offset — sign flip ensures both directions are possible
-        float sign = (static_cast<int>(RandomFloat() * 10) % 2) == 0 ? 1.0f : -1.0f;
+        float sign = (static_cast&lt;int>(RandomFloat() * 10) % 2) == 0 ? 1.0f : -1.0f;
         float offset = sign * mMinCorridorSquiggleOffset
                      + RandomFloat() * (mMaxCorridorSquiggleOffset - mMinCorridorSquiggleOffset);
         position += (offset * splineRightAngle);
@@ -292,7 +270,14 @@ for (int segmentIndex = 0; segmentIndex < mNumberOfCorridorSegmentPoints; segmen
 
         <!-- OBSTACLES -->
         <div class="content-block">
+            <p class="section-kicker">Level generation · Obstacles</p>
             <h3 id="obstacles">Obstacles</h3>
+            <ul class="system-tags">
+                <li>Async PCG callbacks</li>
+                <li>Procedural placement</li>
+                <li>Collision checks</li>
+                <li>Designer controls</li>
+            </ul>
             <p>Besides the level generation, 
                 I also implemented systems to place different obstacles within the generated environment.</p>
 
@@ -382,24 +367,25 @@ if (marchDistance1 &lt; maxMarchStep &amp;&amp; marchDistance2 &lt; maxMarchStep
  
 <pre><code class="language-cpp">do {
     count++;
-    distance = std::numeric_limits<float>::max();
+    distance = std::numeric_limits&lt;float>::max();
     // pick a random room midpoint as the candidate spawn location
-    worldPosition = roomMiddlePoints[static_cast<int>(RandomFloat() * roomMiddlePoints.Num())];
+    worldPosition = roomMiddlePoints[static_cast&lt;int>(RandomFloat() * roomMiddlePoints.Num())];
 
     // reject if too close to any already-chosen key location
-    for (int j = 0; j < chosenLocations.Num(); j++) {
+    for (int j = 0; j &lt; chosenLocations.Num(); j++) {
         float newDistance = worldPosition.Distance(chosenLocations[j], worldPosition);
-        if (newDistance < distance) distance = newDistance;
+        if (newDistance &lt; distance) distance = newDistance;
     }
-} while (distance < mKeyRadius && count < 100);
+} while (distance &lt; mKeyRadius && count &lt; 100);
 
 chosenLocations.Add(worldPosition);
-pWorld->SpawnActor<AActor>(keyClass, worldPosition, FRotator::ZeroRotator);</code></pre>
+pWorld->SpawnActor&lt;AActor>(keyClass, worldPosition, FRotator::ZeroRotator);</code></pre>
             <p class="code-caption">SpawnKeys() — ProceduralWorldGenerator.cpp</p>
                 </div>
 
         <!-- COLLABORATION -->
         <div class="content-block">
+            <p class="section-kicker">Team</p>
             <h3 id="collaboration">Collaboration</h3>
             <p>The level generation relied heavily on close collaboration with Nataliia, our technical artist.
                 Her PCG tool placed varying sizes of rocks depending on the sample location values.
@@ -425,6 +411,7 @@ pWorld->SpawnActor<AActor>(keyClass, worldPosition, FRotator::ZeroRotator);</cod
 
         <!-- LESSONS LEARNED -->
         <div class="content-block">
+            <p class="section-kicker">Reflection</p>
             <h3 id="lessons-learned">Lessons learned</h3>
 
             <h4>Procedural generation tools are only as powerful as the control designers have over them.</h4>
@@ -473,13 +460,13 @@ pWorld->SpawnActor<AActor>(keyClass, worldPosition, FRotator::ZeroRotator);</cod
                 And from playtesting we even found that the procedural generation ended up being more fun than the hand-crafted level,
                 which was a great bonus. In the end we turned the hand-crafted level into the onboarding level and ended up with a great finished game.
             </p>
-            <img src="../Assets/media/WastelandWalkers/wasteland.png" alt="Wasteland Walkers" class="project-image lightbox-image">
+            <img src="../Assets/media/WastelandWalkers/wasteland.png" alt="Wasteland Walkers" class="project-image lightbox-image closing-image">
         </div>
 
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>hljs.highlightAll();</script>
+    <script>if (window.hljs) { hljs.highlightAll(); }</script>
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
 </body>

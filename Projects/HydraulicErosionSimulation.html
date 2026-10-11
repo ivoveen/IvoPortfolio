@@ -18,8 +18,6 @@
             <a href="#intro">Overview</a>
             <a href="#details">Details</a>
             <a href="#technical">Technical implementation</a>
-            <a href="#collaboration">Collaboration</a>
-            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -78,7 +76,7 @@
                 <div class="about-video">
                     <div class="video-frame">
                         <iframe
-                            src="https://www.youtube.com/embed/hf6KoNYb8OI?modestbranding=0&rel=0&controls=1&autoplay=1&mute=1"
+                            src="https://www.youtube.com/embed/hf6KoNYb8OI?modestbranding=0&amp;rel=0&amp;controls=1&amp;autoplay=1&amp;mute=1"
                             title="Hydraulic Erosion Simulation preview" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen loading="lazy"></iframe>
@@ -112,7 +110,14 @@
 
     <section id="technical" class="project-content">
         <div class="content-block">
+            <p class="section-kicker">Terrain simulation</p>
             <h3>Technical implementation</h3>
+    <ul class="system-tags">
+        <li>C++</li>
+        <li>Droplet-based erosion</li>
+        <li>Heightmap terrain</li>
+        <li>Paper implementation</li>
+    </ul>
             <p>For this project I created a basic hydraulic erosion simulation in pure C++.
                 The technique I used is based on a research paper by Hans Theobald Beyer.
                 You can find a complete explanation of this system and my findings on my Medium blog.</p>
