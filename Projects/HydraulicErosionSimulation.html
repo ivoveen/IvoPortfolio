@@ -7,6 +7,7 @@
     <title>Hydraulic Erosion Simulation | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -16,8 +17,11 @@
         </a>
         <div>
             <a href="#intro">Overview</a>
-            <a href="#details">Details</a>
-            <a href="#technical">Technical implementation</a>
+            <a href="#tool">How it works</a>
+            <a href="#optimisation">Optimisation</a>
+            <a href="#tools">Terrain tools</a>
+            <a href="#texturing">Texturing</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -63,13 +67,14 @@
         <div class="about-container">
             <div class="about-text">
                 <h2>Hydraulic Erosion Simulation</h2>
-                <p>A terrain editor prototype in C++ that models hydraulic erosion, sediment transport and terrain
-                    evolution. I built the simulation core and editor integration.</p>
+                <p>A terrain tool in C++ that generates landscapes, lets you sculpt them with a brush,
+                    and erodes them with a particle-based hydraulic erosion simulation.
+                    I built it solo in eight weeks on the school's in-house engine, with a strong focus on profiling and multithreading.</p>
                 <ul class="intro-highlights">
-                    <li>Hydraulic simulation</li>
-                    <li>Terrain editor</li>
-                    <li>Data-driven controls</li>
-                    <li>Research prototype</li>
+                    <li>Multithreading</li>
+                    <li>Profiling</li>
+                    <li>Particle simulation</li>
+                    <li>Terrain tools</li>
                 </ul>
             </div>
             <div class="about-picture">
@@ -91,43 +96,451 @@
         <div class="project-details">
             <div class="details-left">
                 <div><strong>Language:</strong> C++</div>
-                <div><strong>Engine:</strong> Custom C++ Engine</div>
+                <div><strong>Engine:</strong> BUas in-house teaching engine</div>
                 <div><strong>Team size:</strong> Solo</div>
                 <div><strong>Duration:</strong> 8 Weeks</div>
             </div>
             <div class="details-right">
                 <div><strong>Key responsibilities:</strong></div>
                 <ul>
-                    <li>Hydraulic erosion simulation</li>
-                    <li>Terrain editor</li>
-                    <li>Terrain rendering</li>
+                    <li>Multithreaded mesh generation</li>
+                    <li>Particle-based erosion simulation</li>
+                    <li>Ray-cast terrain brush</li>
+                    <li>Terrain texturing</li>
+                    <li>Profiling and stress testing</li>
                 </ul>
-
             </div>
         </div>
 
     </section>
 
-    <section id="technical" class="project-content">
+    <section class="project-content">
+
+        <!-- OVERVIEW -->
         <div class="content-block">
-            <p class="section-kicker">Terrain simulation</p>
-            <h3>Technical implementation</h3>
-    <ul class="system-tags">
-        <li>C++</li>
-        <li>Droplet-based erosion</li>
-        <li>Heightmap terrain</li>
-        <li>Paper implementation</li>
-    </ul>
-            <p>For this project I created a basic hydraulic erosion simulation in pure C++.
-                The technique I used is based on a research paper by Hans Theobald Beyer.
-                You can find a complete explanation of this system and my findings on my Medium blog.</p>
+            <p class="section-kicker">Overview</p>
+            <h3 id="tool">How the tool works</h3>
+            <ul class="system-tags">
+                <li>C++</li>
+                <li>Engine ECS</li>
+                <li>Procedural terrain</li>
+                <li>Particle simulation</li>
+            </ul>
 
-            <a class="resume-btn"
-                href="https://medium.com/@ivo.thom.vanderveen/improved-terrain-generation-using-hydraulic-erosion-2adda8e3d99b"
-                target="_blank" rel="noreferrer">Read the medium article here</a>
+            <video class="project-video showcase" src="../Assets/media/HydraulicErosion/workflow.mp4" width="516" height="348" muted loop playsinline preload="metadata" aria-label="Generating a terrain, sculpting it with the brush and eroding it"></video>
 
+            <p>
+                This is a terrain tool for level designers, built inside the school's engine. Making a landscape with it takes four steps:
+            </p>
+            <ul>
+                <li><strong>Generate.</strong> Start from Perlin noise, random noise or a flat plane, at any size and resolution.
+                    The heights live in a heightmap, and the mesh and its lighting normals are built from it.</li>
+                <li><strong>Sculpt.</strong> Click and drag to raise the terrain with a brush, or right-click to lower it, to block out mountains and valleys.</li>
+                <li><strong>Erode.</strong> Thousands of simulated water droplets run down the terrain, carving channels and dropping sediment,
+                    which turns a rough block-out into a natural-looking landscape.</li>
+                <li><strong>Texture.</strong> Grass, rock and snow blend automatically based on how steep and how high the terrain is.</li>
+            </ul>
+            <p>
+                Because a designer uses all of this interactively, every step has to stay fast as the terrain grows.
+                That is where most of my time went, so profiling and optimising is the biggest section of this page.
+            </p>
+
+            <h4>The erosion in short</h4>
+
+            <video class="project-video" src="../Assets/media/HydraulicErosion/erosion.mp4" width="384" height="216" muted loop playsinline preload="metadata" aria-label="A terrain being eroded, followed by the debug view of where the water flowed"></video>
+            <video class="project-video" src="../Assets/media/HydraulicErosion/erosion2.mp4" width="384" height="216" muted loop playsinline preload="metadata" aria-label="Another terrain before and after erosion"></video>
+
+            <p>
+                The erosion is based on a paper by Hans Theobald Beyer. After comparing grid-based and particle-based methods, I went with particles:
+                each droplet follows the slope of the terrain, picks up sediment while it speeds up downhill, and drops it again when it slows down,
+                goes uphill or evaporates. Its cost depends on the number of droplets rather than the size of the map, which keeps it scalable.
+                <br><br>
+                The paper leaves out some steps, and the algorithm easily runs into undefined values,
+                so I filled in the gaps and added safeguards, such as giving a droplet a random direction when it ends up on perfectly flat ground.
+                Every setting is exposed in the editor, so you can tune the erosion and run it all at once or one step at a time.
+            </p>
+
+            <a class="resume-btn" href="https://medium.com/@ivo.thom.vanderveen/improved-terrain-generation-using-hydraulic-erosion-2adda8e3d99b" target="_blank" rel="noreferrer">Read the full algorithm breakdown on my Medium page</a>
         </div>
+
+        <!-- OPTIMISATION -->
+        <div class="content-block">
+            <p class="section-kicker">Performance</p>
+            <h3 id="optimisation">Making it fast</h3>
+            <ul class="system-tags">
+                <li>Superluminal profiling</li>
+                <li>Thread pool jobs</li>
+                <li>Thread occupancy</li>
+                <li>Algorithmic complexity</li>
+            </ul>
+
+            <p>
+                To find the bottlenecks, I made them impossible to miss: a 10 by 10 unit terrain subdivided into 10,000 by 10,000 vertices,
+                100 million in total and far more than anyone would really use. I profiled it with Superluminal and changed one thing at a time,
+                profiling again after every change. All the numbers below are from those profiles.
+            </p>
+
+            <h4>Generating the terrain: from 22 to 9 seconds</h4>
+            <p>
+                Generating a terrain happens in five steps: fill the heightmap with noise, build the vertex positions and triangle indices,
+                calculate a normal for every vertex from the heightmap, smooth those normals, and upload everything to the GPU.
+            </p>
+
+            <p>
+                <strong>1. The baseline: 18.3 seconds.</strong> Three quarters of the time went into generating the heightmap,
+                and most of that was spent inside GLM's Perlin noise function.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/meshgen-1-start.png" alt="Profile of the first version: generating the mesh takes 18,304 ms, 75 percent of it in the heightmap" class="project-image lightbox-image wide">
+
+            <p>
+                <strong>2. A wrong assumption: 22 seconds.</strong> Since GLM is a library I couldn't change, I swapped in my own Perlin noise implementation,
+                assuming it would be faster. It turned out to be slower. However, I kept it anyway, because it gave me more control over octaves, persistence and the seed.
+                But, it was a good reminder to measure before assuming. From here on, 22 seconds is the number to beat.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/meshgen-2-perlin.png" alt="Profile with my own Perlin noise: 22,143 ms" class="project-image lightbox-image wide">
+
+            <p>
+                <strong>3. Splitting the heightmap over threads: 13.7 seconds.</strong> Every height only depends on its own coordinates,
+                so the heightmap can be filled in any order, on any thread. I was using the BUAS educational engine which 
+                has a thread pool with four worker threads inside it.
+                You queue a job and get a std::future back to wait on. I made every row of the heightmap a job,
+                which brought the heightmap generation down from 17.6 to 10.1 seconds.
+                <br><br>
+                But the timeline showed something else. The main thread was blocked for about three seconds, shown in red,
+                doing nothing while it waited for the workers to finish.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/meshgen-3-timeline.png" alt="Main thread timeline: about three seconds blocked, shown in red, while the workers fill the heightmap" class="project-image lightbox-image wide">
+            <img src="../Assets/media/HydraulicErosion/meshgen-workers.png" alt="The four worker threads busy with heightmap jobs" class="project-image lightbox-image wide">
+
+            <p>
+                <strong>4. Giving the main thread something to do: 9.9 seconds.</strong> At the Graphics Programming Conference I had seen a talk about occupancy.
+                Which showed me that to make the code efficient it's important to keep every thread busy, instead of just adding more of them. 
+                <br><br>
+                Building the vertex positions and triangle indices doesn't need the heights at all.
+                So I reordered the work. I Queued the heightmap jobs first, then let the main thread build the mesh while the workers fill in the heights,
+                and only wait at the moment the heights are applied to the mesh. The red gap disappeared.
+            </p>
+
+<pre><code class="language-cpp">// landscape_components.h
+std::vector&lt;std::future&lt;void&gt;&gt; futures; // one future per heightmap row job
+
+// landscape_components.cpp
+void Landscape::PerlinMesh()
+{
+    heightMap.resize(pointsLength * pointsWidth);
+    erosionRateMap-&gt;resize(pointsLength * pointsWidth);
+
+    mSeed = rand();
+    auto&amp; pool = Engine.ThreadPool();
+
+    futures.clear();
+    futures.reserve(pointsLength);
+
+    // create the vertices
+    for (int y = 0; y &lt; pointsLength; y++)
+    {
+        futures.push_back(pool.Enqueue(&amp;Landscape::PerlinJob, this, y));
+    }
+}
+
+void Landscape::GenerateMesh()
+{
+    GenerateHeightMap();
+    // ... meanwhile, build every vertex position and index on the main thread
+    mMesh-&gt;SetIndices(indices);
+
+    for (auto&amp; future : futures)
+    {
+        future.get();
+    }
+    futures.clear();
+    // ...
+    ApplyHeightMap(0, 0, pointsWidth, pointsLength);  // update the entire heightmap
+}</code></pre>
+<p class="code-caption">landscape_components.h / landscape_components.cpp (shortened)</p>
+            <p class="code-caption">landscape_components.cpp (shortened)</p>
+
+            <img src="../Assets/media/HydraulicErosion/meshgen-4-timeline.png" alt="Main thread timeline after reordering the work: the blocked gap is gone" class="project-image lightbox-image wide">
+
+            <p>
+                <strong>5. Smoothing normals in parallel: about 9 seconds.</strong> Smoothing was now one of the biggest costs left.
+                Every smoothed normal is the average of the normals around it, which are only being read not changed, so rows can safely be smoothed in parallel too.
+                What remains is mostly uploading the mesh to the GPU and allocating vectors, which more threads can't fix.
+                <br><br>
+                That is two and a half times faster than where I started with my own noise. At a more realistic million vertices,
+                a terrain now generates almost instantly.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/meshgen-5-normals.png" alt="Profile after smoothing normals in parallel: 8,967 ms, most of it now in applying and uploading the mesh" class="project-image lightbox-image wide">
+
+            <h4>Clicking the terrain: 4.6 to 2.5 seconds</h4>
+            <p>
+                At this size, a single click with the brush took 4.6 seconds, because the click ray is tested against every triangle.
+                I split the triangles into five ranges: four go to the worker threads as jobs, and the main thread checks the fifth itself
+                instead of waiting. Every job writes to its own result slot, so no locking is needed, and afterwards the closest hit wins.
+                The intersection test went from 2.9 seconds to 0.7.
+                
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/click-before.png" alt="Profile of one click before multithreading: 4,621 ms" class="project-image lightbox-image wide">
+            <img src="../Assets/media/HydraulicErosion/click-after.png" alt="Profile of one click after multithreading: 2,531 ms" class="project-image lightbox-image wide">
+
+<pre><code class="language-cpp">int splitWorkload = static_cast&lt;int&gt;(floor(landscape.indices.size() / 3 / 5)); // i will go through the list on 5 threads. Each thread uses 3 indices(1 triangle) at a time
+auto&amp; pool = Engine.ThreadPool();
+intersectResults.resize(5);
+
+for (int i = 0; i &lt; 4; i++)
+{
+    futures.push_back(pool.Enqueue(&amp;MeshEditor::CalculateClickedJob, this,
+                                   i,
+                                   i * splitWorkload,
+                                   ((i + 1) * splitWorkload),
+                                   clickRay,
+                                   std::ref(landscape),
+                                   std::ref(landscapeTransform)));
+}
+CalculateClickedJob(4, 4 * splitWorkload, static_cast&lt;int&gt;(landscape.indices.size()/3), clickRay, landscape, landscapeTransform);
+
+for (auto&amp; future : futures)
+{
+    future.get();
+}
+for (auto&amp; intersectResult : intersectResults)
+{
+    if (intersectResult.smallestT &lt; result.smallestT)
+    {
+        result = intersectResult;
+    }
+}</code></pre>
+            <p class="code-caption">MeshEditor::CalculateClickedVertex() — MeshEditor.cpp (shortened)</p>
+<p></p>
+                Someone in my weekly meeting then suggested only recalculating the normals around the edit instead of the whole mesh.
+                I implemented it, but it barely helped: the real cost was uploading the changed vertices to the GPU, which the profiler could have told me beforehand.
+                Lesson learned again: check the profiler before acting on an assumption, including other people's.
+            <br><br>
+</p>
+            <h4>The simulation: 7.9 to 1.8 seconds</h4>
+            <p>
+                The erosion can't be split over threads like the terrain because every droplet changes the heightmap, and that changes the path of the droplets after it.
+                So here the gains had to come from doing less work per droplet.
+                Stress testing with 100,000 droplets showed that more than half of the time went to memcpy.
+                Every droplet that left the map or evaporated was erased from the middle of the droplet vector,
+                which shifts every droplet after it one slot forward: O(n) for every removal.
+                Copying the last droplet into the empty slot and popping the back makes a removal O(1).
+                The erosion step also filled a vector without sizing it first, even though the size was known, so I resized it up front.
+                Together that took a simulation run from 7.9 seconds to 1.8, with no memcpy left in the profile.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/erosion-before.png" alt="Profile of the simulation before: 7,864 ms, mostly memcpy" class="project-image lightbox-image wide">
+            <img src="../Assets/media/HydraulicErosion/erosion-after.png" alt="Profile of the simulation after: 1,796 ms, no memcpy" class="project-image lightbox-image wide">
+
+<pre><code class="language-cpp">if (particle.lifeTime &gt; maxLifeTime || pos00.x &lt; 0 || pos00.y &lt; 0 || pos11.x &gt;= mpLandscape-&gt;pointsWidth ||
+    pos11.y &gt;= mpLandscape-&gt;pointsLength)
+{
+    // if the particle is out of bounds or has lived too long, remove it.
+    lostSediment += particle.sediment;
+    particles[i] = particles.back();
+    particles.pop_back();
+    continue;
+}</code></pre>
+            <p class="code-caption">ErosionSim::Simulate() — ErosionSim.cpp (shortened)</p>
+
+            <h4>Stress testing the settings</h4>
+            <p>
+                Finally I measured how each setting scales, averaging five runs per value. Simulation time grows linearly with the number of droplets,
+                from 17 ms for 1,000 droplets to 1.8 seconds for 100,000. It grows quadratically with the erosion radius, since every erosion step
+                touches a square of cells around the droplet. A longer droplet lifetime costs less and less, because most droplets have already
+                left the map or evaporated. The map size barely matters at all: the cost follows the droplets, not the terrain.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/graph-radius.jpg" alt="Graph of simulation time against erosion radius" class="project-image lightbox-image">
+            <img src="../Assets/media/HydraulicErosion/graph-lifetime.jpg" alt="Graph of simulation time against maximum droplet lifetime" class="project-image lightbox-image">
+
+            <h4>Looking back</h4>
+            <p>
+                <strong>The jobs were too small.</strong> One job per row means 10,000 jobs at this size, each going through the thread pool's queue.
+                Splitting the rows into a few large blocks per thread would have made the system even faster.
+                </p>
+        </div>
+
+        <!-- TERRAIN TOOLS -->
+        <div class="content-block">
+            <p class="section-kicker">Tools · Terrain editing</p>
+            <h3 id="tools">Generating and editing terrain</h3>
+            <ul class="system-tags">
+                <li>ECS components and systems</li>
+                <li>Ray-triangle intersection</li>
+                <li>Barycentric coordinates</li>
+                <li>ImGui tools</li>
+            </ul>
+
+            <video class="project-video showcase" src="../Assets/media/HydraulicErosion/editing.mp4" width="960" height="518" muted loop playsinline preload="metadata" aria-label="Raising and lowering the terrain with the brush, shown with normal colours"></video>
+
+            <p>
+                The whole tool lives in the engine's ECS: a landscape component holds the terrain and its heightmap,
+                and separate systems handle the brush and the erosion. I kept it modular on purpose, so it could be dropped into another project later.
+                The terrain type, size, resolution and look can all be changed from ImGui panels in the editor.
+            </p>
+
+            <h4>The mesh</h4>
+            <p>
+                The heightmap is kept separate from the mesh, and applying it only updates the area that changed.
+                My first normals averaged the faces around each vertex, which was complex and not very accurate.
+                After researching the alternatives, and a tip in a one-on-one, I switched to calculating them straight from the four neighbouring heights,
+                which is simpler and faster for a grid. Smoothed normals can be switched on and off.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/normals-wireframe.jpg" alt="Wireframe view of the terrain with its normals" class="project-image lightbox-image">
+
+            <h4>Clicking the terrain</h4>
+            <p>
+                To paint on the terrain, the brush needs to know which vertex you clicked. I compared rendering object IDs to a separate buffer
+                with ray tracing, and chose ray tracing because it gives an exact position.
+                The click becomes a ray from the camera through the mouse position, using the inverse projection and view matrices.
+                For each triangle, I first intersect the ray with the triangle's plane, and then check with barycentric coordinates whether the hit is inside it.
+                Those same coordinates also tell me which corner the hit is closest to, which is the vertex the brush paints around.
+                <br><br>
+                The brush raises or lowers the terrain in a circle that fades out towards the edge. You can hold the mouse to keep painting,
+                use the right button to lower, and middle-click a vertex to print its position and normal.
+            </p>
+
+<pre><code class="language-cpp">//subtriangle area divided by the total triangle area
+float u = (dot11 * dot02 - dot01 * dot12) * invTriangleArea;
+float v = (dot00 * dot12 - dot01 * dot02) * invTriangleArea;
+float w = 1.0f - u - v;
+
+if ((u &lt; 0.0f) || (v &lt; 0.0f) || (w &lt; 0.0f) ) {
+    return noIntersect; //the point is not inside the triangle.
+}
+
+if (u &gt;= v &amp;&amp; u &gt;= w)
+{
+    return a;  // Closest to a
+}
+else if (v &gt;= u &amp;&amp; v &gt;= w)
+{
+    return b;  // Closest to b
+}
+else
+{
+    return c;  // Closest to c
+}</code></pre>
+            <p class="code-caption">MeshEditor::CheckPointInTriangle() — MeshEditor.cpp (shortened)</p>
+
+            <h4>Looking back</h4>
+            <p>
+                <strong>Every triangle doesn't need testing.</strong> Because the terrain is a regular grid, the click ray could step through only the grid cells it passes over,
+                and test just the two triangles in each of them. That would have made the click almost free without any threads, or a BVH.
+                <br><br>
+                <strong>The brush ignores the terrain's rotation.</strong> The click test only adds the terrain's position, so a rotated terrain is painted in the wrong place.
+                Transforming the ray into the terrain's local space instead would fix that. I was aware of this limitation at the time but decided to put more effort into the simulation instead, which was the main goal of the project.
+            </p>
+        </div>
+
+        <!-- TEXTURING AND DEBUG VIEWS -->
+        <div class="content-block">
+            <p class="section-kicker">Rendering · Texturing</p>
+            <h3 id="texturing">Texturing and debug views</h3>
+            <ul class="system-tags">
+                <li>GLSL</li>
+                <li>Texture arrays</li>
+                <li>Tri-planar mapping</li>
+                <li>RenderDoc</li>
+            </ul>
+
+            <video class="project-video showcase" src="../Assets/media/HydraulicErosion/texturing.mp4" width="346" height="208" muted loop playsinline preload="metadata" aria-label="Changing the rock and snow blending settings on the terrain"></video>
+
+            <p>
+                Texturing started as a stretch goal and made it in at the end. The terrain blends grass, rock and snow based on steepness and height,
+                with adjustable thresholds and blend zones. The textures reach the shader as one 2D texture array, which I chose over a texture atlas
+                because it is easier to change later, and over bindless textures, which would have been overkill. Tri-planar sampling keeps the textures
+                from stretching on steep slopes. To keep everything modular, the terrain has its own renderer component instead of changing the engine's mesh renderer.
+                Getting the data to the shader was the hardest part, and RenderDoc is what finally got me through it.
+            </p>
+
+<pre><code class="language-cpp">vec4 TriPlanarSampling(vec3 pos, vec3 v_normal, float textureLayer){
+    //sample each plane
+    vec4 dx = texture(s_landscape_base_color, vec3(pos.zy / textureSize, textureLayer));
+    vec4 dy = texture(s_landscape_base_color, vec3(pos.xz / textureSize, textureLayer));
+    vec4 dz = texture(s_landscape_base_color, vec3(pos.xy / textureSize, textureLayer));
+    //weight based on the normal of the fragment
+    vec3 weights = abs(v_normal.xyz);
+    weights = weights + 0.001f; //Add small bias to avoid artifacts on cardinal directions
+    weights = weights / (weights.x + weights.y + weights.z);
+    //return the weighted sum
+    return (dx * weights.x) + (dy * weights.y) + (dz * weights.z);
+}</code></pre>
+            <p class="code-caption">landscape_blending.frag</p>
+
+            <h4>Seeing where the water went</h4>
+            <p>
+                I also added debug views for the simulation. The most useful one counts how often droplets visited every vertex and normalises it,
+                which shows exactly where the water flowed: the places where creeks and rivers would form.
+                In the future, that same data could be used to actually carve rivers and lakes into the terrain.
+            </p>
+
+            <img src="../Assets/media/HydraulicErosion/rivers1.jpg" alt="Debug view showing where the water droplets flowed" class="project-image lightbox-image">
+            <img src="../Assets/media/HydraulicErosion/rivers2.jpg" alt="Another debug view of the water's paths" class="project-image lightbox-image">
+        </div>
+
+        <!-- LESSONS LEARNED -->
+        <div class="content-block">
+            <p class="section-kicker">Reflection</p>
+            <h3 id="lessons-learned">Lessons learned</h3>
+
+            <h4>Measure first, then optimise.</h4>
+            <p>
+                Twice in this project an obvious-sounding optimisation did nothing: my own Perlin noise was slower than GLM's,
+                and recalculating fewer normals didn't help because the GPU upload was the real cost.
+                Both times the profiler had the answer before I wrote a line of code.
+            </p>
+            <hr>
+
+            <h4>Parallel isn't the same as busy.</h4>
+            <p>
+                Moving work to other threads only helps if no thread ends up waiting. Splitting the heightmap over threads was only half the story:
+                reordering the work so the main thread had something useful to do while the workers ran saved almost four more seconds, without adding a single thread.
+            </p>
+            <hr>
+
+            <h4>Build tools to be reused.</h4>
+            <p>
+                Early on I asked my study group whether to weave the tool into the engine or keep it separate, and they told me to keep it modular.
+                Building it as its own components and systems, including its own renderer, made later changes like texturing much easier,
+                and kept the tool usable in other projects.
+            </p>
+        </div>
+
     </section>
+    <script>
+        // Play clips only while they are on screen, and leave them paused for people who prefer reduced motion
+        (function () {
+            const videos = document.querySelectorAll('video.project-video');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                videos.forEach(video => { video.controls = true; });
+                return;
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play().catch(() => { entry.target.controls = true; });
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            videos.forEach(video => observer.observe(video));
+        })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>if (window.hljs) { hljs.highlightAll(); }</script>
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
 </body>

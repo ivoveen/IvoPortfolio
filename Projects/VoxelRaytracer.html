@@ -7,6 +7,7 @@
     <title>3D CPU Voxel Raytracer | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -14,8 +15,11 @@
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
             <a href="#intro">Overview</a>
-            <a href="#details">Details</a>
-            <a href="#technical">Technical implementation</a>
+            <a href="#rendering">Rendering</a>
+            <a href="#objects">Voxel objects</a>
+            <a href="#performance">Performance</a>
+            <a href="#game">Game</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -52,13 +56,17 @@
         <div class="about-container">
             <div class="about-text">
                 <h2>3D CPU Voxel Raytracer</h2>
-                <p>A custom CPU raytracer rendering voxel worlds with reflections, refractions, volumetric smoke and a demo interface. The project explores low-level rendering in C++.</p>
+                <p>A voxel ray tracer that runs entirely on the CPU, with mirrors, glass, smoke and depth of field,
+                    built in eight weeks on top of the school's voxel template.
+                    To show it off I made a small game, Ghost Hunter: Ray L. Trace, where your flashlight's rays are what catch the ghosts.</p>
                 <ul class="intro-highlights">
-                    <li>CPU raytracer</li>
-                    <li>Voxel rendering</li>
-                    <li>Volumetric effects</li>
-                    <li>Demo gameplay</li>
+                    <li>CPU ray tracing</li>
+                    <li>Glass and smoke</li>
+                    <li>Voxel objects</li>
+                    <li>Ray-traced gameplay</li>
                 </ul>
+                                   <a class="resume-btn" href="https://github.com/ivoveen/CPUVoxelRaytracer" target="_blank" rel="noreferrer">View the code on github</a> </div>
+
             </div>
             <div class="about-picture">
                 <img src="../Assets/Pictures/raytrace.gif" alt="Voxel Raytracer preview" loading="lazy" class="project-image lightbox-image">
@@ -71,32 +79,375 @@
         <div class="project-details">
             <div class="details-left">
                 <div><strong>Language:</strong> C++</div>
-                <div><strong>Engine:</strong> Custom C++ Engine</div>
+                <div><strong>Base:</strong> BUas voxel ray tracing template</div>
                 <div><strong>Team size:</strong> Solo</div>
                 <div><strong>Duration:</strong> 8 Weeks</div>
             </div>
             <div class="details-right">
                 <div><strong>Key responsibilities:</strong></div>
                 <ul>
-                    <li>Ray generation & intersection</li>
-                    <li>Reflection & refraction</li>
-                    <li>Dielectric materials</li>
-                    <li>Volumetric smoke</li>
-                    <li>A small demo game</li>
+                    <li>Lights and shadows</li>
+                    <li>Mirrors, glass and smoke</li>
+                    <li>Voxel objects and MagicaVoxel loading</li>
+                    <li>Profiling and optimisation</li>
+                    <li>A small ray-traced game</li>
                 </ul>
-            </div>
-        </div>
-        <a class="project-action" href="https://x.com/veen_ivo/status/1780934535686807852" target="_blank" rel="noreferrer">View the demo announcement</a>
+
+    </div>
     </section>
 
-    <section id="technical" class="project-content">
+    <section class="project-content">
+
+        <!-- RENDERING: LIGHTS -->
         <div class="content-block">
-            <p class="section-kicker">Work in progress</p>
-            <h3>Technical implementation</h3>
-            <p>This section is still under construction. A detailed technical breakdown will be added soon.</p>
+            <p class="section-kicker">Rendering · Lights</p>
+            <h3 id="rendering">Lights and shadows</h3>
+            <ul class="system-tags">
+                <li>Shadow rays</li>
+                <li>Point, spot and directional lights</li>
+                <li>Polymorphism</li>
+                <li>ImGui tools</li>
+            </ul>
+
+            <video class="project-video showcase" src="../Assets/media/VoxelRaytracer/lights.mp4" width="600" height="374" muted loop playsinline preload="metadata" aria-label="Point, spot and directional lights being adjusted live with ImGui"></video>
+
+            <p>
+                The project started from the school's voxel template, which renders a voxel world with plain colours and normals.
+                Everything on this page I added on top of it in eight weeks.
+                <br><br>
+                The first week was all about light. I added point lights, spot lights with an adjustable cone and soft edge, and directional lights,
+                all with shadow rays and coloured light, and any number of them at once. Every light inherits from one base class
+                and overrides a single function that returns its contribution, so the renderer can treat all of them the same way.
+                Every light also draws its own ImGui panel, so I could tweak the whole scene live.
+            </p>
+
+<pre><code class="language-cpp">class Light
+{
+public:
+    float epsilon = 0.0001f;
+    int mNumber;
+    float mIntensity;
+    float3 mLightColor;
+    float3 mWorldPos = 0;
+    virtual float3 CalculateLight(float3 intersectionPoint, float3 Normal) { return float3(); };
+    virtual bool LightUI() { return false; };
+};</code></pre>
+            <p class="code-caption">Light.h</p>
         </div>
-       
+
+        <!-- RENDERING: MATERIALS -->
+        <div class="content-block">
+            <p class="section-kicker">Rendering · Materials</p>
+            <h3 id="materials">Mirrors, glass and smoke</h3>
+            <ul class="system-tags">
+                <li>Recursive rays</li>
+                <li>Snell's law and Fresnel</li>
+                <li>Beer's law</li>
+                <li>Ray marching</li>
+            </ul>
+
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/glass.mp4" width="600" height="366" muted loop playsinline preload="metadata" aria-label="Glass with its refractive index being raised from 1.0 to about 1.4"></video>
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/beerslaw.mp4" width="600" height="370" muted loop playsinline preload="metadata" aria-label="Coloured glass absorbing more light the thicker it is"></video>
+
+            <h4>Materials</h4>
+            <p>
+                Every voxel stores a material index, and materials hold the colour, reflectiveness, roughness, refractive index and type,
+                so all voxels that share a material can be changed with one slider.
+                Mirrors reflect the ray and trace it again, with a recursion cap to stop rays bouncing forever.
+                Partly reflective materials use Schlick's approximation to randomly decide per ray whether it reflects or scatters,
+                and roughness blends the perfect reflection with a random direction around it, which gives glossy reflections.
+                Because every frame is added to an accumulator, these random choices average out into a clean image when the camera stands still.
+            </p>
+
+            <h4>Glass</h4>
+            <p>
+                Glass was the hardest feature of the project and took me more than a week and a half.
+                To refract a ray you need to know both the material it is leaving and the one it is entering,
+                so I changed the voxel traversal to report a hit whenever the material changes, not only when it hits something solid.
+                From there, Snell's law gives the refracted direction and the Fresnel equations give the chance that the ray reflects instead.
+                When neither works, the ray is totally internally reflected. Beer's law then tints the light by how far it travelled through the glass,
+                so thick coloured glass looks darker than thin glass.
+                <br><br>
+                Most of my glass bugs weren't in the glass code at all, but in the traversal change I had made for it.
+                That was a good lesson in checking everything you changed, not only the place you expect the bug to be.
+            </p>
+
+<pre><code class="language-cpp">float3 Renderer::Glass(uchar previousVoxelMaterial, uchar mMaterialID, Tmpl8::Ray&amp; ray, Tmpl8::float3&amp; Normal, Tmpl8::float3&amp; intersectionPoint, float epsilon, int rayDepth)
+{
+    float refractionIndex1 = mpScene.mMaterials[previousVoxelMaterial]-&gt;refractiveIndex;
+    float refractionIndex2 = mpScene.mMaterials[mMaterialID]-&gt;refractiveIndex;
+
+    float cosAI = dot(Normal, -ray.D);
+    float3 refractDirection = normalize(SnellsLaw(cosAI, refractionIndex1, refractionIndex2, ray.D, Normal));
+
+    if (refractDirection != NULL) {
+        float fresnelProbability = Fresnel(cosAI, dot(-Normal, refractDirection), refractionIndex1, refractionIndex2);
+        //refract ray
+        float randomFloat = RandomFloat();
+        if (randomFloat &gt; fresnelProbability) {
+            //refract
+            float3 color = float3(1.0f, 1.0f, 1.0f);
+            if (mpScene.mMaterials[previousVoxelMaterial]-&gt;type == Material::glass) {
+                ray.tGlass += ray.t;
+                color = BeersLaw( color - mpScene.mMaterials[previousVoxelMaterial]-&gt;albedo, ray.tGlass);
+            }
+            else ray.tGlass = 0;
+
+            return color * Trace(Ray(intersectionPoint + (refractDirection * epsilon), refractDirection), rayDepth);
+        }
+    }
+    // ... keep track of the distance travelled inside the glass
+    //TIR or reflection from fresnell
+    return  Trace(Reflect(ray, mMaterialID), rayDepth);
+}</code></pre>
+            <p class="code-caption">Renderer::Glass() — renderer.cpp (shortened)</p>
+
+            <h4>Smoke</h4>
+            <p>
+                Smoke was my second hard feature. It started as a material that only applies Beer's law, which looked flat.
+                So I sample a 3D noise texture at points along the ray to get a changing density, scroll that noise over time so the smoke moves,
+                and step towards the light from each sample point to work out how much light reaches it.
+            </p>
+
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/smoke.mp4" width="396" height="324" muted loop playsinline preload="metadata" aria-label="Red smoke moving through the scene"></video>
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/smoke-green.mp4" width="498" height="458" muted loop playsinline preload="metadata" aria-label="Green smoke lit by the scene"></video>
+
+            <h4>Camera and scene</h4>
+            <p>
+                Around these I added the rest of what makes the images look good: anti-aliasing by jittering every primary ray,
+                depth of field with an adjustable aperture and focal distance, an HDR sky dome based on Jacco Bikker's tutorial,
+                approximated ACES tone mapping, and spheres with their own intersection and shadow tests, which work with every material.
+            </p>
+
+            <img src="../Assets/media/VoxelRaytracer/dof-glass.jpg" alt="Glass voxels rendered with depth of field" class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/mirror-sphere.jpg" alt="A mirror sphere reflecting the HDR sky dome and a mirror floor" class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/smile.jpg" alt="A mirror sphere reflecting the HDR sky dome and a mirror floor" class="project-image lightbox-image">
+    </div>
+
+        <!-- SCENE: VOXEL OBJECTS -->
+        <div class="content-block">
+            <p class="section-kicker">Scene · Voxel objects</p>
+            <h3 id="objects">Voxel objects</h3>
+            <ul class="system-tags">
+                <li>3D DDA (Amanatides and Woo)</li>
+                <li>MagicaVoxel import</li>
+                <li>Runtime voxel editing</li>
+            </ul>
+
+            <img src="../Assets/media/VoxelRaytracer/magicavoxel.jpg" alt="MagicaVoxel car models loaded into the ray tracer" class="project-image lightbox-image">
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/editing.mp4" width="600" height="376" muted loop playsinline preload="metadata" aria-label="Carving spheres of voxels out of the world with the mouse"></video>
+
+            <p>
+                The template traces a single voxel grid sitting at the origin. For a game I needed many objects that can move and change size,
+                so I turned the scene into a list of objects that each implement their own nearest-hit and occlusion tests: voxel objects and spheres.
+                <br><br>
+                Voxel objects are loaded from MagicaVoxel scenes using the open-source ogt_vox header library, and all of them share the scene's 255-material palette.
+                Every object has its own position, scale and grid size, so a flat model gets a flat grid instead of a cube.
+                To make that work I adapted the setup of the Amanatides and Woo grid traversal, which the template is built on,
+                to start from the object's own bounds and voxel size, and to clamp to the object's real dimensions.
+                Getting objects away from the origin to render correctly took a deep dive into the original paper,
+                after a lot of checkerboard patterns and optical illusions.
+                <br><br>
+                Early on I also added editing: clicking placed or removed a sphere of voxels. The game later used a version of that code to carve holes into ghosts while you suck them up.
+            </p>
+
+<pre><code class="language-cpp">bool VoxelObject::Setup3DDDA(const Ray&amp; ray, DDAState&amp; state) const
+{
+    // if ray is not inside the world: advance until it is
+    state.t = 0;
+    if (!mCube.Contains(ray.O))
+    {
+        state.t = mCube.Intersect(ray);
+        if (state.t &gt; 1e33f) return false; // ray misses voxel data entirely
+    }
+    // setup amanatides &amp; woo - DONT assume world is 1x1x1, from (0,0,0) to (1,1,1)
+
+    state.step = make_int3(1 - ray.Dsign * 2);
+    const float3 posInGrid = mInvVoxelSize * ((ray.O + (state.t + 0.00005f) * ray.D) - mWorldPos);
+    const float3 gridPlanes = (ceilf(posInGrid) - ray.Dsign) * mVoxelSize;
+    const int3 P = int3(
+        clamp(make_int3(posInGrid).x, 0, mDimensions.x - 1),
+        clamp(make_int3(posInGrid).y, 0, mDimensions.y - 1),
+        clamp(make_int3(posInGrid).z, 0, mDimensions.z - 1)
+    );
+
+    state.X = P.x, state.Y = P.y, state.Z = P.z;
+    state.tdelta = mVoxelSize * float3(state.step) * ray.rD;
+    state.tmax = (gridPlanes - ray.O + mCube.b[0]) * ray.rD;
+    // proceed with traversal
+    return true;
+}</code></pre>
+            <p class="code-caption">VoxelObject::Setup3DDDA() — scene.cpp</p>
+        </div>
+
+        <!-- PERFORMANCE -->
+        <div class="content-block">
+            <p class="section-kicker">Performance</p>
+            <h3 id="performance">Making it fast enough</h3>
+            <ul class="system-tags">
+                <li>Profiling</li>
+                <li>Cache-friendly data</li>
+                <li>Stochastic light sampling</li>
+                <li>Multithreading</li>
+            </ul>
+
+            <img src="../Assets/media/VoxelRaytracer/lights-all.jpg" alt="Frame times while evaluating every light: about 13.9 ms, 72 fps" class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/lights-stochastic.jpg" alt="Frame times while sampling one light per ray: about 10.4 ms, 96 fps" class="project-image lightbox-image">
+
+            <p>
+                Everything runs on the CPU, and the game had to hold at least 30 fps, so performance mattered from the first week.
+                The template already renders the screen in parallel: OpenMP splits the rows over all CPU threads.
+                My job was to keep the work per ray as small as possible.
+            </p>
+
+            <h4>One light per ray</h4>
+            <p>
+                Evaluating every light at every hit gets slower with every light you add. Instead, each ray now picks one random light
+                and multiplies its contribution by the number of lights, which is a Monte Carlo estimate of the total.
+                Because the accumulator averages frames, the image converges to the same result within about a second.
+                Above, left evaluates every light and right samples one per ray: the frame time dropped from about 13.9 ms to 10.4 ms,
+                from 72 to 96 fps, and adding more lights no longer costs extra.
+            </p>
+
+<pre><code class="language-cpp">float3 Renderer::DirectIllumination(float3 I, float3 N) {
+    int size = mLights.size();
+    return mLights[Rand(size) - 0.5]-&gt;CalculateLight(I, N) * (size);
+}</code></pre>
+            <p class="code-caption">Renderer::DirectIllumination() — renderer.cpp</p>
+
+            <h4>Smaller voxels</h4>
+            <p>
+                Profiling with Very Sleepy showed that finding the nearest hit in the voxel grid took about half of all frame time,
+                and most of that is reading voxel memory. Each voxel first stored a 32-bit colour plus material,
+                and I shrank it to a single byte: an index into the material palette. That fits four times as many voxels in every cache line.
+                Nearest-hit's share of the frame dropped from 49% to 46%.
+            </p>
+
+            <img src="../Assets/media/VoxelRaytracer/profile-before.png" alt="Profiler before shrinking the voxel data: FindNearest at 49 percent" class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/profile-after.png" alt="Profiler after shrinking the voxel data: FindNearest at 46 percent" class="project-image lightbox-image">
+
+            <h4>Tighter grids</h4>
+            <p>
+                Since every object gets a grid that fits its own model, empty space is simply left out.
+                One model went from a 32×32×32 grid to 32×5×32, which is 84% fewer voxels to store and to step through.
+            </p>
+
+            <h4>Looking back</h4>
+            <p>
+                <strong>I measured, but not carefully enough.</strong> My profiling runs had different lengths and camera views,
+                so the before and after numbers are only an indication. A fixed camera and a fixed number of frames would have given a real comparison.
+                <br><br>
+                <strong>The light pick is slightly biased.</strong> Subtracting 0.5 before rounding down means the first light is picked one and a half times as often
+                as it should be and the last one only half as often, while every sample is weighted the same.
+                Picking the index with a plain floor of the random number fixes that.
+                <br><br>
+                <strong>There was a lot of speed left on the table.</strong> I learned about SIMD during this project, but never applied it.
+                Tracing four or eight rays at once with SSE or AVX, a two-level grid to skip empty space, and a BVH over the objects
+                were all logical next steps. I started on the BVH, but rightly stopped to finish the game first.
+            </p>
+        </div>
+
+        <!-- GAME -->
+        <div class="content-block">
+            <p class="section-kicker">Game</p>
+            <h3 id="game">Ghost Hunter: Ray L. Trace</h3>
+            <ul class="system-tags">
+                <li>Ray-traced gameplay</li>
+                <li>Runtime voxel edits</li>
+                <li>Photo mode</li>
+            </ul>
+
+            <video class="project-video showcase" src="../Assets/media/VoxelRaytracer/game.mp4" width="600" height="374" muted loop playsinline preload="metadata" aria-label="Ghost Hunter: Ray L. Trace gameplay, catching ghosts with the flashlight"></video>
+
+            <p>
+                The last two weeks were for a game that uses the ray tracer. My first plan was a top-down shooter like Raiden,
+                but halfway through modelling the plane I realised it needed things my ray tracer couldn't do yet, like rotating objects.
+                So I switched to something inspired by Luigi's Mansion: you walk through a dark house with a flashlight, and catch ghosts by sucking them up.
+                <br><br>
+                The flashlight is a real spot light, and it is also the core mechanic. Holding space fans a set of rays across the flashlight's cone,
+                and if one of them hits a ghost before it hits a wall, that ghost gets caught. While it is sucked in, the ghost flies towards you and shrinks,
+                random holes are carved out of its voxel grid every frame, and the flashlight flickers through random colours.
+                Player movement uses the same idea, casting rays in the direction you walk to check for walls.
+                <br><br>
+                Without reprojection the image gets noisy while things move, so I added a photo mode: press P, the game pauses,
+                the camera comes free, and the accumulator gets to converge into a clean image.
+            </p>
+
+<pre><code class="language-cpp">bool Player::Scan(float deltaTime) {
+    float maxDegree = acos(mpPlayerFlash-&gt;mSoftBandSize);
+    float incrementDegree = (maxDegree * 2.0f) / mNumberOfScanRays;
+    float currentDegree = -maxDegree;
+    for (int i = 0; i &lt; mNumberOfScanRays; i++) {
+        float3 rotatedVector = normalize(mpPlayerFlash-&gt;mDirection.RotateVectorY(currentDegree));
+        Ray ray = Ray(mpPlayerFlash-&gt;mWorldPos + (rotatedVector * 0.05f), rotatedVector);
+        mpScene-&gt;FindNearest(ray);
+        if (ray.voxel == 234 || ray.voxel == 238) {
+            //we hit a ghost
+            mKilledGhost = (VoxelObject*)ray.nearestVoxelObject;
+            return true;
+        }
+        currentDegree += incrementDegree;
+    }
+    return false;
+}</code></pre>
+            <p class="code-caption">Player::Scan() — Player.cpp</p>
+        </div>
+
+        <!-- LESSONS LEARNED -->
+        <div class="content-block">
+            <p class="section-kicker">Reflection</p>
+            <h3 id="lessons-learned">Lessons learned</h3>
+
+            <h4>Look for bugs where you changed things, not where you expect them.</h4>
+            <p>
+                I spent days staring at my glass formulas, while most of the bugs came from the change I had made to the voxel traversal to support glass.
+                The habit I took from it: when I'm stuck on a bug, first go over everything I changed, instead of fixating on the place I think it must be.
+            </p>
+            <hr>
+
+            <h4>Plan the end of a project from the start.</h4>
+            <p>
+                Planning wasn't required this block, so I followed the weekly topics and kept adding optional features.
+                That worked until the last two weeks, when I suddenly needed to build a whole game, had to drop my first idea and crunch to finish the second.
+                A plan with time reserved for the game would have avoided both.
+            </p>
+            <hr>
+
+            <h4>Don't reinvent the wheel.</h4>
+            <p>
+                I wanted to write my own voxel file loader, but a small, well-known library for MagicaVoxel files saved me from writing and debugging a file parser myself.
+                The same happened with roughness, where a classmate pointed me to a function the template already had.
+                Knowing what already exists is part of the job.
+            </p>
+        </div>
+
     </section>
+    <script>
+        // Play clips only while they are on screen, and leave them paused for people who prefer reduced motion
+        (function () {
+            const videos = document.querySelectorAll('video.project-video');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                videos.forEach(video => { video.controls = true; });
+                return;
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play().catch(() => { entry.target.controls = true; });
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            videos.forEach(video => observer.observe(video));
+        })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>if (window.hljs) { hljs.highlightAll(); }</script>
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
 </body>

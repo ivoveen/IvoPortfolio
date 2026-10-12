@@ -7,6 +7,7 @@
     <title>Segway Monkey | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -14,8 +15,10 @@
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
             <a href="#intro">Overview</a>
-            <a href="#details">Details</a>
-            <a href="#technical">Technical implementation</a>
+            <a href="#obstacles">Obstacles</a>
+            <a href="#terrain">Terrain</a>
+            <a href="#rendering">Rendering</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -52,13 +55,15 @@
         <div class="about-container">
             <div class="about-text">
                 <h2>Segway Monkey</h2>
-                <p>This was my first 3D game project: an infinite runner built for Raspberry Pi. The focus was on 3D rendering, terrain generation, and Phong shading in C++.</p>
+                <p>Segway Monkey is an infinite runner for the Raspberry Pi, and my first 3D game.
+                    Everything in its world is generated procedurally: the terrain, the zones it is made of, and the path through the rocks.</p>
                 <ul class="intro-highlights">
-                    <li>3D rendering</li>
-                    <li>Terrain generation</li>
-                    <li>Phong shading</li>
-                    <li>Gameplay systems</li>
+                    <li>Procedural generation</li>
+                    <li>C++ and OpenGL ES</li>
+                    <li>Raspberry Pi</li>
+                    <li>Bullet physics</li>
                 </ul>
+                <a class="resume-btn" href="https://github.com/ivoveen/SegwayMonkey" target="_blank" rel="noreferrer">View the code on GitHub</a>
             </div>
             <div class="about-picture">
                 <img src="../Assets/Pictures/segwaymonkey.gif" alt="Segway Monkey preview" loading="lazy" class="project-image lightbox-image">
@@ -71,31 +76,212 @@
         <div class="project-details">
             <div class="details-left">
                 <div><strong>Language:</strong> C++</div>
-                <div><strong>Engine:</strong> Custom C++ Engine</div>
+                <div><strong>Platform:</strong> Raspberry Pi</div>
+                <div><strong>Libraries:</strong> OpenGL ES 3.1, Bullet Physics, ImGui</div>
                 <div><strong>Team size:</strong> Solo</div>
                 <div><strong>Duration:</strong> 8 Weeks</div>
             </div>
             <div class="details-right">
                 <div><strong>Key responsibilities:</strong></div>
                 <ul>
-                    <li>3D rendering</li>
-                    <li>Phong shading</li>
-                    <li>Level generation</li>
-                    <li>Terrain generation</li>
-                    <li>Gameplay systems</li>
+                    <li>Procedural terrain and zones</li>
+                    <li>Spline-based obstacle placement</li>
+                    <li>Shaders and rendering</li>
+                    <li>Physics and game states</li>
                 </ul>
             </div>
         </div>
-        <p><a class="project-action" href="../index.html">Back to portfolio</a></p>
     </section>
 
-    <section id="technical" class="project-content">
+    <section class="project-content">
+ <!-- OBSTACLES -->
         <div class="content-block">
-            <p class="section-kicker">Work in progress</p>
-            <h3>Technical implementation</h3>
-            <p>This section is still under construction. A detailed technical breakdown will be added soon.</p>
+            <p class="section-kicker">Procedural generation · Obstacles</p>
+            <h3 id="obstacles">A path that is always possible</h3>
+            <ul class="system-tags">
+                <li>Catmull-Rom splines</li>
+                <li>Minimum-distance placement</li>
+                <li>Object pooling</li>
+                <li>Difficulty scaling</li>
+            </ul>
+
+            <video class="project-video" src="../Assets/media/SegwayMonkey/difficulty.mp4" width="280" height="212" muted loop playsinline preload="metadata" aria-label="Rocks coming at the player on the hardest difficulty"></video>
+            <img src="../Assets/media/SegwayMonkey/spline-rocks.png" alt="Rocks placed along both sides of the generated path" class="project-image lightbox-image">
+
+            <p>
+                Segway Monkey is an infinite runner: a monkey on a segway rides through an endless valley, dodging rocks that come at it faster and faster.
+                It was my first 3D game and my first game on something other than a PC, built in C++ for a Raspberry Pi in eight weeks.
+                My goal for the project was to generate the whole world procedurally, 
+                and the most interesting part of that was the path through the rocks. 
+                <br><br>
+                If I would place rocks randomly, they would sooner or later block the whole road. That's why I decided to place them around a path instead.
+                Every chunk picks a random lane at regular steps along the road, and a Catmull-Rom spline is drawn through those points.
+                A Catmull-Rom spline passes through every point you give it, which keeps the path where I want it.
+                <br><br>
+                Then I walk along the spline and try positions on both sides of it, at growing distances from the path.
+                A position is only kept if it isn't too close to a rock that was already placed, so the rocks spread out naturally and the spline itself always stays clear.
+                The plan I drew beforehand ended up looking exactly like the result.
+            </p>
+
+            <img src="../Assets/media/SegwayMonkey/spline-plan.png" alt="My plan: choose points, draw a spline through them, and place rocks around it" class="project-image lightbox-image wide">
+
+<pre><code class="language-cpp">//Catmull-Rom spline
+for (float i = 1; i &lt; static_cast&lt;float&gt;(points.size()) - 2.0f; i++) {
+    point1 = points[i - 1.0f];
+    point2 = points[i];
+    point3 = points[i + 1.0f];
+    point4 = points[i + 2.0f];
+
+    for (float t = 0.0f; t &lt;= 1.0f; t += 0.1f) {
+        A = (-point1 + 3.0f * point2 - 3.0f * point3 + point4);
+        B = (2.0f * point1 - 5.0f * point2 + 4.0f * point3 - point4);
+        C = (-point1 + point3);
+        D = 2.0f * point2;
+
+        vec2 result = (A * powf(t, 3) + B * powf(t, 2) + C * t + D) / 2.0f;
+        splinePoints.push_back(result);
+    }
+}</code></pre>
+            <p class="code-caption">Chunk::GenerateSpawnPoints() — Chunk.cpp (shortened)</p>
+
+            <h4>Difficulty</h4>
+            <p>
+                You choose easy, normal or hard in the main menu, which changes how wide the path and the gaps between rocks are.
+                While you play, the game also speeds up, and every fifth rock position, held back at the start, gets switched on bit by bit.
+                The rocks themselves come from a pool that is created once, and are only switched on and added to the physics world when a chunk needs them.
+            </p>
         </div>
+
+        <!-- TERRAIN -->
+        <div class="content-block">
+            <p class="section-kicker">Procedural generation · Terrain</p>
+            <h3 id="terrain">An endless world</h3>
+            <ul class="system-tags">
+                <li>Perlin noise</li>
+                <li>Vertex normals</li>
+                <li>Chunk recycling</li>
+                <li>Seeded random generation</li>
+            </ul>
+
+            <img src="../Assets/media/SegwayMonkey/zones-linked.png" alt="Several generated chunks in a row, with red lines showing where zones link up" class="project-image lightbox-image">
+            <img src="../Assets/media/SegwayMonkey/road-valley.png" alt="A generated chunk with a flat road through a valley" class="project-image lightbox-image">
+
+            <p>
+                The world is built from zones, and each zone is a random number of chunks. At the start of the game every zone is generated from its own seed,
+                with its own shade of green and a randomly generated, pronounceable name. While you play, the world picks a random zone and feeds its chunks in one by one.
+            </p>
+
+            <h4>Generating a chunk</h4>
+            <p>
+                Each chunk starts as a subdivided plane. The middle becomes a flat, brown road, and the rest of the vertices get their height from Perlin noise,
+                amplified the further they are from the road, so the road always runs through a valley.
+                The noise continues from one chunk to the next, so a zone's chunks fit together seamlessly.
+                To make any zone fit after any other, the first and last row of every zone are sampled with a shared seed instead of the zone's own,
+                so all zones start and end at exactly the same heights.
+                <br><br>
+                Getting the lighting right taught me the difference between face normals and vertex normals:
+                my Phong shading worked on imported models but not on my terrain, until I averaged the face normals into a normal per vertex.
+                Colouring the terrain by its normals made the problems easy to spot.
+            </p>
+
+<pre><code class="language-cpp">if ((j == 0 &amp;&amp; mChunkID == 0) || (j == subdivision &amp;&amp; mChunkID == mAmountOfChunks)) {
+    storeSeed = mSeed;
+    mSeed = 0;
+    noiseValue = noise2D(static_cast&lt;float&gt;(i), static_cast&lt;float&gt;(0 - mPerlinY));
+
+    mSeed = storeSeed;
+}
+else {
+    noiseValue = noise2D(static_cast&lt;float&gt;(i), static_cast&lt;float&gt;(j));
+}
+// ...
+//amplify things far away and decrease things close to the road
+noiseValue += (amplify * static_cast&lt;float&gt;(maxAmplifacation));</code></pre>
+            <p class="code-caption">Chunk::GenerateMesh() — Chunk.cpp (shortened)</p>
+
+            <img src="../Assets/media/SegwayMonkey/normals-debug.png" alt="The terrain coloured by its normals while debugging the lighting" class="project-image lightbox-image">
+            <img src="../Assets/media/SegwayMonkey/zone-names.png" alt="Generated zone names printed with their seeds" class="project-image lightbox-image">
+
+            <h4>Recycling chunks</h4>
+            <p>
+                Only three chunks exist in the world at a time. Instead of deleting a chunk once the player has passed it and creating a new one,
+                the world manager moves the next chunk of the current zone to the back of the line, so nothing is created or destroyed while you play.
+                Generating all zones up front at the start of the game, instead of while playing, was a lecturer's suggestion.
+                With all of this running, the game held around 90 fps at an average window size.
+            </p>
+        </div>
+
+       
+
+        <!-- RENDERING -->
+        <div class="content-block">
+            <p class="section-kicker">Rendering · Raspberry Pi</p>
+            <h3 id="rendering">3D on a Raspberry Pi</h3>
+            <ul class="system-tags">
+                <li>OpenGL ES 3.1</li>
+                <li>Phong shading</li>
+                <li>Bullet physics</li>
+                <li>Cross-compiling</li>
+            </ul>
+
+            <video class="project-video" src="../Assets/media/SegwayMonkey/physics.mp4" width="284" height="226" muted loop playsinline preload="metadata" aria-label="The monkey model with Phong lighting and its Bullet physics shape drawn as a debug view"></video>
+
+            <p>
+                Everything was new in this project: the Raspberry Pi, OpenGL, 3D maths and the Bullet physics library.
+                I wrote the game in Visual Studio and cross-compiled it to the Pi, which renders with OpenGL ES 3.1 through EGL and an X11 window.
+                I wrote the shaders, with Phong lighting based on a tutorial on the models, diffuse-only lighting on the terrain so it doesn't look shiny, and distance fog.
+                <br><br>
+                Bullet handles the player and the rocks. The player moves by setting its velocity rather than applying forces, which a classmate suggested
+                once I realised my movement depended on the frame rate. The game has a main menu, pause and game over screen, each as its own game state class.
+            </p>
+        </div>
+
+        <!-- LESSONS LEARNED -->
+        <div class="content-block">
+            <p class="section-kicker">Reflection</p>
+            <h3 id="lessons-learned">Lessons learned</h3>
+
+            <h4>Plan the hard parts before writing them.</h4>
+            <p>
+                Before writing the world generation I drew flowcharts for it, and changed them several times: moving chunks back instead of recreating them was a change on paper,
+                not in code. This was the first project where I planned this much, and it is a habit I have kept since.
+            </p>
+            <hr>
+
+            <h4>New territory takes longer than you think.</h4>
+            <p>
+                With so many new things at once, almost everything took longer than planned. Shadow maps, instancing and moving obstacles were all cut,
+                and I kept the road flat so the player could drive on simple box colliders instead of a collision mesh of the terrain.
+                Cutting early is what made it possible to finish a game I was proud of.
+            </p>
+        </div>
+
     </section>
+    <script>
+        // Play clips only while they are on screen, and leave them paused for people who prefer reduced motion
+        (function () {
+            const videos = document.querySelectorAll('video.project-video');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                videos.forEach(video => { video.controls = true; });
+                return;
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play().catch(() => { entry.target.controls = true; });
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            videos.forEach(video => observer.observe(video));
+        })();
+    </script>
+
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
 </body>

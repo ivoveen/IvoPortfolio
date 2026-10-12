@@ -1281,3 +1281,94 @@
                 scroll-margin-top: 210px;
             }
         }
+
+        /* =====================================================================
+           Image, video and lightbox fixes
+           - Images and clips are never shown bigger than their real size, so they don't look blurry or stretched.
+           - Wide screenshots get the full content width with the "wide" class, so their text stays readable.
+           - The lightbox opens straight away and shows the image at its real size, up to the size of the screen.
+           ===================================================================== */
+        img.project-image {
+            width: auto;
+            max-width: min(48%, 480px);
+            height: auto;
+        }
+        img.project-image.wide {
+            display: block;
+            max-width: min(98%, 960px);
+            margin: 1.25rem auto 1.75rem;
+        }
+        img.project-image.photo {
+            width: auto;
+            max-width: min(98%, 800px);
+        }
+        img.project-image.diagram-img {
+            width: auto;
+            max-width: min(100%, 900px);
+        }
+        img.project-image.closing-image {
+            width: 100%;
+            max-width: 100%;
+        }
+        video.project-video {
+            width: auto;
+            max-width: min(48%, 480px);
+        }
+        video.project-video.wide {
+            max-width: min(98%, 960px);
+        }
+        video.project-video.showcase {
+            width: auto;
+            max-width: min(98%, 800px);
+        }
+        @media (max-width: 1100px) {
+            img.project-image,
+            img.project-image.wide,
+            img.project-image.photo,
+            img.project-image.diagram-img,
+            video.project-video,
+            video.project-video.wide,
+            video.project-video.showcase {
+                width: auto;
+                max-width: 100%;
+                margin: 1.5rem auto;
+            }
+        }
+
+        /* Lightbox: a normal pointer on clickable images, and an overlay that simply shows or hides */
+        img.lightbox-image {
+            cursor: pointer;
+        }
+        .lightbox-overlay {
+            display: none;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition: none;
+            background: rgba(0, 0, 0, 0.82);
+            cursor: pointer;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+            animation: lightbox-fade-in 0.15s ease-out;
+        }
+        .lightbox-overlay::before {
+            content: none;
+        }
+        .lightbox-overlay img,
+        .lightbox-overlay.active img {
+            width: auto;
+            min-width: 0;
+            max-width: 92vw;
+            height: auto;
+            max-height: 85vh;
+            transform: none;
+            opacity: 1;
+            visibility: visible;
+            transition: none;
+            cursor: pointer;
+        }
+        @keyframes lightbox-fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
