@@ -859,21 +859,6 @@ if (DestinationReached)
 
             <h4>Looking back</h4>
             <p>
-                <strong>The editor and the runtime measure reach differently.</strong> Keyframes are clamped to the distance between the jib's two points,
-                while the trolley maps between each point's distance from the mast. They only agree when the inner point sits on the mast,
-                and the minimum reach is never enforced on keyframes at all. One shared function for "can the crane reach this" would fix both.
-                <br><br>
-                <strong>Keyframes trust values they might not have yet.</strong> The reach and height on a keyframe are plain, uninitialised members
-                that only become valid once the crane has pushed them, and they aren't saved with the level.
-                Initialising them, or giving each keyframe a reference to its crane to ask instead, would be safer.
-                <br><br>
-                <strong>Every crane listens to every component.</strong> To react when its own parts are moved, each crane subscribes to the editor's global
-                "component transform changed" event, so every crane in the level recalculates whenever anything at all is moved.
-                Filtering on the component's owner would limit that to the crane's own parts.
-                <br><br>
-                <strong>An option that does nothing.</strong> The crane exposes a "one axis at once" setting, but the movement code never reads it.
-                It should either be implemented or removed, because designers will reasonably expect it to work.
-                <br><br>
                 <strong>Keyframes didn't need to be actors.</strong> Unreal can show vector properties as draggable widgets in the viewport with the
                 MakeEditWidget meta tag. A list of keyframe positions on the crane itself would have meant fewer actors for designers to manage.
             </p>
@@ -907,7 +892,19 @@ if (DestinationReached)
                 Our concept wasn't picked, and the team went with the vacuum cleaner game instead.
                 The prototype still came in handy later: when the team wanted a wall-crawling enemy, its movement was my starting point.
             </p>
-            <p><a class="project-action" href="https://www.youtube.com/watch?v=CeCxZweoFSY" target="_blank" rel="noreferrer">Watch the prototype gameplay</a></p>
+
+             <div class="about-picture">
+                <div class="about-video">
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/CeCxZweoFSY?si=5Gr2l18mY2clz0iV?modestbranding=0&amp;rel=0&amp;controls=1&amp;autoplay=1&amp;mute=1"
+                            title="Suck it Up trailer"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- THE PROJECT -->

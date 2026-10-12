@@ -7,6 +7,7 @@
     <title>HoleDown | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -14,8 +15,10 @@
         <a href="../index.html"><h3>Ivo van der Veen</h3></a>
         <div>
             <a href="#intro">Overview</a>
-            <a href="#details">Details</a>
-            <a href="#technical">Technical implementation</a>
+            <a href="#level">Level</a>
+            <a href="#rope">Rope physics</a>
+            <a href="#gameplay">Gameplay</a>
+            <a href="#lessons-learned">Lessons learned</a>
         </div>
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
@@ -52,12 +55,13 @@
         <div class="about-container">
             <div class="about-text">
                 <h2>HoleDown</h2>
-                <p>HoleDown is a remake of Pitfall 2 and an early C++ game project focused on platforming and level design. I handled systems design, tooling, and project pipelines to make the game stable and playable.</p>
+                <p>HoleDown is my recreation of Pitfall II, and my first big C++ project at BUas.
+                    It has a full scrolling level built in Tiled, my own tile renderer and collision, and swinging ropes simulated with verlet physics.</p>
                 <ul class="intro-highlights">
-                    <li>Platforming systems</li>
-                    <li>Level design</li>
-                    <li>Tools and pipelines</li>
-                    <li>Gameplay polish</li>
+                    <li>C++</li>
+                    <li>Tile maps</li>
+                    <li>Verlet rope physics</li>
+                    <li>AABB collision</li>
                 </ul>
                 <a class="resume-btn" href="https://drboem.itch.io/holedown" target="_blank" rel="noreferrer">Play now on itch</a>
 
@@ -82,28 +86,174 @@
         <div class="project-details">
             <div class="details-left">
                 <div><strong>Language:</strong> C++</div>
+                <div><strong>Engine:</strong> BUas 2D template</div>
                 <div><strong>Team size:</strong> Solo</div>
                 <div><strong>Duration:</strong> 8 Weeks</div>
             </div>
             <div class="details-right">
                 <div><strong>Key responsibilities:</strong></div>
                 <ul>
-                    <li>Systems design</li>
-                    <li>Tooling and pipelines</li>
+                    <li>Tile map loading and rendering</li>
+                    <li>Collision and player movement</li>
+                    <li>Verlet physics rope</li>
+                    <li>Enemies and game flow</li>
                 </ul>
-                
             </div>
         </div>
-        <p><a class="project-action" href="https://drboem.itch.io/holedown" target="_blank" rel="noreferrer">View HoleDown on itch.io</a></p>
     </section>
 
-        <section id="technical" class="project-content">
-            <div class="content-block">
-            <p class="section-kicker">Work in progress</p>
-            <h3>Technical implementation</h3>
-            <p>This section is still under construction. A detailed technical breakdown will be added soon.</p>
+    <section class="project-content">
+
+        <!-- LEVEL -->
+        <div class="content-block">
+            <p class="section-kicker">Level · Tile maps</p>
+            <h3 id="level">From Tiled to the screen</h3>
+            <ul class="system-tags">
+                <li>Tiled</li>
+                <li>Pixel rendering</li>
+                <li>AABB collision</li>
+                <li>Profiling</li>
+            </ul>
+
+            <img src="../Assets/media/HoleDown/tiled-map.jpg" alt="The full Pitfall II map recreated in the Tiled editor" class="project-image lightbox-image wide">
+
+            <p>
+                HoleDown was my first project at BUas: a recreation of Pitfall II, written in C++ on the school's 2D template in eight weeks.
+                I rebuilt the whole Pitfall II map in Tiled and exported it as CSV, which my game reads and turns into tile data.
+                The renderer copies each tile's pixels from the tileset straight into the screen buffer, in world coordinates, so a camera can scroll over a map of any size.
+                <br><br>
+                Tiled also places everything else. A second layer marks where ropes, pits, enemies, coins and checkpoints go,
+                and the game spawns the right object for each marker when the level loads. That made it quick to build the level and change it later.
+            </p>
+
+            <h4>Collision</h4>
+            <p>
+                My intake game had shaky collision, so this time I researched how it is usually done first.
+                The player is tested with AABB collision against only the four tiles it could overlap, and the check runs on the position the player is about to move to,
+                so the player is stopped before it ends up inside a tile. A debug view showed which tiles were being checked and which one was hit.
+            </p>
+
+            <img src="../Assets/media/HoleDown/collision-debug.png" alt="Collision debug view: the four tiles being checked in green, the tile being hit in orange" class="project-image lightbox-image wide">
+
+            <h4>My first profiling</h4>
+            <p>
+                The parallax background was my first time using a profiler. Copying its pixels one by one turned out to be very slow,
+                so I switched to copying whole blocks of pixels at once with memcpy, which improved the frame rate a lot.
+                memcpy can't skip transparent pixels, so I filled the transparent parts of each layer with the colour of the layer behind it.
+                It isn't perfect, but the effect still holds up.
+            </p>
         </div>
+
+        <!-- ROPE -->
+        <div class="content-block">
+            <p class="section-kicker">Physics · Verlet</p>
+            <h3 id="rope">A swinging rope</h3>
+            <ul class="system-tags">
+                <li>Verlet integration</li>
+                <li>Distance constraints</li>
+                <li>Game feel</li>
+            </ul>
+
+            <video class="project-video" src="../Assets/media/HoleDown/rope.mp4" width="600" height="338" muted loop playsinline preload="metadata" aria-label="The player swinging across a pit on the verlet rope"></video>
+
+            <p>
+                A lecture on verlet physics got me hooked, so I used it for Pitfall's swinging ropes.
+                The rope is a chain of points that each remember where they were last frame. Every update a point keeps moving by the difference between
+                its current and previous position and gets pulled down by gravity. Then a few passes pull every pair of neighbouring points
+                back to a fixed distance from each other, with the top point anchored in place.
+                <br><br>
+                In Pitfall the ropes never stop swinging, so the rope checks when it reaches the end of a swing and gives itself a small push if the swing has become shorter.
+                The player grabs the end of the rope when they get close, and the camera zooms out while swinging to show where you are going to land.
+            </p>
+
+<pre><code class="language-cpp">for (int j = 0; j &lt; mNUMITERATIONS; j++) {
+    for (int i = 0; i &lt; mROPEPARTS - 1; i++) {
+        float2 lineCentre = (mpRopePoints[i + 1]-&gt;position + mpRopePoints[i]-&gt;position) / 2;
+        float2 lineDirection = normalize(mpRopePoints[i + 1]-&gt;position - mpRopePoints[i]-&gt;position);
+        if (!mpRopePoints[i]-&gt;anchored) mpRopePoints[i]-&gt;position = lineCentre - (lineDirection * (mMAXDIST / 2));
+        if (!mpRopePoints[i + 1]-&gt;anchored) mpRopePoints[i + 1]-&gt;position = lineCentre + (lineDirection * (mMAXDIST / 2));
+    }
+}</code></pre>
+            <p class="code-caption">Rope::simulate() — Rope.cpp (shortened)</p>
+        </div>
+
+        <!-- GAMEPLAY -->
+        <div class="content-block">
+            <p class="section-kicker">Gameplay</p>
+            <h3 id="gameplay">Movement and enemies</h3>
+            <ul class="system-tags">
+                <li>State machine</li>
+                <li>Inheritance</li>
+                <li>Sprite animation</li>
+            </ul>
+
+            <video class="project-video" src="../Assets/media/HoleDown/balloon.mp4" width="600" height="338" muted loop playsinline preload="metadata" aria-label="The player floating up on a balloon"></video>
+            <img src="../Assets/media/HoleDown/player-states.png" alt="Diagram of the player's movement states and how it switches between them" class="project-image lightbox-image">
+
+            <p>
+                The player switches between walking, climbing, swimming, swinging and floating on a balloon, and every mode has its own movement code.
+                I planned the switches between them in a diagram first: every state leads back to walking, and walking leads to all the others.
+                The character sprite came from an online asset pack, and I drew my own swimming and swinging animations for it.
+                <br><br>
+                One pit class covers four kinds of pit, from a plain hole to water full of crocodiles. The bats, frogs, eels, scorpions and boulders
+                all share one enemy base class, and once that existed, each new enemy only took a short time to add.
+                Coins, checkpoints, a score, and menus with settings complete the game.
+            </p>
+        </div>
+
+        <!-- LESSONS LEARNED -->
+        <div class="content-block">
+            <p class="section-kicker">Reflection</p>
+            <h3 id="lessons-learned">Lessons learned</h3>
+
+            <h4>Research before you build.</h4>
+            <p>
+                The faulty collision in my intake game came from building it my own way without checking how others do it.
+                This time I read up on AABB collision first, and had a solid system working in a day.
+            </p>
+            <hr>
+
+            <h4>Structure matters, even in a small game.</h4>
+            <p>
+                This was my first big C++ project, and it shows in the code. Feedback from a lecturer on inheritance, statics and the SOLID principles
+                changed how I set up classes, and the enemy base class showed me how much time a good structure saves.
+            </p>
+            <hr>
+
+            <h4>Finish the core first.</h4>
+            <p>
+                The verlet rope was the most fun part, but it also took much longer than planned.
+                The lesson I took from it: get the core of a game finished before diving into the feature I'm most excited about.
+            </p>
+        </div>
+
     </section>
+    <script>
+        // Play clips only while they are on screen, and leave them paused for people who prefer reduced motion
+        (function () {
+            const videos = document.querySelectorAll('video.project-video');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                videos.forEach(video => { video.controls = true; });
+                return;
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play().catch(() => { entry.target.controls = true; });
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            videos.forEach(video => observer.observe(video));
+        })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>if (window.hljs) { hljs.highlightAll(); }</script>
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
 </body>
