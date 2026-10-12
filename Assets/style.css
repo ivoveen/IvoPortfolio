@@ -1085,6 +1085,7 @@
         .resume-btn {
             display: inline-block;
             margin-top: 1.5rem;
+            margin-right: 6px;
             padding: 0.6rem 1rem;
             background: linear-gradient(90deg, #7fc1ff, #4aa1ff);
             color: #071028;
@@ -1371,4 +1372,304 @@
         @keyframes lightbox-fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        /* =====================================================================
+           Responsive layout
+           - Project hero: text and trailer side by side on wide screens, vertically centred.
+             On tablets and phones it stacks as title, trailer, description.
+           - Navigation: on tablets and phones the name and contact links share one row,
+             and the page links scroll sideways in a single row underneath.
+           ===================================================================== */
+
+        /* ---------- Project hero ---------- */
+        .project-hero .about-container,
+        .project-hero.video-large .about-container {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+            grid-template-areas: "text media";
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .project-hero .about-text {
+            grid-area: text;
+            min-width: 0;
+            text-align: left;
+        }
+
+        .project-hero .about-text h2 {
+            margin-top: 0;
+        }
+
+        .project-hero .about-picture,
+        .project-hero.video-large .about-picture {
+            grid-area: media;
+            display: block;
+            min-width: 0;
+            width: 100%;
+        }
+
+        .project-hero .about-video {
+            width: 100%;
+        }
+
+        .project-hero .video-frame,
+        .project-hero.video-large .about-video .video-frame {
+            position: relative;
+            width: 100%;
+            max-width: none;
+            height: auto;
+            padding-top: 0;
+            aspect-ratio: 16 / 9;
+            margin: 0;
+        }
+
+        .project-hero .video-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .project-hero .about-picture img,
+        .project-hero.video-large .about-picture img {
+            display: block;
+            width: 100%;
+            max-width: none;
+            height: auto;
+            margin: 0;
+            border-radius: 12px;
+        }
+
+        .project-hero .intro-highlights {
+            justify-content: flex-start;
+        }
+
+        @media (max-width: 1100px) {
+            .project-hero .about-container,
+            .project-hero.video-large .about-container {
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-areas:
+                    "title"
+                    "media";
+                gap: 1.25rem;
+                align-items: start;
+            }
+
+            /* Let the title, text and buttons take part in the grid, so the trailer can sit between the title and the text */
+            .project-hero .about-text {
+                display: contents;
+            }
+
+            .project-hero .about-text > h2 {
+                grid-area: title;
+                margin: 0;
+            }
+
+            .project-hero .about-text > p,
+            .project-hero .about-text > .intro-highlights {
+                margin: 0;
+            }
+
+            .project-hero .about-text > .resume-btn,
+            .project-hero .about-text > a {
+                justify-self: start;
+                margin-top: 0;
+            }
+
+            .project-hero .about-picture,
+            .project-hero.video-large .about-picture {
+                max-width: 860px;
+                justify-self: center;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .project-hero.about {
+                padding: 1.5rem 1rem;
+                margin: 1rem 0 1.5rem;
+                border-radius: 0;
+            }
+
+            .project-back-row {
+                margin-top: 0.75rem;
+            }
+
+            .project-hero .about-text h2 {
+                font-size: 1.75rem;
+            }
+
+            .project-hero .about-text p {
+                font-size: 1.05rem;
+                line-height: 1.65;
+            }
+        }
+
+        /* ---------- Content on small screens ---------- */
+        @media (max-width: 500px) {
+            .project-content .content-block {
+                padding: 1.25rem 1rem;
+            }
+
+            .project-details {
+                padding: 1rem;
+            }
+        }
+
+        /* ---------- Navigation on laptops, tablets and phones ----------
+           Once the links no longer fit next to the name, the name and contact buttons share the top row
+           and the page links get their own row underneath. On phones that row scrolls sideways. */
+        @media (max-width: 1360px) {
+            nav {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                grid-template-areas:
+                    "name contact"
+                    "links links";
+                align-items: center;
+                gap: 0.35rem 0.75rem;
+                padding: 0.7rem 2rem 0.45rem;
+                text-align: left;
+            }
+
+            nav > a:first-child {
+                grid-area: name;
+                justify-content: flex-start;
+                margin: 0;
+                min-width: 0;
+            }
+
+            nav > a:first-child h3 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0;
+            }
+
+            nav > div:first-of-type {
+                grid-area: links;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                gap: 0.15rem;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -2rem;
+                padding: 0 2rem 0.2rem;
+            }
+
+            nav > div:first-of-type::-webkit-scrollbar {
+                display: none;
+            }
+
+            nav > div:first-of-type a {
+                flex: 0 0 auto;
+                white-space: nowrap;
+                margin: 0;
+                padding: 0.35rem 0.6rem;
+            }
+
+            nav > div:first-of-type a:first-child {
+                padding-left: 0;
+            }
+
+            .nav-contact {
+                grid-area: contact;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 0.35rem;
+            }
+
+            .nav-contact a {
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 0.55rem 1rem 0.35rem;
+            }
+
+            nav > a:first-child h3 {
+                font-size: 1.05rem;
+            }
+
+            nav > div:first-of-type {
+                margin: 0 -1rem;
+                padding: 0 1rem 0.2rem;
+                /* fade the right edge to show there is more to scroll */
+                -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+                mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+            }
+
+            nav > div:first-of-type a {
+                padding: 0.35rem 0.55rem;
+                font-size: 0.95rem;
+            }
+
+            .nav-contact {
+                gap: 0.2rem;
+            }
+
+            .nav-contact a {
+                padding: 6px;
+            }
+
+            .nav-contact a svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .nav-contact .resume-btn {
+                padding: 0.35rem 0.7rem;
+                margin-right: 0.25rem;
+                font-size: 0.9rem;
+            }
+
+            /* The nav is much shorter here, so anchors need less room above them */
+            .project-content h3[id],
+            .project-content h4[id],
+            #intro,
+            section.project-content[id],
+            section.projects[id] {
+                scroll-margin-top: 112px;
+            }
+
+            .project-content .section-kicker + h3[id] {
+                scroll-margin-top: 140px;
+            }
+        }
+
+        /* Most phones: shrink the top row a little so the full name fits next to the buttons */
+        @media (max-width: 430px) {
+            nav {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            nav > div:first-of-type {
+                margin: 0 -0.75rem;
+                padding: 0 0.75rem 0.2rem;
+            }
+
+            nav > a:first-child h3 {
+                font-size: 0.95rem;
+            }
+
+            .nav-contact a {
+                padding: 5px;
+            }
+
+            .nav-contact a svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .nav-contact .resume-btn {
+                padding: 0.3rem 0.55rem;
+                font-size: 0.85rem;
+            }
         }

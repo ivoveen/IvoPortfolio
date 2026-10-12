@@ -11,10 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    let currentId = null;
     const setActive = (id) => {
         sections.forEach(({ link }) => {
             link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });
+
+        // On phones the page links scroll sideways in one row: keep the active one in view
+        if (id !== currentId) {
+            currentId = id;
+            const active = sections.find(({ section }) => section.id === id);
+            const strip = active && active.link.parentElement;
+            if (strip && strip.scrollWidth > strip.clientWidth) {
+                const left = active.link.offsetLeft - (strip.clientWidth - active.link.offsetWidth) / 2;
+                strip.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+            }
+        }
     };
 
     // After clicking a nav link, keep that link highlighted until the reader scrolls by themselves.

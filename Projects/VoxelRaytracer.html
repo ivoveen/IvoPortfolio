@@ -7,12 +7,15 @@
     <title>3D CPU Voxel Raytracer | Ivo van der Veen</title>
     <link rel="stylesheet" href="../Assets/style.css">
     <link rel="icon" type="image/png" href="../Assets/Pictures/IvoMountain.jpg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <nav>
-        <a href="../index.html"><h3>Ivo van der Veen</h3></a>
+        <a href="../index.html">
+            <h3>Ivo van der Veen</h3>
+        </a>
         <div>
             <a href="#intro">Overview</a>
             <a href="#rendering">Rendering</a>
@@ -24,25 +27,34 @@
         <div class="nav-contact">
             <a href="../Ivo_van_der_Veen_Resume.pdf" class="resume-btn" target="_blank" rel="noopener">Resume</a>
             <a href="mailto:ivo.thom.vanderveen@gmail.com" target="_blank" aria-label="Email" title="Email">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6" fill="none" />
-                    <polyline points="3,6 12,13 21,6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"
+                        fill="none" />
+                    <polyline points="3,6 12,13 21,6" stroke="currentColor" stroke-width="1.6" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
             <a href="https://github.com/ivoveen" target="_blank" aria-label="GitHub" title="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
             </a>
-            <a href="https://www.linkedin.com/in/ivo-van-der-veen-59299a21b/" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/ivo-van-der-veen-59299a21b/" target="_blank" aria-label="LinkedIn"
+                title="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
             </a>
             <a href="https://drboem.itch.io" target="_blank" aria-label="Itch.io" title="Itch.io">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 245.371 220.736" fill="currentColor">
-                    <path d="M31.99 1.365C21.287 7.72.2 31.945 0 38.298v10.516C0 62.144 12.46 73.86 23.773 73.86c13.584 0 24.902-11.258 24.903-24.62 0 13.362 10.93 24.62 24.515 24.62 13.586 0 24.165-11.258 24.165-24.62 0 13.362 11.622 24.62 25.207 24.62h.246c13.586 0 25.208-11.258 25.208-24.62 0 13.362 10.58 24.62 24.164 24.62 13.585 0 24.515-11.258 24.515-24.62 0 13.362 11.32 24.62 24.903 24.62 11.313 0 23.773-11.714 23.773-25.046V38.298c-.2-6.354-21.287-30.58-31.988-36.933C180.118.197 157.056-.005 122.685 0c-34.37.003-81.228.54-90.697 1.365zm65.194 66.217a28.025 28.025 0 0 1-4.78 6.155c-5.128 5.014-12.157 8.122-19.906 8.122a28.482 28.482 0 0 1-19.948-8.126c-1.858-1.82-3.27-3.766-4.563-6.032l-.006.004c-1.292 2.27-3.092 4.215-4.954 6.037a28.5 28.5 0 0 1-19.948 8.12c-.934 0-1.906-.258-2.692-.528-1.092 11.372-1.553 22.24-1.716 30.164l-.002.045c-.02 4.024-.04 7.333-.06 11.93.21 23.86-2.363 77.334 10.52 90.473 19.964 4.655 56.7 6.775 93.555 6.788h.006c36.854-.013 73.59-2.133 93.554-6.788 12.883-13.14 10.31-66.614 10.52-90.474-.022-4.596-.04-7.905-.06-11.93l-.003-.045c-.162-7.926-.623-18.793-1.715-30.165-.786.27-1.757.528-2.692.528a28.5 28.5 0 0 1-19.948-8.12c-1.862-1.822-3.662-3.766-4.955-6.037l-.006-.004c-1.294 2.266-2.705 4.213-4.563 6.032a28.48 28.48 0 0 1-19.947 8.125c-7.748 0-14.778-3.11-19.906-8.123a28.025 28.025 0 0 1-4.78-6.155 27.99 27.99 0 0 1-4.736 6.155 28.49 28.49 0 0 1-19.95 8.124c-.27 0-.54-.012-.81-.02h-.007c-.27.008-.54.02-.813.02a28.49 28.49 0 0 1-19.95-8.123 27.992 27.992 0 0 1-4.736-6.155zm-20.486 26.49l-.002.01h.015c8.113.017 15.32 0 24.25 9.746 7.028-.737 14.372-1.105 21.722-1.094h.006c7.35-.01 14.694.357 21.723 1.094 8.93-9.747 16.137-9.73 24.25-9.746h.014l-.002-.01c3.833 0 19.166 0 29.85 30.007L210 165.244c8.504 30.624-2.723 31.373-16.727 31.4-20.768-.773-32.267-15.855-32.267-30.935-11.496 1.884-24.907 2.826-38.318 2.827h-.006c-13.412 0-26.823-.943-38.318-2.827 0 15.08-11.5 30.162-32.267 30.935-14.004-.027-25.23-.775-16.726-31.4L46.85 124.08C57.534 94.073 72.867 94.073 76.7 94.073z" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 245.371 220.736"
+                    fill="currentColor">
+                    <path
+                        d="M31.99 1.365C21.287 7.72.2 31.945 0 38.298v10.516C0 62.144 12.46 73.86 23.773 73.86c13.584 0 24.902-11.258 24.903-24.62 0 13.362 10.93 24.62 24.515 24.62 13.586 0 24.165-11.258 24.165-24.62 0 13.362 11.622 24.62 25.207 24.62h.246c13.586 0 25.208-11.258 25.208-24.62 0 13.362 10.58 24.62 24.164 24.62 13.585 0 24.515-11.258 24.515-24.62 0 13.362 11.32 24.62 24.903 24.62 11.313 0 23.773-11.714 23.773-25.046V38.298c-.2-6.354-21.287-30.58-31.988-36.933C180.118.197 157.056-.005 122.685 0c-34.37.003-81.228.54-90.697 1.365zm65.194 66.217a28.025 28.025 0 0 1-4.78 6.155c-5.128 5.014-12.157 8.122-19.906 8.122a28.482 28.482 0 0 1-19.948-8.126c-1.858-1.82-3.27-3.766-4.563-6.032l-.006.004c-1.292 2.27-3.092 4.215-4.954 6.037a28.5 28.5 0 0 1-19.948 8.12c-.934 0-1.906-.258-2.692-.528-1.092 11.372-1.553 22.24-1.716 30.164l-.002.045c-.02 4.024-.04 7.333-.06 11.93.21 23.86-2.363 77.334 10.52 90.473 19.964 4.655 56.7 6.775 93.555 6.788h.006c36.854-.013 73.59-2.133 93.554-6.788 12.883-13.14 10.31-66.614 10.52-90.474-.022-4.596-.04-7.905-.06-11.93l-.003-.045c-.162-7.926-.623-18.793-1.715-30.165-.786.27-1.757.528-2.692.528a28.5 28.5 0 0 1-19.948-8.12c-1.862-1.822-3.662-3.766-4.955-6.037l-.006-.004c-1.294 2.266-2.705 4.213-4.563 6.032a28.48 28.48 0 0 1-19.947 8.125c-7.748 0-14.778-3.11-19.906-8.123a28.025 28.025 0 0 1-4.78-6.155 27.99 27.99 0 0 1-4.736 6.155 28.49 28.49 0 0 1-19.95 8.124c-.27 0-.54-.012-.81-.02h-.007c-.27.008-.54.02-.813.02a28.49 28.49 0 0 1-19.95-8.123 27.992 27.992 0 0 1-4.736-6.155zm-20.486 26.49l-.002.01h.015c8.113.017 15.32 0 24.25 9.746 7.028-.737 14.372-1.105 21.722-1.094h.006c7.35-.01 14.694.357 21.723 1.094 8.93-9.747 16.137-9.73 24.25-9.746h.014l-.002-.01c3.833 0 19.166 0 29.85 30.007L210 165.244c8.504 30.624-2.723 31.373-16.727 31.4-20.768-.773-32.267-15.855-32.267-30.935-11.496 1.884-24.907 2.826-38.318 2.827h-.006c-13.412 0-26.823-.943-38.318-2.827 0 15.08-11.5 30.162-32.267 30.935-14.004-.027-25.23-.775-16.726-31.4L46.85 124.08C57.534 94.073 72.867 94.073 76.7 94.073z" />
                 </svg>
             </a>
         </div>
@@ -58,18 +70,30 @@
                 <h2>3D CPU Voxel Raytracer</h2>
                 <p>A voxel ray tracer that runs entirely on the CPU, with mirrors, glass, smoke and depth of field,
                     built in eight weeks on top of the school's voxel template.
-                    To show it off I made a small game, Ghost Hunter: Ray L. Trace, where your flashlight's rays are what catch the ghosts.</p>
+                    To show it off I made a small game, Ghost Hunter: Ray L. Trace, where your flashlight's rays are
+                    what catch the ghosts.</p>
                 <ul class="intro-highlights">
                     <li>CPU ray tracing</li>
                     <li>Glass and smoke</li>
                     <li>Voxel objects</li>
                     <li>Ray-traced gameplay</li>
                 </ul>
-                                   <a class="resume-btn" href="https://github.com/ivoveen/CPUVoxelRaytracer" target="_blank" rel="noreferrer">View the code on github</a> </div>
-
+                <a class="resume-btn" href="https://drboem.itch.io/ray-tracy" target="_blank"
+                    rel="noreferrer">Play now on Itch</a>
+                
+                <a class="resume-btn" href="https://github.com/ivoveen/CPUVoxelRaytracer" target="_blank"
+                    rel="noreferrer">View the code on github</a>
             </div>
             <div class="about-picture">
-                <img src="../Assets/Pictures/raytrace.gif" alt="Voxel Raytracer preview" loading="lazy" class="project-image lightbox-image">
+            <div class="about-video">
+                <div class="video-frame">
+                    <iframe
+                        src="https://www.youtube.com/embed/CDdPDCQBbi0?si=aWugWzWp3X13NN7K&amp;modestbranding=0&amp;rel=0&amp;controls=1&amp;autoplay=1&amp;mute=1"
+                        title="Ray Tracy trailer" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -92,8 +116,8 @@
                     <li>Profiling and optimisation</li>
                     <li>A small ray-traced game</li>
                 </ul>
-
-    </div>
+            </div>
+        </div>
     </section>
 
     <section class="project-content">
@@ -109,19 +133,25 @@
                 <li>ImGui tools</li>
             </ul>
 
-            <video class="project-video showcase" src="../Assets/media/VoxelRaytracer/lights.mp4" width="600" height="374" muted loop playsinline preload="metadata" aria-label="Point, spot and directional lights being adjusted live with ImGui"></video>
+            <video class="project-video showcase" src="../Assets/media/VoxelRaytracer/lights.mp4" width="600"
+                height="374" muted loop playsinline preload="metadata"
+                aria-label="Point, spot and directional lights being adjusted live with ImGui"></video>
 
             <p>
-                The project started from the school's voxel template, which renders a voxel world with plain colours and normals.
+                The project started from the school's voxel template, which renders a voxel world with plain colours and
+                normals.
                 Everything on this page I added on top of it in eight weeks.
                 <br><br>
-                The first week was all about light. I added point lights, spot lights with an adjustable cone and soft edge, and directional lights,
-                all with shadow rays and coloured light, and any number of them at once. Every light inherits from one base class
-                and overrides a single function that returns its contribution, so the renderer can treat all of them the same way.
+                The first week was all about light. I added point lights, spot lights with an adjustable cone and soft
+                edge, and directional lights,
+                all with shadow rays and coloured light, and any number of them at once. Every light inherits from one
+                base class
+                and overrides a single function that returns its contribution, so the renderer can treat all of them the
+                same way.
                 Every light also draws its own ImGui panel, so I could tweak the whole scene live.
             </p>
 
-<pre><code class="language-cpp">class Light
+            <pre><code class="language-cpp">class Light
 {
 public:
     float epsilon = 0.0001f;
@@ -146,33 +176,44 @@ public:
                 <li>Ray marching</li>
             </ul>
 
-            <video class="project-video" src="../Assets/media/VoxelRaytracer/glass.mp4" width="600" height="366" muted loop playsinline preload="metadata" aria-label="Glass with its refractive index being raised from 1.0 to about 1.4"></video>
-            <video class="project-video" src="../Assets/media/VoxelRaytracer/beerslaw.mp4" width="600" height="370" muted loop playsinline preload="metadata" aria-label="Coloured glass absorbing more light the thicker it is"></video>
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/glass.mp4" width="600" height="366" muted
+                loop playsinline preload="metadata"
+                aria-label="Glass with its refractive index being raised from 1.0 to about 1.4"></video>
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/beerslaw.mp4" width="600" height="370"
+                muted loop playsinline preload="metadata"
+                aria-label="Coloured glass absorbing more light the thicker it is"></video>
 
             <h4>Materials</h4>
             <p>
-                Every voxel stores a material index, and materials hold the colour, reflectiveness, roughness, refractive index and type,
+                Every voxel stores a material index, and materials hold the colour, reflectiveness, roughness,
+                refractive index and type,
                 so all voxels that share a material can be changed with one slider.
                 Mirrors reflect the ray and trace it again, with a recursion cap to stop rays bouncing forever.
-                Partly reflective materials use Schlick's approximation to randomly decide per ray whether it reflects or scatters,
-                and roughness blends the perfect reflection with a random direction around it, which gives glossy reflections.
-                Because every frame is added to an accumulator, these random choices average out into a clean image when the camera stands still.
+                Partly reflective materials use Schlick's approximation to randomly decide per ray whether it reflects
+                or scatters,
+                and roughness blends the perfect reflection with a random direction around it, which gives glossy
+                reflections.
+                Because every frame is added to an accumulator, these random choices average out into a clean image when
+                the camera stands still.
             </p>
 
             <h4>Glass</h4>
             <p>
                 Glass was the hardest feature of the project and took me more than a week and a half.
                 To refract a ray you need to know both the material it is leaving and the one it is entering,
-                so I changed the voxel traversal to report a hit whenever the material changes, not only when it hits something solid.
-                From there, Snell's law gives the refracted direction and the Fresnel equations give the chance that the ray reflects instead.
-                When neither works, the ray is totally internally reflected. Beer's law then tints the light by how far it travelled through the glass,
+                so I changed the voxel traversal to report a hit whenever the material changes, not only when it hits
+                something solid.
+                From there, Snell's law gives the refracted direction and the Fresnel equations give the chance that the
+                ray reflects instead.
+                When neither works, the ray is totally internally reflected. Beer's law then tints the light by how far
+                it travelled through the glass,
                 so thick coloured glass looks darker than thin glass.
                 <br><br>
                 Most of my glass bugs weren't in the glass code at all, but in the traversal change I had made for it.
                 That was a good lesson in checking everything you changed, not only the place you expect the bug to be.
             </p>
 
-<pre><code class="language-cpp">float3 Renderer::Glass(uchar previousVoxelMaterial, uchar mMaterialID, Tmpl8::Ray&amp; ray, Tmpl8::float3&amp; Normal, Tmpl8::float3&amp; intersectionPoint, float epsilon, int rayDepth)
+            <pre><code class="language-cpp">float3 Renderer::Glass(uchar previousVoxelMaterial, uchar mMaterialID, Tmpl8::Ray&amp; ray, Tmpl8::float3&amp; Normal, Tmpl8::float3&amp; intersectionPoint, float epsilon, int rayDepth)
 {
     float refractionIndex1 = mpScene.mMaterials[previousVoxelMaterial]-&gt;refractiveIndex;
     float refractionIndex2 = mpScene.mMaterials[mMaterialID]-&gt;refractiveIndex;
@@ -204,25 +245,37 @@ public:
 
             <h4>Smoke</h4>
             <p>
-                Smoke was my second hard feature. It started as a material that only applies Beer's law, which looked flat.
-                So I sample a 3D noise texture at points along the ray to get a changing density, scroll that noise over time so the smoke moves,
+                Smoke was my second hard feature. It started as a material that only applies Beer's law, which looked
+                flat.
+                So I sample a 3D noise texture at points along the ray to get a changing density, scroll that noise over
+                time so the smoke moves,
                 and step towards the light from each sample point to work out how much light reaches it.
             </p>
 
-            <video class="project-video" src="../Assets/media/VoxelRaytracer/smoke.mp4" width="396" height="324" muted loop playsinline preload="metadata" aria-label="Red smoke moving through the scene"></video>
-            <video class="project-video" src="../Assets/media/VoxelRaytracer/smoke-green.mp4" width="498" height="458" muted loop playsinline preload="metadata" aria-label="Green smoke lit by the scene"></video>
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/smoke.mp4" width="396" height="324" muted
+                loop playsinline preload="metadata" aria-label="Red smoke moving through the scene"></video>
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/smoke-green.mp4" width="498" height="458"
+                muted loop playsinline preload="metadata" aria-label="Green smoke lit by the scene"></video>
 
             <h4>Camera and scene</h4>
             <p>
-                Around these I added the rest of what makes the images look good: anti-aliasing by jittering every primary ray,
-                depth of field with an adjustable aperture and focal distance, an HDR sky dome based on Jacco Bikker's tutorial,
-                approximated ACES tone mapping, and spheres with their own intersection and shadow tests, which work with every material.
+                Around these I added the rest of what makes the images look good: anti-aliasing by jittering every
+                primary ray,
+                depth of field with an adjustable aperture and focal distance, an HDR sky dome based on Jacco Bikker's
+                tutorial,
+                approximated ACES tone mapping, and spheres with their own intersection and shadow tests, which work
+                with every material.
             </p>
 
-            <img src="../Assets/media/VoxelRaytracer/dof-glass.jpg" alt="Glass voxels rendered with depth of field" class="project-image lightbox-image">
-            <img src="../Assets/media/VoxelRaytracer/mirror-sphere.jpg" alt="A mirror sphere reflecting the HDR sky dome and a mirror floor" class="project-image lightbox-image">
-            <img src="../Assets/media/VoxelRaytracer/smile.jpg" alt="A mirror sphere reflecting the HDR sky dome and a mirror floor" class="project-image lightbox-image">
-    </div>
+            <img src="../Assets/media/VoxelRaytracer/dof-glass.jpg" alt="Glass voxels rendered with depth of field"
+                class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/mirror-sphere.jpg"
+                alt="A mirror sphere reflecting the HDR sky dome and a mirror floor"
+                class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/smile.jpg"
+                alt="A mirror sphere reflecting the HDR sky dome and a mirror floor"
+                class="project-image lightbox-image">
+        </div>
 
         <!-- SCENE: VOXEL OBJECTS -->
         <div class="content-block">
@@ -234,24 +287,33 @@ public:
                 <li>Runtime voxel editing</li>
             </ul>
 
-            <img src="../Assets/media/VoxelRaytracer/magicavoxel.jpg" alt="MagicaVoxel car models loaded into the ray tracer" class="project-image lightbox-image">
-            <video class="project-video" src="../Assets/media/VoxelRaytracer/editing.mp4" width="600" height="376" muted loop playsinline preload="metadata" aria-label="Carving spheres of voxels out of the world with the mouse"></video>
+            <img src="../Assets/media/VoxelRaytracer/magicavoxel.jpg"
+                alt="MagicaVoxel car models loaded into the ray tracer" class="project-image lightbox-image">
+            <video class="project-video" src="../Assets/media/VoxelRaytracer/editing.mp4" width="600" height="376" muted
+                loop playsinline preload="metadata"
+                aria-label="Carving spheres of voxels out of the world with the mouse"></video>
 
             <p>
-                The template traces a single voxel grid sitting at the origin. For a game I needed many objects that can move and change size,
-                so I turned the scene into a list of objects that each implement their own nearest-hit and occlusion tests: voxel objects and spheres.
+                The template traces a single voxel grid sitting at the origin. For a game I needed many objects that can
+                move and change size,
+                so I turned the scene into a list of objects that each implement their own nearest-hit and occlusion
+                tests: voxel objects and spheres.
                 <br><br>
-                Voxel objects are loaded from MagicaVoxel scenes using the open-source ogt_vox header library, and all of them share the scene's 255-material palette.
-                Every object has its own position, scale and grid size, so a flat model gets a flat grid instead of a cube.
-                To make that work I adapted the setup of the Amanatides and Woo grid traversal, which the template is built on,
+                Voxel objects are loaded from MagicaVoxel scenes using the open-source ogt_vox header library, and all
+                of them share the scene's 255-material palette.
+                Every object has its own position, scale and grid size, so a flat model gets a flat grid instead of a
+                cube.
+                To make that work I adapted the setup of the Amanatides and Woo grid traversal, which the template is
+                built on,
                 to start from the object's own bounds and voxel size, and to clamp to the object's real dimensions.
                 Getting objects away from the origin to render correctly took a deep dive into the original paper,
                 after a lot of checkerboard patterns and optical illusions.
                 <br><br>
-                Early on I also added editing: clicking placed or removed a sphere of voxels. The game later used a version of that code to carve holes into ghosts while you suck them up.
+                Early on I also added editing: clicking placed or removed a sphere of voxels. The game later used a
+                version of that code to carve holes into ghosts while you suck them up.
             </p>
 
-<pre><code class="language-cpp">bool VoxelObject::Setup3DDDA(const Ray&amp; ray, DDAState&amp; state) const
+            <pre><code class="language-cpp">bool VoxelObject::Setup3DDDA(const Ray&amp; ray, DDAState&amp; state) const
 {
     // if ray is not inside the world: advance until it is
     state.t = 0;
@@ -291,25 +353,32 @@ public:
                 <li>Multithreading</li>
             </ul>
 
-            <img src="../Assets/media/VoxelRaytracer/lights-all.jpg" alt="Frame times while evaluating every light: about 13.9 ms, 72 fps" class="project-image lightbox-image">
-            <img src="../Assets/media/VoxelRaytracer/lights-stochastic.jpg" alt="Frame times while sampling one light per ray: about 10.4 ms, 96 fps" class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/lights-all.jpg"
+                alt="Frame times while evaluating every light: about 13.9 ms, 72 fps"
+                class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/lights-stochastic.jpg"
+                alt="Frame times while sampling one light per ray: about 10.4 ms, 96 fps"
+                class="project-image lightbox-image">
 
             <p>
-                Everything runs on the CPU, and the game had to hold at least 30 fps, so performance mattered from the first week.
+                Everything runs on the CPU, and the game had to hold at least 30 fps, so performance mattered from the
+                first week.
                 The template already renders the screen in parallel: OpenMP splits the rows over all CPU threads.
                 My job was to keep the work per ray as small as possible.
             </p>
 
             <h4>One light per ray</h4>
             <p>
-                Evaluating every light at every hit gets slower with every light you add. Instead, each ray now picks one random light
+                Evaluating every light at every hit gets slower with every light you add. Instead, each ray now picks
+                one random light
                 and multiplies its contribution by the number of lights, which is a Monte Carlo estimate of the total.
                 Because the accumulator averages frames, the image converges to the same result within about a second.
-                Above, left evaluates every light and right samples one per ray: the frame time dropped from about 13.9 ms to 10.4 ms,
+                Above, left evaluates every light and right samples one per ray: the frame time dropped from about 13.9
+                ms to 10.4 ms,
                 from 72 to 96 fps, and adding more lights no longer costs extra.
             </p>
 
-<pre><code class="language-cpp">float3 Renderer::DirectIllumination(float3 I, float3 N) {
+            <pre><code class="language-cpp">float3 Renderer::DirectIllumination(float3 I, float3 N) {
     int size = mLights.size();
     return mLights[Rand(size) - 0.5]-&gt;CalculateLight(I, N) * (size);
 }</code></pre>
@@ -317,14 +386,20 @@ public:
 
             <h4>Smaller voxels</h4>
             <p>
-                Profiling with Very Sleepy showed that finding the nearest hit in the voxel grid took about half of all frame time,
+                Profiling with Very Sleepy showed that finding the nearest hit in the voxel grid took about half of all
+                frame time,
                 and most of that is reading voxel memory. Each voxel first stored a 32-bit colour plus material,
-                and I shrank it to a single byte: an index into the material palette. That fits four times as many voxels in every cache line.
+                and I shrank it to a single byte: an index into the material palette. That fits four times as many
+                voxels in every cache line.
                 Nearest-hit's share of the frame dropped from 49% to 46%.
             </p>
 
-            <img src="../Assets/media/VoxelRaytracer/profile-before.png" alt="Profiler before shrinking the voxel data: FindNearest at 49 percent" class="project-image lightbox-image">
-            <img src="../Assets/media/VoxelRaytracer/profile-after.png" alt="Profiler after shrinking the voxel data: FindNearest at 46 percent" class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/profile-before.png"
+                alt="Profiler before shrinking the voxel data: FindNearest at 49 percent"
+                class="project-image lightbox-image">
+            <img src="../Assets/media/VoxelRaytracer/profile-after.png"
+                alt="Profiler after shrinking the voxel data: FindNearest at 46 percent"
+                class="project-image lightbox-image">
 
             <h4>Tighter grids</h4>
             <p>
@@ -334,15 +409,20 @@ public:
 
             <h4>Looking back</h4>
             <p>
-                <strong>I measured, but not carefully enough.</strong> My profiling runs had different lengths and camera views,
-                so the before and after numbers are only an indication. A fixed camera and a fixed number of frames would have given a real comparison.
+                <strong>I measured, but not carefully enough.</strong> My profiling runs had different lengths and
+                camera views,
+                so the before and after numbers are only an indication. A fixed camera and a fixed number of frames
+                would have given a real comparison.
                 <br><br>
-                <strong>The light pick is slightly biased.</strong> Subtracting 0.5 before rounding down means the first light is picked one and a half times as often
+                <strong>The light pick is slightly biased.</strong> Subtracting 0.5 before rounding down means the first
+                light is picked one and a half times as often
                 as it should be and the last one only half as often, while every sample is weighted the same.
                 Picking the index with a plain floor of the random number fixes that.
                 <br><br>
-                <strong>There was a lot of speed left on the table.</strong> I learned about SIMD during this project, but never applied it.
-                Tracing four or eight rays at once with SSE or AVX, a two-level grid to skip empty space, and a BVH over the objects
+                <strong>There was a lot of speed left on the table.</strong> I learned about SIMD during this project,
+                but never applied it.
+                Tracing four or eight rays at once with SSE or AVX, a two-level grid to skip empty space, and a BVH over
+                the objects
                 were all logical next steps. I started on the BVH, but rightly stopped to finish the game first.
             </p>
         </div>
@@ -357,23 +437,32 @@ public:
                 <li>Photo mode</li>
             </ul>
 
-            <video class="project-video showcase" src="../Assets/media/VoxelRaytracer/game.mp4" width="600" height="374" muted loop playsinline preload="metadata" aria-label="Ghost Hunter: Ray L. Trace gameplay, catching ghosts with the flashlight"></video>
+            <video class="project-video showcase" src="../Assets/media/VoxelRaytracer/game.mp4" width="600" height="374"
+                muted loop playsinline preload="metadata"
+                aria-label="Ghost Hunter: Ray L. Trace gameplay, catching ghosts with the flashlight"></video>
 
             <p>
-                The last two weeks were for a game that uses the ray tracer. My first plan was a top-down shooter like Raiden,
-                but halfway through modelling the plane I realised it needed things my ray tracer couldn't do yet, like rotating objects.
-                So I switched to something inspired by Luigi's Mansion: you walk through a dark house with a flashlight, and catch ghosts by sucking them up.
+                The last two weeks were for a game that uses the ray tracer. My first plan was a top-down shooter like
+                Raiden,
+                but halfway through modelling the plane I realised it needed things my ray tracer couldn't do yet, like
+                rotating objects.
+                So I switched to something inspired by Luigi's Mansion: you walk through a dark house with a flashlight,
+                and catch ghosts by sucking them up.
                 <br><br>
-                The flashlight is a real spot light, and it is also the core mechanic. Holding space fans a set of rays across the flashlight's cone,
-                and if one of them hits a ghost before it hits a wall, that ghost gets caught. While it is sucked in, the ghost flies towards you and shrinks,
-                random holes are carved out of its voxel grid every frame, and the flashlight flickers through random colours.
+                The flashlight is a real spot light, and it is also the core mechanic. Holding space fans a set of rays
+                across the flashlight's cone,
+                and if one of them hits a ghost before it hits a wall, that ghost gets caught. While it is sucked in,
+                the ghost flies towards you and shrinks,
+                random holes are carved out of its voxel grid every frame, and the flashlight flickers through random
+                colours.
                 Player movement uses the same idea, casting rays in the direction you walk to check for walls.
                 <br><br>
-                Without reprojection the image gets noisy while things move, so I added a photo mode: press P, the game pauses,
+                Without reprojection the image gets noisy while things move, so I added a photo mode: press P, the game
+                pauses,
                 the camera comes free, and the accumulator gets to converge into a clean image.
             </p>
 
-<pre><code class="language-cpp">bool Player::Scan(float deltaTime) {
+            <pre><code class="language-cpp">bool Player::Scan(float deltaTime) {
     float maxDegree = acos(mpPlayerFlash-&gt;mSoftBandSize);
     float incrementDegree = (maxDegree * 2.0f) / mNumberOfScanRays;
     float currentDegree = -maxDegree;
@@ -400,22 +489,26 @@ public:
 
             <h4>Look for bugs where you changed things, not where you expect them.</h4>
             <p>
-                I spent days staring at my glass formulas, while most of the bugs came from the change I had made to the voxel traversal to support glass.
-                The habit I took from it: when I'm stuck on a bug, first go over everything I changed, instead of fixating on the place I think it must be.
+                I spent days staring at my glass formulas, while most of the bugs came from the change I had made to the
+                voxel traversal to support glass.
+                The habit I took from it: when I'm stuck on a bug, first go over everything I changed, instead of
+                fixating on the place I think it must be.
             </p>
             <hr>
 
             <h4>Plan the end of a project from the start.</h4>
             <p>
                 Planning wasn't required this block, so I followed the weekly topics and kept adding optional features.
-                That worked until the last two weeks, when I suddenly needed to build a whole game, had to drop my first idea and crunch to finish the second.
+                That worked until the last two weeks, when I suddenly needed to build a whole game, had to drop my first
+                idea and crunch to finish the second.
                 A plan with time reserved for the game would have avoided both.
             </p>
             <hr>
 
             <h4>Don't reinvent the wheel.</h4>
             <p>
-                I wanted to write my own voxel file loader, but a small, well-known library for MagicaVoxel files saved me from writing and debugging a file parser myself.
+                I wanted to write my own voxel file loader, but a small, well-known library for MagicaVoxel files saved
+                me from writing and debugging a file parser myself.
                 The same happened with roughness, where a classmate pointed me to a function the template already had.
                 Knowing what already exists is part of the job.
             </p>
@@ -446,7 +539,8 @@ public:
             videos.forEach(video => observer.observe(video));
         })();
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
     <script>if (window.hljs) { hljs.highlightAll(); }</script>
     <script src="../Assets/lightbox.js"></script>
     <script src="../Assets/scrollspy.js"></script>
