@@ -569,6 +569,7 @@
 
         .project-action {
             display: inline-block;
+            margin-top: auto;
             font-weight: 500;
             color: #7fc1ff;
             padding: 0.25rem 0;
@@ -1053,7 +1054,7 @@
         }
 
         .hidden-project.visible {
-            display: block;
+            display: flex;
         }
 
         .see-more-btn {
